@@ -43,7 +43,29 @@ const opts = (opts) => {
 }
 
 const initProject = (packagePath, cb) => {
-  
+  const projectPackage = require(packagePath)
+  const projectRoot    = path.dirname(packagePath)
+  const invigRoot      = `${__dirname}/..`
+  const invigPackage   = require(`${invigRoot}/package.json`)
+
+  scrolex.out('Writing eslint config', { components: `invig>${projectRoot}>toJs` })
+  if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
+    if (!projectPackage.eslintConfig) {
+      projectPackage.eslintConfig = invigPackage.eslintConfig
+    }
+  }
+  scrolex.out('Writing babel config', { components: `invig>${projectRoot}>toJs` })
+  if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
+    if (!projectPackage.babel) {
+      projectPackage.babel = invigPackage.babel
+    }
+  }
+  scrolex.out('Writing eslint ignore config', { components: `invig>${projectRoot}>toJs` })
+  if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
+    fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
+  }
+
+  return cb(null)
 }
 
 const toJs = (srcPath, cb) => {
@@ -104,7 +126,13 @@ const convertFile = (srcPath, cb) => {
 }
 
 if (program.init) {
-  initProject(program.package)
+  initProject(program.package, (err) => {
+    if (err) {
+      console.error(`Error while doing project init. ${err}`)
+      process.exit(1)
+    }
+    console.log('Done. ')
+  })
 } else {
   let files = []
   if (fs.lstatSync(program.src).isFile()) {
