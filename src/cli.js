@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const program         = require('commander')
 const globby          = require('globby')
 const applyEachSeries = require('async/applyEachSeries')
@@ -32,9 +33,10 @@ if (!program.package) { program.package = pkgUp.sync(program.dir) }
 program.src = untildify(program.src)
 program.dryrun = !!program.dryrun
 
-const opts = (opts) => {
+const scrolexOpts = (opts) => {
   const defaultOpts = {}
-  defaultOpts.singlescroll = true
+  defaultOpts.singlescroll = false
+  defaultOpts.passthru     = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
     defaultOpts.dryrun   = true
@@ -45,32 +47,34 @@ const opts = (opts) => {
 const initProject = (packagePath, cb) => {
   const projectPackage = require(packagePath)
   const projectRoot    = path.dirname(packagePath)
+  const projectRootRel = path.relative(process.cwd(), projectRoot)
   const invigRoot      = `${__dirname}/..`
+  // const invigRootRel   = path.relative(process.cwd(), invigRoot)
   const invigPackage   = require(`${invigRoot}/package.json`)
 
-  scrolex.out('Writing eslint config', { components: `invig>${projectRoot}>toJs` })
+  scrolex.out('Writing eslint config', { components: `invig>${projectRootRel}>toEslintStandard` })
   if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
     if (!projectPackage.eslintConfig) {
       projectPackage.eslintConfig = invigPackage.eslintConfig
     }
   }
-  scrolex.out('Writing babel config', { components: `invig>${projectRoot}>toJs` })
+  scrolex.out('Writing eslint ignores', { components: `invig>${projectRootRel}>toJs` })
+  if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
+    fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
+  }
+
+  scrolex.out('Writing babel config', { components: `invig>${projectRootRel}>toEs6` })
   if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
     if (!projectPackage.babel) {
       projectPackage.babel = invigPackage.babel
     }
   }
-  scrolex.out('Writing eslint ignore config', { components: `invig>${projectRoot}>toJs` })
-  if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
-    fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
-  }
-
   return cb(null)
 }
 
 const toJs = (srcPath, cb) => {
   const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath}`
-  scrolex.exe(cmd, opts({ components: `invig>${srcPath}>toJs` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toJs` }), cb)
 }
 
 const toEs6 = (srcPath, cb) => {
@@ -99,17 +103,17 @@ const toEs6 = (srcPath, cb) => {
   const list = [].concat(safe, unsafe).join(',')
   const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath}`
 
-  scrolex.exe(cmd, opts({ components: `invig>${srcPath}>toEs6` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toEs6` }), cb)
 }
 
 const toPrettier = (srcPath, cb) => {
   const cmd = `${npmBinDir}/prettier --write ${srcPath} --fix ${srcPath}`
-  scrolex.exe(cmd, opts({ components: `invig>${srcPath}>toPrettier` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toPrettier` }), cb)
 }
 
 const toEslintStandard = (srcPath, cb) => {
   const cmd = `${npmBinDir}/eslint --fix ${srcPath}`
-  scrolex.exe(cmd, opts({ components: `invig>${srcPath}>toEslintStandard` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toEslintStandard` }), cb)
 }
 
 const convertFile = (srcPath, cb) => {
@@ -135,13 +139,20 @@ if (program.init) {
   })
 } else {
   let files = []
+  let relative
   if (fs.lstatSync(program.src).isFile()) {
     // File
-    files = [program.src]
+    relative = path.relative(process.cwd(), program.src)
+    files    = [ relative ]
   } else if (fs.lstatSync(program.src).isDirectory()) {
     // Directory
-    const pattern = [`${program.src}/**/*.js`, `${program.src}/**/*.coffee`]
-    files         = globby.sync(pattern)
+    relative = path.relative(process.cwd(), program.src)
+    files    = globby.sync([
+      `${relative}/**/*.js`,
+      `${relative}/**/*.coffee`,
+      `${relative}/**/*.es5`,
+      `${relative}/**/*.es6`,
+    ])
   } else {
     // Pattern
     files = globby.sync(program.src)
