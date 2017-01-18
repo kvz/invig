@@ -15,6 +15,7 @@
     "release:minor": "env SEMANTIC=minor npm run release",
     "release:patch": "env SEMANTIC=patch npm run release",
     "release": "npm version ${SEMANTIC:-patch} -m \"Release %s\" && npm-run-all build push publish",
+    "publish": "npm publish",
     "test": "npm-run-all build ava",
     "upgrade:modules": "next-update --keep true --tldr"
   },
