@@ -35,7 +35,7 @@ program.dryrun = !!program.dryrun
 
 const scrolexOpts = (opts) => {
   const defaultOpts = {}
-  defaultOpts.singlescroll = false
+  defaultOpts.singlescroll = true
   defaultOpts.passthru     = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
@@ -53,22 +53,30 @@ const initProject = (packagePath, cb) => {
   const invigPackage   = require(`${invigRoot}/package.json`)
 
   scrolex.out('Writing eslint config', { components: `invig>${projectRootRel}>toEslintStandard` })
-  if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
-    if (!projectPackage.eslintConfig) {
-      projectPackage.eslintConfig = invigPackage.eslintConfig
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
+      if (!projectPackage.eslintConfig) {
+        projectPackage.eslintConfig = invigPackage.eslintConfig
+      }
     }
   }
+
   scrolex.out('Writing eslint ignores', { components: `invig>${projectRootRel}>toJs` })
-  if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
-    fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
+      fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
+    }
   }
 
   scrolex.out('Writing babel config', { components: `invig>${projectRootRel}>toEs6` })
-  if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
-    if (!projectPackage.babel) {
-      projectPackage.babel = invigPackage.babel
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
+      if (!projectPackage.babel) {
+        projectPackage.babel = invigPackage.babel
+      }
     }
   }
+
   return cb(null)
 }
 
