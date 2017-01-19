@@ -33,9 +33,9 @@ program.dryrun = !!program.dryrun
 
 const scrolexOpts = (opts) => {
   const defaultOpts = {}
-  defaultOpts.mode = 'singlescroll'
+  defaultOpts.mode     = 'singlescroll'
   defaultOpts.shell    = true
-  defaultOpts.announce = true
+  defaultOpts.announce = false
   defaultOpts.fatal    = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
