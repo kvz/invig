@@ -56,6 +56,18 @@ Ignore any error and continue with the operation for the next file. By default, 
 invig --src src/ --nobail
 ```
 
+Do a dry run without changing any files (don't trust me, keep your stuff save in Git):
+
+```bash
+invig --src src/ --dryrun
+```
+
+Check your dependencies for unused or unupdated when done converting:
+
+```bash
+invig --src src/ --check
+```
+
 ## Flow 
 
 The recommended way to use Invig is to:

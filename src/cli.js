@@ -23,7 +23,7 @@ program
   .version(require('../package.json').version)
   .option('-s, --src <dir>', "Directory or file to convert. DESTRUCTIVE. MAKE SURE IT'S UNDER SOURCE CONTROL. ")
   .option('-n, --nobail', 'Continue with the next file regardless of any errors (normally Invig aborts immediately for inspection)')
-  .option('-c, --depcheck', 'When done, run depcheck to see if there are unused dependencies')
+  .option('-c, --check', 'When done, run dependency check to see if there are unused or unupdated ones')
   .option('-d, --dryrun', 'Wether to execute commands or just output them')
   .parse(process.argv)
 
@@ -254,8 +254,8 @@ initProject(projectPackagePath, err => {
   q.drain = () => {
     console.log('Done. ')
 
-    if (program.depcheck) {
-      Scrolex.exe(`${npmBinDir}/depcheck --ignores=fakefile ${projectDir}`, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), projectDir)}>depcheck` }))
+    if (program.check) {
+      Scrolex.exe(`${npmBinDir}/npm-check ${projectDir}`, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), projectDir)}>depcheck` }))
     }
   }
 })
