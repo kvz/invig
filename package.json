@@ -46,6 +46,7 @@
     "cli-truncate": "1.0.0",
     "commander": "2.9.0",
     "decaffeinate": "2.46.1",
+    "depcheck": "^0.6.7",
     "depurar": "0.3.0",
     "globby": "^6.1.0",
     "lebab": "2.7.0",
