@@ -2,6 +2,7 @@ const shelljs    = require('shelljs')
 const fs         = require('fs')
 const path       = require('path')
 const globby     = require('globby')
+const stripAnsi  = require('strip-ansi')
 const fixDir     = `${__dirname}/../fixture`
 const tmpDir     = `${__dirname}/../fixture/tmp`
 const cliSpinner = require('cli-spinners').dots10
@@ -17,6 +18,8 @@ const removeVariance = (str) => {
 
   str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
+
+  str = stripAnsi(str)
 
   return str
 }

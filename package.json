@@ -58,6 +58,7 @@
     "scrolex": "0.0.8",
     "shelljs": "^0.7.6",
     "spawn-sync": "1.0.15",
+    "strip-ansi": "^3.0.1",
     "untildify": "3.0.2",
     "uuid": "3.0.1"
   },
