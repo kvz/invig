@@ -6,7 +6,7 @@ const fixDir     = `${__dirname}/../fixture`
 const tmpDir     = `${__dirname}/../fixture/tmp`
 const cliSpinner = require('cli-spinners').dots10
 
-const frameHack = (str) => {
+const removeVariance = (str) => {
   // @todo: Remove this hack when stolex no longer adds trailing spinner frames:
   cliSpinner.frames.forEach((frame) => {
     while (str.indexOf(frame) !== -1) {
@@ -14,6 +14,9 @@ const frameHack = (str) => {
       str = str.replace(frame, '---spinnerframe---')
     }
   })
+
+  str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
+
   return str
 }
 
@@ -28,13 +31,13 @@ test('invigorates via cli', () => {
     const cmd = `env SCROLEX_INTERVAL=10000 node ${__dirname}/cli.js --src "${dst}"`
     // console.log(cmd)
     const p = shelljs.exec(cmd)
-    expect(frameHack(p.stderr.trim())).toMatchSnapshot()
-    expect(frameHack(p.stdout.trim())).toMatchSnapshot()
+    expect(removeVariance(p.stderr.trim())).toMatchSnapshot()
+    expect(removeVariance(p.stdout.trim())).toMatchSnapshot()
     expect(p.code).toMatchSnapshot()
     expect(p.code).toBe(0)
 
     let result = fs.readFileSync(dst.replace(/\.coffee$/, '.js'), 'utf-8').trim()
-    expect(frameHack(result)).toMatchSnapshot()
+    expect(removeVariance(result)).toMatchSnapshot()
 
     const pkg = fs.readFileSync(path.dirname(dst) + '/package.json', 'utf-8').trim()
     expect(pkg).toMatchSnapshot()

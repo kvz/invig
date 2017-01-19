@@ -12,8 +12,8 @@ exports[`test invigorates via cli 2`] = `
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning No license field
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [1/4] Resolving packages...
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ success Already up-to-date.
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in 0.25s.
-[?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp ❯ init ❯ Done in 0.25s.
+[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
+[?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
 [?25h[?25l ---spinnerframe--- 
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
 [?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
@@ -68,8 +68,7 @@ for (let removal of Array.from(removals)) {
 }
 
 debug(\`Writing \${fileSitemap}\`)
-fs.writeFileSync(fileSitemap, sitemap, \'utf8\')
-"
+fs.writeFileSync(fileSitemap, sitemap, \'utf8\')"
 `;
 
 exports[`test invigorates via cli 5`] = `
@@ -113,8 +112,8 @@ exports[`test invigorates via cli 7`] = `
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning No license field
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [1/4] Resolving packages...
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ success Already up-to-date.
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in 0.25s.
-[?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp ❯ init ❯ Done in 0.25s.
+[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
+[?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
 [?25h[?25l ---spinnerframe--- 
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ fixture/tmp/asset-index.js ❯ toEs6 ❯ lebabed
 [?25l[1000D[K[1A[1000D[K ✔ invig ❯ fixture/tmp/asset-index.js ❯ toEs6 ❯ lebabed
@@ -187,8 +186,7 @@ process.on(\'exit\', () => {
       console.log(yaml.safeDump(collection[argv.environment]))
     }
   }
-})
-"
+})"
 `;
 
 exports[`test invigorates via cli 10`] = `
