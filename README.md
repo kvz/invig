@@ -41,6 +41,13 @@ invig --src src/
 
 I suggest using `git diff` to inspect if you like the changes. 
 
+## Gotchas
+
+- Although Invig is destructive in nature, it currently leaves your `build` runtasks alone if you have already defined them. If you currently have
+CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
+Same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
+can run Invig multiple times even though you have customized these components that are used in the modern setup.
+
 ## Limitations
 
 - Invig needs a sense of a project so it can add eslint config and similar, so there needs to be a `package.json`, and this gets
