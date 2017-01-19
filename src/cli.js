@@ -9,38 +9,46 @@ const Scrolex         = require('scrolex')
 const debug           = require('depurar')('invig')
 const pkgUp           = require('pkg-up')
 
-const rootDir         = path.dirname(pkgUp.sync(__filename))
-const npmDir          = `${rootDir}/node_modules`
-const npmBinDir       = `${npmDir}/.bin`
-const untildify       = require('untildify')
+const rootDir   = path.dirname(pkgUp.sync(__filename))
+const npmDir    = `${rootDir}/node_modules`
+const npmBinDir = `${npmDir}/.bin`
+const untildify = require('untildify')
 
-const copySync = (src, dst) => {
-  fs.writeFileSync(dst, 'utf-8', fs.readFileSync(src, 'utf-8'))
+const copySyncNoOverwrite = (src, dst) => {
+  if (!fs.existsSync(dst)) {
+    fs.writeFileSync(dst, 'utf-8', fs.readFileSync(src, 'utf-8'))
+  }
 }
 
 program
   .version(require('../package.json').version)
-  .option('-s, --src <dir>', 'Directory or file to convert. DESTRUCTIVE. MAKE SURE IT\'S UNDER SOURCE CONTROL. ')
+  .option(
+    '-s, --src <dir>',
+    "Directory or file to convert. DESTRUCTIVE. MAKE SURE IT'S UNDER SOURCE CONTROL. "
+  )
   .option('-d, --dryrun', 'Wether to execute commands or just output them')
-  // .option('-c, --concurrency <int>', 'Directory to convert. DESTRUCTIVE. MAKE SURE IT\'S UNDER SOURCE CONTROL. ')
   .parse(process.argv)
 
 if (!program.src) {
   console.error('You should provide at least a --src <dir> argument')
   process.exit(1)
 }
-if (!program.concurrency) { program.concurrency = 1 }
-if (!program.init) { program.init = false }
+if (!program.concurrency) {
+  program.concurrency = 1
+}
+if (!program.init) {
+  program.init = false
+}
 
-program.src    = untildify(program.src)
+program.src = untildify(program.src)
 program.dryrun = !!program.dryrun
 
-const scrolexOpts = (opts) => {
-  const defaultOpts = {}
+const scrolexOpts = opts => {
+  const defaultOpts    = {}
   defaultOpts.mode     = 'singlescroll'
   // defaultOpts.mode     = 'passthru'
+  // defaultOpts.announce = true
   defaultOpts.shell    = true
-  defaultOpts.announce = false
   defaultOpts.fatal    = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
@@ -50,12 +58,12 @@ const scrolexOpts = (opts) => {
 }
 
 const initProject = (projectPackagePath, cb) => {
-  const projectPackage = require(projectPackagePath)
-  const projectRoot    = path.dirname(projectPackagePath)
-  const projectRootRel = path.relative(process.cwd(), projectRoot)
-  const invigRoot      = `${__dirname}/..`
-  // const invigRootRel   = path.relative(process.cwd(), invigRoot)
-  const invigPackage   = require(`${invigRoot}/package.json`)
+  const projectPackage  = require(projectPackagePath)
+  const projectRoot     = path.dirname(projectPackagePath)
+  const projectRootRel  = path.relative(process.cwd(), projectRoot)
+  const invigRoot       = `${__dirname}/..`
+  // const invigRootRel = path.relative(process.cwd(), invigRoot)
+  const invigPackage    = require(`${invigRoot}/package.json`)
 
   Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
@@ -87,40 +95,21 @@ const initProject = (projectPackagePath, cb) => {
         projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
       }
     }
-
-    if (!projectPackage.scripts.lint) {
-      projectPackage.scripts.lint = 'eslint .'
-    }
-    if (!projectPackage.scripts.fix) {
-      projectPackage.scripts.fix = 'eslint . --fix'
-    }
-    if (!projectPackage.scripts.build) {
-      projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
-    }
-    if (!projectPackage.scripts['build:watch']) {
-      projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
-    }
   }
 
   Scrolex.out('Writing eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
   if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
-      copySync(`${invigRoot}/.eslintrc`, `${projectRoot}/.eslintrc`)
-    }
+    copySyncNoOverwrite(`${invigRoot}/.eslintrc`, `${projectRoot}/.eslintrc`)
   }
 
   Scrolex.out('Writing babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
   if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
-      copySync(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
-    }
+    copySyncNoOverwrite(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
   }
 
   Scrolex.out('Writing eslint ignores', scrolexOpts({ components: `invig>${projectRootRel}>toJs` }))
   if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
-      copySync(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
-    }
+    copySyncNoOverwrite(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
   }
 
   Scrolex.out('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
@@ -129,12 +118,12 @@ const initProject = (projectPackagePath, cb) => {
   return cb(null)
 }
 
-const toJs = (srcPath, cb) => {
+const toJs = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toJs` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toJs` }), cb)
 }
 
-const toEs6 = (srcPath, cb) => {
+const toEs6 = (projectDir, srcPath, cb) => {
   const safe = [
     'arrow',
     'for-of',
@@ -144,44 +133,48 @@ const toEs6 = (srcPath, cb) => {
     'obj-method',
     'obj-shorthand',
     'no-strict',
-    'multi-var',
     // 'commonjs',
     // 'exponent',
+    'multi-var',
   ]
   const unsafe = [
     'let',
     'class',
     'template',
     'default-param',
-    'destruct-param',
     // 'includes'
+    'destruct-param',
   ]
 
   const list = [].concat(safe, unsafe).join(',')
   const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath} && echo lebabed`
 
-  Scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toEs6` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toEs6` }), cb)
 }
 
-const toPrettier = (srcPath, cb) => {
-  const cmd = `${npmBinDir}/prettier --single-quote --trailing-comma --write ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toPrettier` }), cb)
+const toPrettier = (projectDir, srcPath, cb) => {
+  const cmd = `${npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toPrettier` }), cb)
 }
 
-const toEslintStandard = (srcPath, cb) => {
-  const cmd = `${npmBinDir}/eslint --fix ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toEslintStandard` }), cb)
+const toEslintStandard = (projectDir, srcPath, cb) => {
+  const cmd = `${npmBinDir}/eslint --config ${projectDir}/.eslintrc --fix ${srcPath}`
+  Scrolex.exe(
+    cmd,
+    scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toEslintStandard` }),
+    cb
+  )
 }
 
-const convertFile = (srcPath, cb) => {
+const convertFile = (projectDir, srcPath, cb) => {
   const fns       = []
   const extension = path.extname(srcPath).toLowerCase()
   if (extension === 'coffee') {
-    fns.push(toJs)
+    fns.push(toJs.bind(toJs, projectDir))
   }
-  fns.push(toEs6)
-  fns.push(toPrettier)
-  fns.push(toEslintStandard)
+  fns.push(toEs6.bind(toEs6, projectDir))
+  fns.push(toPrettier.bind(toPrettier, projectDir))
+  fns.push(toEslintStandard.bind(toEslintStandard, projectDir))
 
   applyEachSeries(fns, srcPath, cb)
 }
@@ -214,14 +207,13 @@ if (!files || files.length === 0) {
 const projectPackagePath = pkgUp.sync(path.dirname(files[0]))
 const projectDir         = path.dirname(projectPackagePath)
 
-initProject(projectPackagePath, (err) => {
+initProject(projectPackagePath, err => {
   if (err) {
     console.error(`Error while doing project init. ${err}`)
     process.exit(1)
   }
-  debug({files})
-  const q = queue(convertFile, program.concurrency)
+  debug({ files })
+  const q = queue(convertFile.bind(convertFile, projectDir), program.concurrency)
   q.push(files)
-  q.drain = () =>
-    console.log('Done. ')
+  q.drain = () => console.log('Done. ')
 })
