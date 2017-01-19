@@ -31,9 +31,9 @@ const removeVariance = (str) => {
 
   str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
-  str = str.replace(/^.*peer dependency "es6-promise.*$/gm, 'es6-promise warning')
-  str = str.replace(/^.*fsevents.*Excluding it from installation.*$/gm, 'fsevents warning')
-  str = str.replace(/^.*fsevents.*incompatible with this module.*$/gm, 'fsevents warning')
+  str = str.replace(/^.*peer dependency "es6-promise.*\n/gm, '')
+  str = str.replace(/^.*fsevents.*Excluding it from installation.*\n/gm, '')
+  str = str.replace(/^.*fsevents.*incompatible with this module.*\n/gm, '')
 
   str = stripAnsi(str)
 
