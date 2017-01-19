@@ -62,7 +62,7 @@ const initProject = (projectPackagePath, cb) => {
   const invigRoot       = `${__dirname}/..`
   // const invigRootRel = path.relative(process.cwd(), invigRoot)
   const invigPackage    = require(`${invigRoot}/package.json`)
-  let npmInstallNeeded  = false
+  let npmInstallNeeded  = []
 
   Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
@@ -85,6 +85,9 @@ const initProject = (projectPackagePath, cb) => {
 
   Scrolex.out('Adding dependencies task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
+    if (!projectPackage.dependencies) {
+      projectPackage.dependencies = {}
+    }
     if (!projectPackage.devDependencies) {
       projectPackage.devDependencies = {}
     }
@@ -93,7 +96,7 @@ const initProject = (projectPackagePath, cb) => {
       if (name.match(/^(babel|eslint)/)) {
         if (projectPackage.devDependencies[name] !== invigPackage.devDependencies[name]) {
           projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
-          npmInstallNeeded                     = true
+          npmInstallNeeded.push(`Add ${name} to devDependencies`)
         }
       }
     }
@@ -101,12 +104,12 @@ const initProject = (projectPackagePath, cb) => {
     const removeDeps = ['coffee-script', 'coffeelint']
     removeDeps.forEach((name) => {
       if (projectPackage.dependencies[name]) {
-        delete projectPackage.devDependencies[name]
-        npmInstallNeeded                     = true
+        delete projectPackage.dependencies[name]
+        npmInstallNeeded.push(`Remove ${name} from dependencies`)
       }
       if (projectPackage.devDependencies[name]) {
         delete projectPackage.devDependencies[name]
-        npmInstallNeeded                     = true
+        npmInstallNeeded.push(`Remove ${name} from devDependencies`)
       }
     })
   }
@@ -129,7 +132,8 @@ const initProject = (projectPackagePath, cb) => {
   Scrolex.out('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
   fs.writeFileSync(projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
-  if (npmInstallNeeded) {
+  if (npmInstallNeeded.length > 0) {
+    Scrolex.out('Running npm install to accomodate these changes: ' + npmInstallNeeded.join('. '), scrolexOpts({ components: `invig>${projectRootRel}>init` }))
     const cmd = `yarn || npm install`
     Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${projectRootRel}>init` }), cb)
   } else {
