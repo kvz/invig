@@ -21,10 +21,8 @@ const copySyncNoOverwrite = (src, dst) => {
 
 program
   .version(require('../package.json').version)
-  .option(
-    '-s, --src <dir>',
-    "Directory or file to convert. DESTRUCTIVE. MAKE SURE IT'S UNDER SOURCE CONTROL. "
-  )
+  .option('-s, --src <dir>', "Directory or file to convert. DESTRUCTIVE. MAKE SURE IT'S UNDER SOURCE CONTROL. ")
+  .option('-n, --nobail', 'Continue with the next file regardless of any errors (normally Invig aborts immediately for inspection)')
   .option('-d, --dryrun', 'Wether to execute commands or just output them')
   .parse(process.argv)
 
@@ -39,8 +37,9 @@ if (!program.init) {
   program.init = false
 }
 
-program.src = untildify(program.src)
+program.src    = untildify(program.src)
 program.dryrun = !!program.dryrun
+program.bail   = !program.nobail
 
 const scrolexOpts = opts => {
   const defaultOpts    = {}
@@ -48,7 +47,7 @@ const scrolexOpts = opts => {
   // defaultOpts.mode     = 'passthru'
   // defaultOpts.announce = true
   defaultOpts.shell    = true
-  defaultOpts.fatal    = true
+  defaultOpts.fatal    = program.bail
   if (program.dryrun === true) {
     defaultOpts.announce = true
     defaultOpts.dryrun   = true

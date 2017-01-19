@@ -8,13 +8,19 @@ Breathe new life into legacy code bases by automatically:
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
  - Applying Standard linting via eslint
  - Adding the necessary linting and building boilerplate to the project's package.json
- 
-Invig does all this in a highly opinionated, non-configurabe, and **destructive** way. 
 
 **WARNING**
 
 Make sure your sources are safe under version control before point invig to your codebase. 
 After that, have fun breathing new life into your legacy project 🤗💨🌿 
+
+## Why
+
+I got tired of context switching between ES5, ES6, CoffeeScript, and different code conventions.
+
+The tools are there now. All code can look the same. It's just a matter of stringing them together.
+
+That's what Invig does, be it in a in a highly opinionated, and **destructive** way. 
 
 ## Install
 
@@ -37,6 +43,11 @@ invig --src old-file.js
 ```bash
 invig --src src/
 # results in all coffee and js files in `src/` converted to ES6 - In place! Original `src/` destroyed forever unless under version control
+```
+
+```bash
+invig --src src/ --nobail
+# Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention
 ```
 
 I suggest using `git diff` to inspect if you like the changes. 
