@@ -30,13 +30,14 @@ if (!program.concurrency) { program.concurrency = 1 }
 if (!program.init) { program.init = false }
 if (!program.package) { program.package = pkgUp.sync(program.dir) }
 
-program.src = untildify(program.src)
+program.src    = untildify(program.src)
 program.dryrun = !!program.dryrun
 
 const scrolexOpts = (opts) => {
   const defaultOpts = {}
-  defaultOpts.singlescroll = true
-  defaultOpts.passthru     = true
+  defaultOpts.mode = 'singlescroll'
+  defaultOpts.announce = true
+  defaultOpts.fatal = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
     defaultOpts.dryrun   = true
