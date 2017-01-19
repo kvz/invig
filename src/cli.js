@@ -16,7 +16,7 @@ const untildify = require('untildify')
 
 const copySyncNoOverwrite = (src, dst) => {
   if (!fs.existsSync(dst)) {
-    fs.writeFileSync(dst, 'utf-8', fs.readFileSync(src, 'utf-8'))
+    fs.writeFileSync(dst, fs.readFileSync(src, 'utf-8'), 'utf-8')
   }
 }
 
