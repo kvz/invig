@@ -17,7 +17,8 @@
     "release": "npm version ${SEMANTIC:-patch} -m \"Release %s\" && npm-run-all build push npublish",
     "npublish": "npm publish",
     "test": "npm-run-all build ava",
-    "upgrade:modules": "next-update --keep true --tldr"
+    "upgrade:modules": "next-update --keep true --tldr",
+    "build:watch": "babel src --watch --source-maps --out-dir lib"
   },
   "repository": {
     "type": "git",
