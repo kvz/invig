@@ -98,6 +98,18 @@ const initProject = (projectPackagePath, cb) => {
         }
       }
     }
+
+    const removeDeps = ['coffee-script', 'coffeelint']
+    removeDeps.forEach((name) => {
+      if (projectPackage.dependencies[name]) {
+        delete projectPackage.devDependencies[name]
+        npmInstallNeeded                     = true
+      }
+      if (projectPackage.devDependencies[name]) {
+        delete projectPackage.devDependencies[name]
+        npmInstallNeeded                     = true
+      }
+    })
   }
 
   Scrolex.out('Writing eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
