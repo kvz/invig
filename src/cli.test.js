@@ -31,6 +31,9 @@ const removeVariance = (str) => {
 
   str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
+  str = str.replace(/^.*peer dependency "es6-promise.*$/gm, 'es6-promise warning')
+  str = str.replace(/^.*fsevents.*Excluding it from installation.*$/gm, 'fsevents warning')
+  str = str.replace(/^.*fsevents.*incompatible with this module.*$/gm, 'fsevents warning')
 
   str = stripAnsi(str)
 
@@ -39,7 +42,7 @@ const removeVariance = (str) => {
 
 shelljs.rm('-fR', tmpDir)
 shelljs.mkdir('-p', tmpDir)
-shelljs.touch('-p', tmpDir + '/.empty')
+shelljs.touch(tmpDir + '/.empty')
 
 test('invigorates via cli', () => {
   const files = globby.sync([`${fixDir}/*.coffee`, `${fixDir}/*.js`])
