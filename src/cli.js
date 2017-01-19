@@ -34,6 +34,7 @@ program.dryrun = !!program.dryrun
 const scrolexOpts = (opts) => {
   const defaultOpts = {}
   defaultOpts.mode     = 'singlescroll'
+  // defaultOpts.mode     = 'passthru'
   defaultOpts.shell    = true
   defaultOpts.announce = false
   defaultOpts.fatal    = true
@@ -52,7 +53,7 @@ const initProject = (projectPackagePath, cb) => {
   // const invigRootRel   = path.relative(process.cwd(), invigRoot)
   const invigPackage   = require(`${invigRoot}/package.json`)
 
-  scrolex.out('Adding eslint project config', { components: `invig>${projectRootRel}>toEslintStandard` })
+  scrolex.out('Adding eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
       if (!projectPackage.eslintConfig) {
@@ -61,7 +62,7 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
-  scrolex.out('Adding npm task project config', { components: `invig>${projectRootRel}>npm` })
+  scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
       if (!projectPackage.scripts) {
@@ -76,7 +77,7 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
-  scrolex.out('Adding babel project config', { components: `invig>${projectRootRel}>toEs6` })
+  scrolex.out('Adding babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
       if (!projectPackage.babel) {
@@ -85,14 +86,14 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
-  scrolex.out('Writing eslint ignores', { components: `invig>${projectRootRel}>toJs` })
+  scrolex.out('Writing eslint ignores', scrolexOpts({ components: `invig>${projectRootRel}>toJs` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
       fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
     }
   }
 
-  scrolex.out('Writing back project config ', { components: `invig>${projectRootRel}>init` })
+  scrolex.out('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
   fs.writeFileSync(projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
   return cb(null)
@@ -127,7 +128,7 @@ const toEs6 = (srcPath, cb) => {
   ]
 
   const list = [].concat(safe, unsafe).join(',')
-  const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath}`
+  const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath} && echo lebabed`
 
   scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toEs6` }), cb)
 }
