@@ -15,6 +15,7 @@ const removeVariance = (str) => {
     }
   })
 
+  str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
 
   return str
