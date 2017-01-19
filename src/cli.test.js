@@ -16,12 +16,18 @@ const removeVariance = (str) => {
     }
   })
 
-  const envVars = ['HOME', 'USER']
-  envVars.forEach((envVar) => {
-    while (str.indexOf(process.env[envVar]) !== -1) {
-      str = str.replace(process.env[envVar], `#{${envVar}}`)
+  const map = {
+    PWD : process.cwd(),
+    HOME: process.env.HOME,
+    USER: process.env.USER,
+  }
+
+  for (let key in map) {
+    let val = map[key]
+    while (str.indexOf(val) !== -1) {
+      str = str.replace(val, `#{${key}}`)
     }
-  })
+  }
 
   str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')

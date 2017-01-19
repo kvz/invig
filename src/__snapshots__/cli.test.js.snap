@@ -15,8 +15,8 @@ exports[`test invigorates via cli 2`] = `
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
  ✔ invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
  ---spinnerframe--- 
- ---spinnerframe--- invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ #{HOME}/code/invig/fixture/tmp/hack-sitemap.coffee → #{HOME}/code/invig/fixture/tmp/hack-sitemap.js
- ✔ invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ #{HOME}/code/invig/fixture/tmp/hack-sitemap.coffee → #{HOME}/code/invig/fixture/tmp/hack-sitemap.js
+ ---spinnerframe--- invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ #{PWD}/fixture/tmp/hack-sitemap.coffee → #{PWD}/fixture/tmp/hack-sitemap.js
+ ✔ invig ❯ fixture/tmp/hack-sitemap.coffee ❯ toJs ❯ #{PWD}/fixture/tmp/hack-sitemap.coffee → #{PWD}/fixture/tmp/hack-sitemap.js
  ---spinnerframe--- 
  ---spinnerframe--- invig ❯ fixture/tmp/hack-sitemap.js ❯ toEs6 ❯ lebabed
  ✔ invig ❯ fixture/tmp/hack-sitemap.js ❯ toEs6 ❯ lebabed
