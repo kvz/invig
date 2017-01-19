@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/kvz/invig.svg?branch=master)](https://travis-ci.org/kvz/invig)
 
+> Here's another one of my more upsetting projects. 
+
 # Invig
 
 Breathe new life into legacy code bases by automatically:
@@ -8,6 +10,8 @@ Breathe new life into legacy code bases by automatically:
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
  - Applying Standard linting via eslint
  - Adding the necessary linting and building boilerplate to the project's package.json
+ 
+Invig does this in a highly opinionated, non-configurable, and **destructive** way. 
 
 **WARNING**
 
@@ -18,9 +22,7 @@ After that, have fun breathing new life into your legacy project 🤗💨🌿
 
 I got tired of context switching between ES5, ES6, CoffeeScript, and different code conventions.
 
-The tools are there now. All code can look the same. It's just a matter of stringing them together.
-
-That's what Invig does, be it in a in a highly opinionated, and **destructive** way. 
+The tools are there now. It's just a matter of stringing them together, and all code can be present day ECMA and look uniformly styled.
 
 ## Install
 
