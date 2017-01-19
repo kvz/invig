@@ -34,7 +34,7 @@
   "dependencies": {
     "chalk": "1.1.3",
     "cli-spinners": "1.0.0",
-    "cli-truncate": "0.2.1",
+    "cli-truncate": "1.0.0",
     "commander": "^2.9.0",
     "decaffeinate": "^2.46.1",
     "depurar": "0.3.0",
@@ -45,36 +45,30 @@
     "log-update": "1.0.2",
     "os-tmpdir": "1.0.2",
     "pkg-up": "^1.0.0",
-    "prettier": "^0.0.8",
-    "scrolex": "^0.0.1",
+    "prettier": "0.0.9",
+    "scrolex": "0.0.4",
     "spawn-sync": "1.0.15",
     "untildify": "^3.0.2",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "ava": "0.17.0",
-    "babel-cli": "6.11.4",
-    "babel-core": "6.13.2",
-    "babel-eslint": "6.1.2",
+    "babel-cli": "6.18.0",
+    "babel-core": "6.21.0",
+    "babel-eslint": "7.1.1",
     "babel-plugin-add-module-exports": "0.2.1",
-    "babel-plugin-es6-promise": "1.0.0",
+    "babel-plugin-es6-promise": "1.1.0",
     "babel-plugin-syntax-async-functions": "6.13.0",
-    "babel-plugin-transform-async-generator-functions": "6.17.0",
     "babel-plugin-transform-async-to-generator": "6.16.0",
     "babel-plugin-transform-object-assign": "6.8.0",
-    "babel-plugin-transform-proto-to-assign": "6.9.0",
-    "babel-polyfill": "6.9.1",
-    "babel-preset-es2015": "6.13.2",
-    "babel-preset-es2015-loose": "7.0.0",
-    "babel-preset-stage-3": "6.16.0",
-    "babel-register": "6.9.0",
-    "eslint": "3.12.2",
+    "babel-preset-es2015": "6.18.0",
+    "eslint": "3.13.1",
     "eslint-config-standard": "6.2.1",
     "eslint-plugin-promise": "3.4.0",
     "eslint-plugin-standard": "2.0.1",
     "fakefile": "0.0.8",
     "next-update": "1.5.1",
-    "npm-run-all": "4.0.0"
+    "npm-run-all": "4.0.1"
   },
   "homepage": "https://github.com/kvz/invig#readme",
   "eslintConfig": {
@@ -86,23 +80,36 @@
     },
     "rules": {
       "no-multi-spaces": 0,
-      "comma-dangle": ["error", "always-multiline"],
-      "key-spacing": ["error", {
-        "multiLine": {
-          "beforeColon": false,
-          "afterColon": true
-        },
-        "align": {
-          "beforeColon": false,
-          "afterColon" : true,
-          "on"         : "colon",
-          "mode"       : "strict"
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "key-spacing": [
+        "error",
+        {
+          "multiLine": {
+            "beforeColon": false,
+            "afterColon": true
+          },
+          "align": {
+            "beforeColon": false,
+            "afterColon": true,
+            "on": "colon",
+            "mode": "strict"
+          }
         }
-      }]
+      ]
     }
   },
   "babel": {
-    "presets": ["es2015"],
-    "plugins": ["add-module-exports", "transform-object-assign", "es6-promise", "transform-async-to-generator" ]
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "add-module-exports",
+      "transform-object-assign",
+      "es6-promise",
+      "transform-async-to-generator"
+    ]
   }
 }
