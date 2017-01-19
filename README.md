@@ -32,27 +32,37 @@ yarn global add invig || npm install --global invig
 
 ## Use
 
+Port one CoffeeScript file to ES6 (deleting the old `.coffee` file.):
+
 ```bash
 invig --src old-file.coffee
-# results in old-file.js in ES6
 ```
+
+Port one ES5 file to ES6 (original file destroyed forever unless under version control):
 
 ```bash
 invig --src old-file.js
-# results in old-file.js in ES6 - Original file destroyed forever unless under version control!
 ```
+
+Port an entire directory of CoffeeScript or ES5 files to ES6 (In place. The original `src/` contents are destroyed forever unless under version control):
 
 ```bash
 invig --src src/
-# results in all coffee and js files in `src/` converted to ES6 - In place! Original `src/` destroyed forever unless under version control
 ```
+
+Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention:
 
 ```bash
 invig --src src/ --nobail
-# Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention
 ```
 
-I suggest using `git diff` to inspect if you like the changes. 
+The recommended way to use Invig is to:
+
+1. have a clean Git working tree first
+1. `git checkout -b es6`
+2. run invig on it
+3. apply manual fixes where the automation still falls short (Invig will tell you)
+4. once you like the git diff, commit, push, send a PR for your `es6` branch (btw, the [GitHub Desktop](https://desktop.github.com) app makes for a great inspection tool here. "But I wield my git cli like a god and UIs are for noobz!". Sure, have it your way)
 
 ## State
 
