@@ -56,6 +56,8 @@ Ignore any error and continue with the operation for the next file. By default, 
 invig --src src/ --nobail
 ```
 
+## Flow 
+
 The recommended way to use Invig is to:
 
 1. Be in `master` and have a clean Git working tree first
@@ -77,15 +79,7 @@ CoffeeScript build tasks, remove them first, so that Invig can write the new one
 Same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
 can run Invig multiple times even though you have customized these components that are used in the modern setup.
 - Support for <https://github.com/jlongster/prettier> is already added, but disabled, as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to eslint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier, prefix your Invig commands with `env INVIG_PRETTIER=1 `
-- Invig needs a sense of a project so it can add eslint config and similar, so there needs to be a `package.json`, and this gets
-
-**modified in place**, also.
-
-## Troubleshooting
-
-Sometimes failures happen because eslint wasn't able to make all the beautifications automatically. 
-You can then open (CMD+Click if you set up your terminal correctly) the file in your editor, make the changes by hand,
-and 
+- Invig needs a sense of a project so it can add eslint config and similar, so there needs to be a `package.json`, and this gets **modified in place**, also.
 
 ## Thanks to
 
