@@ -58,11 +58,13 @@ invig --src src/ --nobail
 
 The recommended way to use Invig is to:
 
-1. have a clean Git working tree first
+1. Be in `master` and have a clean Git working tree first
 1. `git checkout -b es6`
-2. run invig on it
-3. apply manual fixes where the automation still falls short (Invig will tell you)
-4. once you like the git diff, commit, push, send a PR for your `es6` branch (btw, the [GitHub Desktop](https://desktop.github.com) app makes for a great inspection tool here. "But I wield my git cli like a god and UIs are for noobz!". Sure, have it your way)
+2. Run Invig on your repo, point it to wherever your legacy sources live
+3. Apply manual fixes where the automation falls short (Invig will tell you)
+4. Inspect the git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli god. Can't stress this enough) and repeat step 2 & 3
+5. Commit, push, send a PR for your `es6` branch
+6. Let's celebrate that your codebase is now very much **2017** 🍸
 
 ## State
 
@@ -75,10 +77,8 @@ CoffeeScript build tasks, remove them first, so that Invig can write the new one
 Same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
 can run Invig multiple times even though you have customized these components that are used in the modern setup.
 - Support for <https://github.com/jlongster/prettier> is already added, but disabled, as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to eslint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier, prefix your Invig commands with `env INVIG_PRETTIER=1 `
-
-## Limitations
-
 - Invig needs a sense of a project so it can add eslint config and similar, so there needs to be a `package.json`, and this gets
+
 **modified in place**, also.
 
 ## Troubleshooting
@@ -89,7 +89,7 @@ and
 
 ## Thanks to
 
-Invig is just a wrapper around these beasts:
+Invig is just a tiny wrapper around these mastodons:
 
 - <https://github.com/decaffeinate/decaffeinate>
 - <http://lebab.io>
