@@ -37,6 +37,10 @@ const removeVariance = (str) => {
   return str
 }
 
+shelljs.rm('-fR', tmpDir)
+shelljs.mkdir('-p', tmpDir)
+shelljs.touch('-p', tmpDir + '/.empty')
+
 test('invigorates via cli', () => {
   const files = globby.sync([`${fixDir}/*.coffee`, `${fixDir}/*.js`])
   files.forEach((src) => {

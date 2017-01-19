@@ -9,9 +9,14 @@ exports[`test invigorates via cli 2`] = `
  ✔ invig ❯ fixture/tmp ❯ init ❯ Writing back project config
  ✔ invig ❯ fixture/tmp ❯ init ❯ Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ yarn install vX.X.X
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ info No lockfile found.
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning No license field
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [1/4] Resolving packages...
- ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ success Already up-to-date.
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [2/4] Fetching packages...
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [3/4] Linking dependencies...
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning Unmet peer dependency \"es6-promise@^4\".
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [4/4] Building fresh packages...
+ ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ success Saved lockfile.
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
  ✔ invig ❯ fixture/tmp ❯ init ❯ Done in X.Xs.
  ---spinnerframe--- 
