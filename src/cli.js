@@ -61,6 +61,21 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
+  scrolex.out('Adding npm task project config', { components: `invig>${projectRootRel}>npm` })
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
+      if (!projectPackage.scripts) {
+        projectPackage.scripts = {}
+      }
+      if (!projectPackage.scripts.lint) {
+        projectPackage.scripts.lint = 'eslint .'
+      }
+      if (!projectPackage.scripts.fix) {
+        projectPackage.scripts.fix = 'eslint . --fix'
+      }
+    }
+  }
+
   scrolex.out('Adding babel project config', { components: `invig>${projectRootRel}>toEs6` })
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
