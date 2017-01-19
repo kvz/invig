@@ -69,7 +69,8 @@ and
 
 ## Todo
 
-- [] Rewrite coffeescript mocha to `mocha --require babel-polyfill --compilers js:babel-register`
+- [ ] Rewrite coffeescript mocha to `mocha --require babel-polyfill --compilers js:babel-register`
+- [ ] Support for <https://github.com/jlongster/prettier> is already added, but disabled, as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to eslint standard, that will give us `go fmt`-like strictness.
 
 ## Authors
 
