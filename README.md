@@ -2,11 +2,11 @@
 
 # Invig
 
-Breathe new life into legacy code bases:
+Breathe new life into legacy code bases by automatically:
 
- - Transpiling CoffeeScript to ES5
- - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet)
- - Applying <http://standardjs.com> linting via eslint
+ - Transpiling CoffeeScript to ES6
+ - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
+ - Applying Standard linting via eslint
  - Adding the necessary linting and building boilerplate to the project's package.json
  
 Invig does all this in a highly opinionated, non-configurabe, and **destructive** way. 
