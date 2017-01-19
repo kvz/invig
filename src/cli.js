@@ -64,16 +64,46 @@ const initProject = (projectPackagePath, cb) => {
 
   Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
-      if (!projectPackage.scripts) {
-        projectPackage.scripts = {}
+    if (!projectPackage.scripts) {
+      projectPackage.scripts = {}
+    }
+    if (!projectPackage.scripts.lint) {
+      projectPackage.scripts.lint = 'eslint .'
+    }
+    if (!projectPackage.scripts.fix) {
+      projectPackage.scripts.fix = 'eslint . --fix'
+    }
+    if (!projectPackage.scripts.build) {
+      projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
+    }
+    if (!projectPackage.scripts['build:watch']) {
+      projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
+    }
+  }
+
+  Scrolex.out('Adding dependencies task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
+  if (program.dryrun === false) {
+    if (!projectPackage.devDependencies) {
+      projectPackage.devDependencies = {}
+    }
+
+    for (let name in invigPackage.devDependencies) {
+      if (name.match(/^(babel|eslint)/)) {
+        projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
       }
-      if (!projectPackage.scripts.lint) {
-        projectPackage.scripts.lint = 'eslint .'
-      }
-      if (!projectPackage.scripts.fix) {
-        projectPackage.scripts.fix = 'eslint . --fix'
-      }
+    }
+
+    if (!projectPackage.scripts.lint) {
+      projectPackage.scripts.lint = 'eslint .'
+    }
+    if (!projectPackage.scripts.fix) {
+      projectPackage.scripts.fix = 'eslint . --fix'
+    }
+    if (!projectPackage.scripts.build) {
+      projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
+    }
+    if (!projectPackage.scripts['build:watch']) {
+      projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
     }
   }
 
@@ -134,7 +164,7 @@ const toEs6 = (srcPath, cb) => {
 }
 
 const toPrettier = (srcPath, cb) => {
-  const cmd = `${npmBinDir}/prettier --write ${srcPath} --fix ${srcPath}`
+  const cmd = `${npmBinDir}/prettier --single-quote --trailing-comma --write ${srcPath}`
   Scrolex.exe(cmd, scrolexOpts({ components: `invig>${srcPath}>toPrettier` }), cb)
 }
 
