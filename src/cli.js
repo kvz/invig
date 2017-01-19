@@ -14,6 +14,10 @@ const npmDir          = `${rootDir}/node_modules`
 const npmBinDir       = `${npmDir}/.bin`
 const untildify       = require('untildify')
 
+const copySync = (src, dst) => {
+  fs.writeFileSync(dst, 'utf-8', fs.readFileSync(src, 'utf-8'))
+}
+
 program
   .version(require('../package.json').version)
   .option('-s, --src <dir>', 'Directory or file to convert. DESTRUCTIVE. MAKE SURE IT\'S UNDER SOURCE CONTROL. ')
@@ -52,15 +56,6 @@ const initProject = (projectPackagePath, cb) => {
   const invigRoot      = `${__dirname}/..`
   // const invigRootRel   = path.relative(process.cwd(), invigRoot)
   const invigPackage   = require(`${invigRoot}/package.json`)
-
-  Scrolex.out('Adding eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
-  if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
-      if (!projectPackage.eslintConfig) {
-        projectPackage.eslintConfig = invigPackage.eslintConfig
-      }
-    }
-  }
 
   Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
@@ -107,19 +102,24 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
-  Scrolex.out('Adding babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
+  Scrolex.out('Writing eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
+      copySync(`${invigRoot}/.eslintrc`, `${projectRoot}/.eslintrc`)
+    }
+  }
+
+  Scrolex.out('Writing babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
-      if (!projectPackage.babel) {
-        projectPackage.babel = invigPackage.babel
-      }
+      copySync(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
     }
   }
 
   Scrolex.out('Writing eslint ignores', scrolexOpts({ components: `invig>${projectRootRel}>toJs` }))
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.eslintignore`)) {
-      fs.writeFileSync(`${projectRoot}/.eslintignore`, 'utf-8', fs.readFileSync(`${invigRoot}/.eslintignore`, 'utf-8'))
+      copySync(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
     }
   }
 
@@ -211,7 +211,10 @@ if (!files || files.length === 0) {
   process.exit(1)
 }
 
-initProject(pkgUp.sync(path.dirname(files[0])), (err) => {
+const projectPackagePath = pkgUp.sync(path.dirname(files[0]))
+const projectDir         = path.dirname(projectPackagePath)
+
+initProject(projectPackagePath, (err) => {
   if (err) {
     console.error(`Error while doing project init. ${err}`)
     process.exit(1)

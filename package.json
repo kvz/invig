@@ -71,46 +71,5 @@
     "next-update": "1.5.1",
     "npm-run-all": "4.0.1"
   },
-  "homepage": "https://github.com/kvz/invig#readme",
-  "eslintConfig": {
-    "extends": "standard",
-    "env": {
-      "es6": true,
-      "mocha": true,
-      "node": true
-    },
-    "rules": {
-      "no-multi-spaces": 0,
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ],
-      "key-spacing": [
-        "error",
-        {
-          "multiLine": {
-            "beforeColon": false,
-            "afterColon": true
-          },
-          "align": {
-            "beforeColon": false,
-            "afterColon": true,
-            "on": "colon",
-            "mode": "strict"
-          }
-        }
-      ]
-    }
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "add-module-exports",
-      "transform-object-assign",
-      "es6-promise",
-      "transform-async-to-generator"
-    ]
-  }
+  "homepage": "https://github.com/kvz/invig#readme"
 }
