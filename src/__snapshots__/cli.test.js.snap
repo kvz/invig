@@ -8,9 +8,6 @@ exports[`test invigorates via cli 2`] = `
 [?25h[?25l ✔ invig ❯ fixture/tmp ❯ toJs ❯ Writing eslint ignores
 [?25h[?25l ✔ invig ❯ fixture/tmp ❯ init ❯ Writing back project config
 [?25h[?25l ---spinnerframe--- invig ❯ hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/src/../fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/src/../fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/src/../fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/src/../fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
 [?25l[1000D[K[1A[1000D[K ✔ invig ❯ hack-sitemap.coffee ❯ toJs ❯ /Users/kvz/code/invig/src/../fixture/tmp/hack-sitemap.coffee → /Users/kvz/code/invig/fixture/tmp/hack-sitemap.js
 [?25h[?25l ---spinnerframe--- 
 [?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ hack-sitemap.js ❯ toEs6 ❯ lebabed
@@ -103,7 +100,6 @@ exports[`test invigorates via cli 7`] = `
 [?25h[?25l ✔ invig ❯ fixture/tmp ❯ toJs ❯ Writing eslint ignores
 [?25h[?25l ✔ invig ❯ fixture/tmp ❯ init ❯ Writing back project config
 [?25h[?25l ---spinnerframe--- invig ❯ asset-index.js ❯ toEs6 ❯ lebabed
-[?25l[1000D[K[1A[1000D[K ---spinnerframe--- invig ❯ asset-index.js ❯ toEs6 ❯ lebabed
 [?25l[1000D[K[1A[1000D[K ✔ invig ❯ asset-index.js ❯ toEs6 ❯ lebabed
 [?25h[?25l ---spinnerframe--- 
 Done. 

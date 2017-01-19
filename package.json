@@ -55,7 +55,7 @@
     "os-tmpdir": "^1.0.2",
     "pkg-up": "1.0.0",
     "prettier": "0.0.9",
-    "scrolex": "0.0.4",
+    "scrolex": "0.0.6",
     "shelljs": "^0.7.6",
     "spawn-sync": "1.0.15",
     "untildify": "3.0.2",
