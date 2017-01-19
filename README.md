@@ -2,7 +2,7 @@
 
 > Here's another one of my more upsetting projects 👌
 
-# Invig
+# 🌿 Invig
 
 Breathe new life into legacy code bases by automatically:
 
