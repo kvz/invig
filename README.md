@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/kvz/invig.svg?branch=master)](https://travis-ci.org/kvz/invig)
 
-> Here's another one of my more upsetting projects. 
+> Here's another one of my more upsetting projects 👌
 
 # Invig
 
