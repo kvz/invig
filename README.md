@@ -8,14 +8,14 @@ Breathe new life into legacy code bases by automatically:
 
  - Transpiling CoffeeScript to ES6
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
- - Applying Standard linting via eslint
+ - Applying Standard linting via ESLint
  - Adding the necessary linting and building boilerplate to the project's package.json
  
 Invig does this in a highly opinionated, non-configurable, and **destructive** way. 
 
 **WARNING**
 
-Make sure your sources are safe under version control before point invig to your codebase. 
+Make sure your sources are safe under version control before point Invig to your codebase. 
 After that, have fun breathing new life into your legacy project 🤗💨🌿 
 
 ## Why
@@ -74,12 +74,12 @@ Invig is Young! Pre-`1.0.0`, we're allowing ourselves to make breaking changes a
 
 ## Gotchas
 
-- Although Invig is destructive in nature, it currently leaves your `build` runtasks alone if you have already defined them. If you currently have
+- Although Invig is destructive in nature, it currently leaves your `build` run script alone if you have already defined it. If you currently have
 CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
-Same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
+The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
 can run Invig multiple times even though you have customized these components that are used in the modern setup.
-- Support for <https://github.com/jlongster/prettier> is already added, but disabled, as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to eslint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier, prefix your Invig commands with `env INVIG_PRETTIER=1 `
-- Invig needs a sense of a project so it can add eslint config and similar, so there needs to be a `package.json`, and this gets **modified in place**, also.
+- Support for <https://github.com/jlongster/prettier> is already added, but disabled, as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to ESLint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier, prefix your Invig commands with `env INVIG_PRETTIER=1 `
+- Invig needs a sense of a project so it can add ESLint config and similar, so there needs to be a `package.json`, and this gets **modified in place**, also.
 
 ## Thanks to
 
