@@ -91,6 +91,10 @@ Invig is just a tiny wrapper around these mastodons:
 - <https://github.com/jlongster/prettier>
 - <http://standardjs.com>
 
+## Invig in the Wild 🌿
+
+- <https://github.com/transloadit/node-sdk/pull/40>
+
 ## Todo
 
 - [ ] Rewrite coffeescript mocha to `mocha --require babel-polyfill --compilers js:babel-register`
