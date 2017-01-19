@@ -16,6 +16,13 @@ const removeVariance = (str) => {
     }
   })
 
+  const envVars = ['HOME', 'USER']
+  envVars.forEach((envVar) => {
+    while (str.indexOf(process.env[envVar]) !== -1) {
+      str = str.replace(process.env[envVar], `#{${envVar}}`)
+    }
+  })
+
   str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
 
@@ -40,8 +47,8 @@ test('invigorates via cli', () => {
     expect(p.code).toMatchSnapshot()
     expect(p.code).toBe(0)
 
-    let result = fs.readFileSync(dst.replace(/\.coffee$/, '.js'), 'utf-8').trim()
-    expect(removeVariance(result)).toMatchSnapshot()
+    let result = fs.readFileSync(dst.replace(/\.coffee$/, '.js'), 'utf-8')
+    expect(removeVariance(result.trim())).toMatchSnapshot()
 
     const pkg = fs.readFileSync(path.dirname(dst) + '/package.json', 'utf-8').trim()
     expect(pkg).toMatchSnapshot()
