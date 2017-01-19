@@ -59,7 +59,7 @@ Sometimes failures happen because eslint wasn't able to make all the beautificat
 You can then open (CMD+Click if you set up your terminal correctly) the file in your editor, make the changes by hand,
 and 
 
-# Thanks to
+## Thanks to
 
 - <https://github.com/decaffeinate/decaffeinate>
 - <http://lebab.io>
@@ -67,10 +67,14 @@ and
 - <https://github.com/jlongster/prettier>
 - <http://standardjs.com>
 
+## Todo
+
+- [] Rewrite coffeescript mocha to `mocha --require babel-polyfill --compilers js:babel-register`
+
 ## Authors
 
- - [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
+- [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
 
 ## License
 
-Copyright (c) 2016 Kevin van Zonneveld. Licenses under [MIT](LICENSE).
+Copyright (c) 2017 Kevin van Zonneveld. Licenses under [MIT](LICENSE).
