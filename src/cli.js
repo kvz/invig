@@ -6,7 +6,6 @@ const queue           = require('async/queue')
 const path            = require('path')
 const fs              = require('fs')
 const Scrolex         = require('scrolex')
-const debug           = require('depurar')('invig')
 const pkgUp           = require('pkg-up')
 
 const rootDir   = path.dirname(pkgUp.sync(__filename))
@@ -45,7 +44,7 @@ program.dryrun = !!program.dryrun
 
 const scrolexOpts = opts => {
   const defaultOpts    = {}
-  defaultOpts.mode     = 'singlescroll'
+  defaultOpts.mode     = process.env.SCROLEX_MODE || 'singlescroll'
   // defaultOpts.mode     = 'passthru'
   // defaultOpts.announce = true
   defaultOpts.shell    = true
@@ -120,7 +119,7 @@ const initProject = (projectPackagePath, cb) => {
 
 const toJs = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toJs` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toJs` }), cb)
 }
 
 const toEs6 = (projectDir, srcPath, cb) => {
@@ -150,13 +149,13 @@ const toEs6 = (projectDir, srcPath, cb) => {
   const list = [].concat(safe, unsafe).join(',')
   const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath} && echo lebabed`
 
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toEs6` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toEs6` }), cb)
 }
 
 const toPrettier = (projectDir, srcPath, cb) => {
   srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toPrettier` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toPrettier` }), cb)
 }
 
 const toEslintStandard = (projectDir, srcPath, cb) => {
@@ -164,7 +163,7 @@ const toEslintStandard = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/eslint --config ${projectDir}/.eslintrc --fix ${srcPath}`
   Scrolex.exe(
     cmd,
-    scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toEslintStandard` }),
+    scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toEslintStandard` }),
     cb
   )
 }
@@ -172,6 +171,7 @@ const toEslintStandard = (projectDir, srcPath, cb) => {
 const convertFile = (projectDir, srcPath, cb) => {
   const fns       = []
   const extension = path.extname(srcPath).toLowerCase()
+
   if (extension === '.coffee') {
     fns.push(toJs.bind(toJs, projectDir))
   }
@@ -185,19 +185,19 @@ const convertFile = (projectDir, srcPath, cb) => {
 }
 
 let files = []
-let relative
+// let relative
 if (fs.lstatSync(program.src).isFile()) {
   // File
-  relative = path.relative(process.cwd(), program.src)
-  files    = [ relative ]
+  // relative = path.relative(process.cwd(), program.src)
+  files    = [ program.src ]
 } else if (fs.lstatSync(program.src).isDirectory()) {
   // Directory
-  relative = path.relative(process.cwd(), program.src)
+  // relative = path.relative(process.cwd(), program.src)
   files    = globby.sync([
-    `${relative}/**/*.coffee`,
-    `${relative}/**/*.es5`,
-    `${relative}/**/*.es6`,
-    `${relative}/**/*.js`,
+    `${program.src}/**/*.coffee`,
+    `${program.src}/**/*.es5`,
+    `${program.src}/**/*.es6`,
+    `${program.src}/**/*.js`,
   ])
 } else {
   // Pattern
@@ -210,14 +210,19 @@ if (!files || files.length === 0) {
 }
 
 const projectPackagePath = pkgUp.sync(path.dirname(files[0]))
-const projectDir         = path.dirname(projectPackagePath)
+
+if (!projectPackagePath) {
+  console.error(`No package.json found, unable to establish project root. `)
+  process.exit(1)
+}
+
+const projectDir = path.dirname(projectPackagePath)
 
 initProject(projectPackagePath, err => {
   if (err) {
     console.error(`Error while doing project init. ${err}`)
     process.exit(1)
   }
-  debug({ files })
   const q = queue(convertFile.bind(convertFile, projectDir), program.concurrency)
   q.push(files)
   q.drain = () => console.log('Done. ')

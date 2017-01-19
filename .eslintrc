@@ -2,7 +2,7 @@
   "extends": "standard",
   "env": {
     "es6": true,
-    "mocha": true,
+    "jest": true,
     "node": true
   },
   "rules": {
