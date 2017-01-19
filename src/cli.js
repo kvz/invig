@@ -119,11 +119,12 @@ const initProject = (projectPackagePath, cb) => {
 }
 
 const toJs = (projectDir, srcPath, cb) => {
-  const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath}`
+  const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
   Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toJs` }), cb)
 }
 
 const toEs6 = (projectDir, srcPath, cb) => {
+  srcPath = srcPath.replace(/\.coffee$/, '.js')
   const safe = [
     'arrow',
     'for-of',
@@ -153,11 +154,13 @@ const toEs6 = (projectDir, srcPath, cb) => {
 }
 
 const toPrettier = (projectDir, srcPath, cb) => {
+  srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
   Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${srcPath}>toPrettier` }), cb)
 }
 
 const toEslintStandard = (projectDir, srcPath, cb) => {
+  srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/eslint --config ${projectDir}/.eslintrc --fix ${srcPath}`
   Scrolex.exe(
     cmd,
@@ -169,7 +172,7 @@ const toEslintStandard = (projectDir, srcPath, cb) => {
 const convertFile = (projectDir, srcPath, cb) => {
   const fns       = []
   const extension = path.extname(srcPath).toLowerCase()
-  if (extension === 'coffee') {
+  if (extension === '.coffee') {
     fns.push(toJs.bind(toJs, projectDir))
   }
   fns.push(toEs6.bind(toEs6, projectDir))
@@ -191,10 +194,10 @@ if (fs.lstatSync(program.src).isFile()) {
   // Directory
   relative = path.relative(process.cwd(), program.src)
   files    = globby.sync([
-    `${relative}/**/*.js`,
     `${relative}/**/*.coffee`,
     `${relative}/**/*.es5`,
     `${relative}/**/*.es6`,
+    `${relative}/**/*.js`,
   ])
 } else {
   // Pattern
