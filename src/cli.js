@@ -63,6 +63,7 @@ const initProject = (projectPackagePath, cb) => {
   const invigRoot       = `${__dirname}/..`
   // const invigRootRel = path.relative(process.cwd(), invigRoot)
   const invigPackage    = require(`${invigRoot}/package.json`)
+  let npmInstallNeeded  = false
 
   Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
@@ -91,7 +92,10 @@ const initProject = (projectPackagePath, cb) => {
 
     for (let name in invigPackage.devDependencies) {
       if (name.match(/^(babel|eslint)/)) {
-        projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
+        if (projectPackage.devDependencies[name] !== invigPackage.devDependencies[name]) {
+          projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
+          npmInstallNeeded                     = true
+        }
       }
     }
   }
@@ -114,12 +118,17 @@ const initProject = (projectPackagePath, cb) => {
   Scrolex.out('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
   fs.writeFileSync(projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
-  return cb(null)
+  if (npmInstallNeeded) {
+    const cmd = `yarn || npm install`
+    Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${projectRootRel}>init` }), cb)
+  } else {
+    return cb(null)
+  }
 }
 
 const toJs = (projectDir, srcPath, cb) => {
-  const cmd = `${npmBinDir}/decaffeinate --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toJs` }), cb)
+  const cmd = `${npmBinDir}/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toJs` }), cb)
 }
 
 const toEs6 = (projectDir, srcPath, cb) => {
@@ -149,13 +158,13 @@ const toEs6 = (projectDir, srcPath, cb) => {
   const list = [].concat(safe, unsafe).join(',')
   const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath} && echo lebabed`
 
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toEs6` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toEs6` }), cb)
 }
 
 const toPrettier = (projectDir, srcPath, cb) => {
   srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toPrettier` }), cb)
+  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toPrettier` }), cb)
 }
 
 const toEslintStandard = (projectDir, srcPath, cb) => {
@@ -163,7 +172,7 @@ const toEslintStandard = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/eslint --config ${projectDir}/.eslintrc --fix ${srcPath}`
   Scrolex.exe(
     cmd,
-    scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(projectDir, srcPath)}>toEslintStandard` }),
+    scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toEslintStandard` }),
     cb
   )
 }
@@ -188,16 +197,17 @@ let files = []
 // let relative
 if (fs.lstatSync(program.src).isFile()) {
   // File
-  // relative = path.relative(process.cwd(), program.src)
-  files    = [ program.src ]
+  const resolve = path.resolve(program.src)
+  files   = [ resolve ]
 } else if (fs.lstatSync(program.src).isDirectory()) {
   // Directory
-  // relative = path.relative(process.cwd(), program.src)
-  files    = globby.sync([
-    `${program.src}/**/*.coffee`,
-    `${program.src}/**/*.es5`,
-    `${program.src}/**/*.es6`,
-    `${program.src}/**/*.js`,
+  const resolve = path.resolve(program.src)
+  files = globby.sync([
+    `${resolve}/**/*.coffee`,
+    `${resolve}/**/*.es5`,
+    `${resolve}/**/*.es6`,
+    `${resolve}/**/*.js`,
+    `!${resolve}/node_modules/**`,
   ])
 } else {
   // Pattern
