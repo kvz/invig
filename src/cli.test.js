@@ -28,15 +28,15 @@ test('invigorates via cli', () => {
     const cmd = `env SCROLEX_INTERVAL=10000 node ${__dirname}/cli.js --src "${dst}"`
     // console.log(cmd)
     const p = shelljs.exec(cmd)
-    expect(frameHack(p.stderr)).toMatchSnapshot()
-    expect(frameHack(p.stdout)).toMatchSnapshot()
+    expect(frameHack(p.stderr.trim())).toMatchSnapshot()
+    expect(frameHack(p.stdout.trim())).toMatchSnapshot()
     expect(p.code).toMatchSnapshot()
     expect(p.code).toBe(0)
 
-    let result = fs.readFileSync(dst.replace(/\.coffee$/, '.js'), 'utf-8')
+    let result = fs.readFileSync(dst.replace(/\.coffee$/, '.js'), 'utf-8').trim()
     expect(frameHack(result)).toMatchSnapshot()
 
-    const pkg = fs.readFileSync(path.dirname(dst) + '/package.json', 'utf-8')
+    const pkg = fs.readFileSync(path.dirname(dst) + '/package.json', 'utf-8').trim()
     expect(pkg).toMatchSnapshot()
   })
 })
