@@ -16,7 +16,6 @@ const untildify       = require('untildify')
 
 program
   .version(require('../package.json').version)
-  .option('-i, --init', 'Init project dir, installs eslint config and such')
   .option('-s, --src <dir>', 'Directory or file to convert. DESTRUCTIVE. MAKE SURE IT\'S UNDER SOURCE CONTROL. ')
   .option('-d, --dryrun', 'Wether to execute commands or just output them')
   // .option('-c, --concurrency <int>', 'Directory to convert. DESTRUCTIVE. MAKE SURE IT\'S UNDER SOURCE CONTROL. ')
@@ -28,7 +27,6 @@ if (!program.src) {
 }
 if (!program.concurrency) { program.concurrency = 1 }
 if (!program.init) { program.init = false }
-if (!program.package) { program.package = pkgUp.sync(program.dir) }
 
 program.src    = untildify(program.src)
 program.dryrun = !!program.dryrun
@@ -36,8 +34,9 @@ program.dryrun = !!program.dryrun
 const scrolexOpts = (opts) => {
   const defaultOpts = {}
   defaultOpts.mode = 'singlescroll'
+  defaultOpts.shell    = true
   defaultOpts.announce = true
-  defaultOpts.fatal = true
+  defaultOpts.fatal    = true
   if (program.dryrun === true) {
     defaultOpts.announce = true
     defaultOpts.dryrun   = true
@@ -45,19 +44,28 @@ const scrolexOpts = (opts) => {
   return Object.assign({}, defaultOpts, opts)
 }
 
-const initProject = (packagePath, cb) => {
-  const projectPackage = require(packagePath)
-  const projectRoot    = path.dirname(packagePath)
+const initProject = (projectPackagePath, cb) => {
+  const projectPackage = require(projectPackagePath)
+  const projectRoot    = path.dirname(projectPackagePath)
   const projectRootRel = path.relative(process.cwd(), projectRoot)
   const invigRoot      = `${__dirname}/..`
   // const invigRootRel   = path.relative(process.cwd(), invigRoot)
   const invigPackage   = require(`${invigRoot}/package.json`)
 
-  scrolex.out('Writing eslint config', { components: `invig>${projectRootRel}>toEslintStandard` })
+  scrolex.out('Adding eslint project config', { components: `invig>${projectRootRel}>toEslintStandard` })
   if (program.dryrun === false) {
     if (!fs.existsSync(`${projectRoot}/.eslintrc`)) {
       if (!projectPackage.eslintConfig) {
         projectPackage.eslintConfig = invigPackage.eslintConfig
+      }
+    }
+  }
+
+  scrolex.out('Adding babel project config', { components: `invig>${projectRootRel}>toEs6` })
+  if (program.dryrun === false) {
+    if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
+      if (!projectPackage.babel) {
+        projectPackage.babel = invigPackage.babel
       }
     }
   }
@@ -69,14 +77,8 @@ const initProject = (packagePath, cb) => {
     }
   }
 
-  scrolex.out('Writing babel config', { components: `invig>${projectRootRel}>toEs6` })
-  if (program.dryrun === false) {
-    if (!fs.existsSync(`${projectRoot}/.babelrc`)) {
-      if (!projectPackage.babel) {
-        projectPackage.babel = invigPackage.babel
-      }
-    }
-  }
+  scrolex.out('Writing back project config ', { components: `invig>${projectRootRel}>init` })
+  fs.writeFileSync(projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
   return cb(null)
 }
@@ -138,37 +140,34 @@ const convertFile = (srcPath, cb) => {
   applyEachSeries(fns, srcPath, cb)
 }
 
-if (program.init) {
-  initProject(program.package, (err) => {
-    if (err) {
-      console.error(`Error while doing project init. ${err}`)
-      process.exit(1)
-    }
-    console.log('Done. ')
-  })
+let files = []
+let relative
+if (fs.lstatSync(program.src).isFile()) {
+  // File
+  relative = path.relative(process.cwd(), program.src)
+  files    = [ relative ]
+} else if (fs.lstatSync(program.src).isDirectory()) {
+  // Directory
+  relative = path.relative(process.cwd(), program.src)
+  files    = globby.sync([
+    `${relative}/**/*.js`,
+    `${relative}/**/*.coffee`,
+    `${relative}/**/*.es5`,
+    `${relative}/**/*.es6`,
+  ])
 } else {
-  let files = []
-  let relative
-  if (fs.lstatSync(program.src).isFile()) {
-    // File
-    relative = path.relative(process.cwd(), program.src)
-    files    = [ relative ]
-  } else if (fs.lstatSync(program.src).isDirectory()) {
-    // Directory
-    relative = path.relative(process.cwd(), program.src)
-    files    = globby.sync([
-      `${relative}/**/*.js`,
-      `${relative}/**/*.coffee`,
-      `${relative}/**/*.es5`,
-      `${relative}/**/*.es6`,
-    ])
-  } else {
-    // Pattern
-    files = globby.sync(program.src)
-  }
+  // Pattern
+  files = globby.sync(program.src)
+}
 
-  if (!files || files.length === 0) {
-    console.error(`Source argument: "${program.src}" returned no input files to work on.`)
+if (!files || files.length === 0) {
+  console.error(`Source argument: "${program.src}" returned no input files to work on.`)
+  process.exit(1)
+}
+
+initProject(pkgUp.sync(path.dirname(files[0])), (err) => {
+  if (err) {
+    console.error(`Error while doing project init. ${err}`)
     process.exit(1)
   }
   debug({files})
@@ -176,4 +175,4 @@ if (program.init) {
   q.push(files)
   q.drain = () =>
     console.log('Done. ')
-}
+})
