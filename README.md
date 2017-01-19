@@ -41,6 +41,10 @@ invig --src src/
 
 I suggest using `git diff` to inspect if you like the changes. 
 
+## State
+
+Invig is Young! Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
+
 ## Gotchas
 
 - Although Invig is destructive in nature, it currently leaves your `build` runtasks alone if you have already defined them. If you currently have
@@ -60,6 +64,8 @@ You can then open (CMD+Click if you set up your terminal correctly) the file in 
 and 
 
 ## Thanks to
+
+Invig is just a wrapper around these beasts:
 
 - <https://github.com/decaffeinate/decaffeinate>
 - <http://lebab.io>
