@@ -2,8 +2,6 @@
 
 > Here's another one of my more upsetting projects 👌
 
-**⚠️ WARNING** All changes are made in-place, make sure your code is protected by version control before using Invig 
-
 # 🌿 Invig
 
 Breathes new life into legacy code bases by automatically:
@@ -104,7 +102,7 @@ Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
 - Although Invig is destructive in nature, it currently leaves your `build` run script alone if you have already defined it. If you currently have CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
 The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you can run Invig multiple times even though you have customized these components that are used in the modern setup.
 - Support for [Prettier](https://github.com/jlongster/prettier) is already added, but disabled as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to ESLint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier regardless, prefix your Invig commands with `env INVIG_PRETTIER=1 `.
-- Invig needs a sense of a project so it can add ESLint config and similar, so from the first file you point it to, it traverses to find a `package.json` upwards, and **modifies this place** also. ⚠️
+- **⚠️ WARNING** Invig needs a sense of a project so that it can add ESLint config and similar, so from the first file you point it to, it traverses upwards to find a `package.json`, and **modifies this in-place** also.
 
 ## Thanks to
 
