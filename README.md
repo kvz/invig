@@ -20,14 +20,14 @@ Let's have some fun breathing new life into your legacy project 😚 💨 🌿
 
 I'm dealing with an ever-growing number of projects that each have a slightly different setup, and I got pretty tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across those projects.
 
-The tools are there now to automate all difference away - it's just a matter of stringing them together. Invig only does the stringing so that all code read as present day ECMA & look uniformly styled. After successfully running Invig on your codebase, you put your brain at ease thanks to uniformity, focus more on the work at hand, and have a better time doing so thanks to syntactical goodness.
+The tools are there now to automate all difference away - it's just a matter of picking defaults and stringing those tools together. That's what Invig does. After successfully running Invig on your codebase, you can put your brain at ease thanks to uniformity, focus more on the work at hand, have a better time doing so thanks to syntactical goodness, while producing less bugs thanks to ESlint.
 
 **Why ditch CoffeeScript?**
 
-CoffeeScript lovers might agree already that uniform styling is pleasant, and that ES6 is an upgrade over ES5, but are still missing a number of syntactical advantages CoffeeScript offers them compared to ES6. While that may be true:
+While CoffeeScript lovers might agree already that uniform styling is pleasant and that ES6 is an upgrade over ES5, they might feel there are still a number of syntactical advantages CoffeeScript offers, missing from ES6. While that may be true:
 
 - The syntactical sugar argument is losing ground with every ECMA iteration (1 a year now) 
-- The tooling ecosystem for ES6 is vast, and linters like ESLint can prevent more possible bugs and errors than CoffeeLint can. 
+- The ES6 ecosystem is vast. This results in more resources online, being able to attract more developers to help with your project, and linters like Flow and ESLint that can prevent more possible bugs and errors than CoffeeLint can. 
 - If you can refrain from using `import` and `async` (Invig won't leverage these), recent Node.js can run your code without any transpiling. Meaning quicker developer iterations and less headaches.
 
 ## Demo
