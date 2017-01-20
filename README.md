@@ -121,8 +121,11 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 ## Todo
 
-- [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
-- [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
+See [CHANGELOG.md](CHANGELOG.md)
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md)
 
 ## Social Media
 
