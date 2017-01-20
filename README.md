@@ -18,9 +18,8 @@ Let's have some fun breathing new life into your legacy project 😚 💨 🌿
 
 ## Demo
 
-Let's install `invig` globally and convert a CoffeeScript file to ES6.
-
 <div align="center">
+Let's install Invig globally and convert a CoffeeScript file to ES6.
 <br>
 <img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/master/scripts/demo1.gif">
 <br>
