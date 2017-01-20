@@ -2,9 +2,11 @@
 
 > Here's another one of my more upsetting projects 👌
 
+**⚠️ WARNING** All changes are made in-place, make sure your code is protected by version control before using Invig 
+
 # 🌿 Invig
 
-Breathe new life into legacy code bases by automatically:
+Breathes new life into legacy code bases by automatically:
 
  - Transpiling CoffeeScript to ES6
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
@@ -14,22 +16,52 @@ Breathe new life into legacy code bases by automatically:
  
 Invig does this in a highly opinionated, non-configurable, and **destructive** way. 
 
-**WARNING** Your sources need to be under version control, Invig is ruthless and does everyting in-place. 
-Now that that's out of the way, let's have some fun breathing new life into your legacy project 🤗 💨 🌿 
+Let's have some fun breathing new life into your legacy project 😚 💨 🌿 
 
 ## Why
 
-I got tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across projects.
+I'm dealing with an ever-growing number of projects that each have a slightly different setup, and I got pretty tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across those projects.
 
-The tools are there now, it's just a matter of stringing them together, and all code can be present day ECMA & look uniformly styled. Invig only does the stringing.
+The tools are there now to automate all difference away - it's just a matter of stringing them together. Invig only does the stringing so that all code read as present day ECMA & look uniformly styled. After successfully running Invig on your codebase, you put your brain at ease thanks to uniformity, focus more on the work at hand, and have a better time doing so thanks to syntactical goodness.
+
+**Why ditch CoffeeScript?**
+
+CoffeeScript lovers might agree already that uniform styling is pleasant, and that ES6 is an upgrade over ES5, but are still missing a number of syntactical advantages CoffeeScript offers them compared to ES6. While that may be true:
+
+- The syntactical sugar argument is losing ground with every ECMA iteration (1 a year now) 
+- The tooling ecosystem for ES6 is vast, and linters like ESLint can prevent more possible bugs and errors than CoffeeLint can. 
+- If you can refrain from using `import` and `async` (Invig won't leverage these), recent Node.js can run your code without any transpiling. Meaning quicker developer iterations and less headaches.
 
 ## Install
 
+Invig is meant to be run on a code base once (or a few times in one session). That's why it should not be used as a dependency but be installed globally instead.
+
 ```bash
-yarn global add invig || npm install --global invig
+yarn global add invig@latest || npm install --global invig@latest
 ```
 
+## Workflow 
+
+The recommended way to use Invig is to:
+
+1. Be in `master` and have a clean Git working tree first
+1. `git checkout -b es6`
+2. Run Invig on your repo, point it to wherever your legacy sources live
+3. Apply manual fixes where the automation falls short (Invig will tell you)
+4. Inspect the git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli-god. Can't stress this enough) and repeat step 3 & 4
+5. Commit, push, send a PR for your `es6` branch
+6. Have someone review the PR and merge it
+7. Let's celebrate that your codebase is now very much **2017** 🍸
+
 ## Use
+
+**⚠️ WARNING** All changes are made in-place, make sure your code is protected by version control before using Invig 
+
+Port one ES5 file to ES6:
+
+```bash
+invig --src old-file.js
+```
 
 Port one CoffeeScript file to ES6 (deleting the old `.coffee` file.):
 
@@ -37,28 +69,10 @@ Port one CoffeeScript file to ES6 (deleting the old `.coffee` file.):
 invig --src old-file.coffee
 ```
 
-Port one ES5 file to ES6 (original file destroyed forever unless under version control):
-
-```bash
-invig --src old-file.js
-```
-
-Port an entire directory of CoffeeScript or ES5 files to ES6 (In place. The original `src/` contents are destroyed forever unless under version control):
+Port an entire directory of CoffeeScript or ES5 files to ES6:
 
 ```bash
 invig --src src/
-```
-
-Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention:
-
-```bash
-invig --src src/ --nobail
-```
-
-Do a dry run without changing any files (don't trust me, keep your stuff save in Git):
-
-```bash
-invig --src src/ --dryrun
 ```
 
 Optionally check for outdated or unused dependencies after the conversion completes:
@@ -67,34 +81,34 @@ Optionally check for outdated or unused dependencies after the conversion comple
 invig --src src/ --check
 ```
 
-## Flow 
+Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention:
 
-The recommended way to use Invig is to:
+```bash
+invig --src src/ --nobail
+```
 
-1. Be in `master` and have a clean Git working tree first
-1. `git checkout -b es6`
-2. Run Invig on your repo, point it to wherever your legacy sources live
-3. Apply manual fixes where the automation falls short (Invig will tell you)
-4. Inspect the git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli god. Can't stress this enough) and repeat step 2 & 3
-5. Commit, push, send a PR for your `es6` branch
-6. Let's celebrate that your codebase is now very much **2017** 🍸
+Do a dry run without changing any files (don't trust me, keep your stuff safe in Git):
+
+```bash
+invig --src src/ --dryrun
+```
 
 ## State
 
-Invig is Young! Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
+Invig is Young, but as long as your code is in Git, feel free to have some fun with it.
+
+Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
 
 ## Gotchas
 
-- Although Invig is destructive in nature, it currently leaves your `build` run script alone if you have already defined it. If you currently have
-CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
-The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you 
-can run Invig multiple times even though you have customized these components that are used in the modern setup.
-- Support for [Prettier](https://github.com/jlongster/prettier) is already added, but disabled as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to ESLint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier, prefix your Invig commands with `env INVIG_PRETTIER=1 `
-- Invig needs a sense of a project so it can add ESLint config and similar, so from the first file you point it to, it traverses to find a `package.json` upwards, and **modifies this place** also.
+- Although Invig is destructive in nature, it currently leaves your `build` run script alone if you have already defined it. If you currently have CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
+The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you can run Invig multiple times even though you have customized these components that are used in the modern setup.
+- Support for [Prettier](https://github.com/jlongster/prettier) is already added, but disabled as there are still some issues (like adding trailing commas to function arguments). It's traveling fast tho, so check back soon to see if we can enable it as a pre-step to ESLint standard, that will give us `go fmt`-like strictness. If you want to enable Prettier regardless, prefix your Invig commands with `env INVIG_PRETTIER=1 `.
+- Invig needs a sense of a project so it can add ESLint config and similar, so from the first file you point it to, it traverses to find a `package.json` upwards, and **modifies this place** also. ⚠️
 
 ## Thanks to
 
-I deserve zero credit, Invig is just a tiny wrapper around these mastodons:
+I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 - <https://github.com/decaffeinate/decaffeinate>
 - <http://lebab.io>
@@ -108,7 +122,8 @@ I deserve zero credit, Invig is just a tiny wrapper around these mastodons:
 
 ## Todo
 
-- [ ] Rewrite coffeescript mocha to `mocha --require babel-polyfill --compilers js:babel-register`
+- [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+- [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
 
 ## Authors
 
