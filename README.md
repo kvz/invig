@@ -16,18 +16,6 @@ Invig does this in a highly opinionated, non-configurable, and **destructive** w
 
 Let's have some fun breathing new life into your legacy project 😚 💨 🌿 
 
-## Demo
-
-<div align="center">
-Let's install Invig globally and convert a CoffeeScript file to ES6.
-<br>
-<img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/master/scripts/demo1.gif">
-<br>
-<em>Remember that you can also point Invig to an entire directory, and <br>
-it will convert all ES5 <strong>and</strong> CoffeeScript to ES6</em>
-<br>
-</div>
-
 ## Why
 
 I'm dealing with an ever-growing number of projects that each have a slightly different setup, and I got pretty tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across those projects.
@@ -42,6 +30,18 @@ CoffeeScript lovers might agree already that uniform styling is pleasant, and th
 - The tooling ecosystem for ES6 is vast, and linters like ESLint can prevent more possible bugs and errors than CoffeeLint can. 
 - If you can refrain from using `import` and `async` (Invig won't leverage these), recent Node.js can run your code without any transpiling. Meaning quicker developer iterations and less headaches.
 
+## Demo
+
+<div align="center">
+Let's install Invig globally and convert a CoffeeScript file to ES6.
+<br>
+<img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/master/scripts/demo1.gif">
+<br>
+<em>Remember that you can also point Invig to an entire directory, and <br>
+it will convert all ES5 <strong>and</strong> CoffeeScript to ES6</em>
+<br>
+</div>
+
 ## Install
 
 Invig is meant to be run on a code base once (or a few times in one session). That's why it should not be used as a dependency but be installed globally instead.
@@ -49,19 +49,6 @@ Invig is meant to be run on a code base once (or a few times in one session). Th
 ```bash
 yarn global add invig@latest || npm install --global invig@latest
 ```
-
-## Workflow 
-
-The recommended way to use Invig is to:
-
-1. Be in `master` and have a clean Git working tree first
-1. `git checkout -b es6`
-2. Run Invig on your repo, point it to wherever your legacy sources live
-3. Apply manual fixes where the automation falls short (Invig will tell you)
-4. Inspect the git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli-god. Can't stress this enough) and repeat step 3 & 4
-5. Commit, push, send a PR for your `es6` branch
-6. Have someone review the PR and merge it
-7. Let's celebrate that your codebase is now very much **2017** 🍸
 
 ## Use
 
@@ -102,6 +89,19 @@ Do a dry run without changing any files (don't trust me, keep your stuff safe in
 ```bash
 invig --src src/ --dryrun
 ```
+
+## Workflow 
+
+The recommended way to use Invig is to:
+
+1. Be in `master` and have a clean Git working tree first
+1. `git checkout -b es6`
+2. Run Invig on your repo, point it to wherever your legacy sources live
+3. Apply manual fixes where the automation falls short (Invig will tell you)
+4. Inspect the Git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli-god. Can't stress this enough) and repeat step 3 & 4
+5. Commit, push, send a PR for your `es6` branch
+6. Have someone review the PR and merge it
+7. Let's celebrate that your codebase is now very much **2017** 🍸
 
 ## State
 
