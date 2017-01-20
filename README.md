@@ -16,6 +16,16 @@ Invig does this in a highly opinionated, non-configurable, and **destructive** w
 
 Let's have some fun breathing new life into your legacy project 😚 💨 🌿 
 
+## Demo Time
+
+Let's install `invig` and point it to a single CoffeeScript file.
+
+<center>
+![Convert a CoffeeScript file to ES6](https://cloud.githubusercontent.com/assets/26752/22144124/e715257e-defc-11e6-8d23-d8a24aa95825.gif)
+
+Remember that you can also point it to a directory, and it will convert all ES5 *and* CoffeeScript to ES6
+</center>
+
 ## Why
 
 I'm dealing with an ever-growing number of projects that each have a slightly different setup, and I got pretty tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across those projects.
