@@ -127,7 +127,7 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 - <https://github.com/jlongster/prettier>
 - <http://standardjs.com>
 
-## Invig in the Wild 🌿
+## Invig in the Wild
 
 - Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
 
