@@ -14,6 +14,14 @@ Released: TBA.
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
 
+## v0.0.9
+
+Released: 2017-01-20. 
+
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.8...v0.0.9).
+
+- [x] Ship babel & eslint as deps, not devDeps
+
 ## v0.0.8
 
 Released: 2017-01-20. 

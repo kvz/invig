@@ -93,10 +93,10 @@ const initProject = (projectPackagePath, cb) => {
       projectPackage.devDependencies = {}
     }
 
-    for (let name in invigPackage.devDependencies) {
+    for (let name in invigPackage.dependencies) {
       if (name.match(/^(babel|eslint)/)) {
-        if (projectPackage.devDependencies[name] !== invigPackage.devDependencies[name]) {
-          projectPackage.devDependencies[name] = invigPackage.devDependencies[name]
+        if (projectPackage.devDependencies[name] !== invigPackage.dependencies[name]) {
+          projectPackage.devDependencies[name] = invigPackage.dependencies[name]
           npmInstallNeeded.push(`Add ${name} to devDependencies`)
         }
       }
