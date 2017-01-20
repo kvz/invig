@@ -8,8 +8,8 @@ Breathes new life into legacy code bases by automatically:
 
  - Transpiling CoffeeScript to ES6
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
- - Applying [Standard](http://standardjs.com) linting
- - Adding the necessary linting and building boilerplate to the project for later (independent) use
+ - Applying [Standard](http://standardjs.com) linting with colon alignment for enhanced readability
+ - Adding the necessary linting and building run-script boilerplate that the project can later independently use
  - Checking for outdated or unused dependencies
  
 Invig does this in a highly opinionated, non-configurable, and **destructive** way. 
@@ -117,12 +117,19 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 ## Invig in the Wild 🌿
 
-- Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 ❣ <https://github.com/transloadit/node-sdk/pull/40>
+- Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
 
 ## Todo
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
 - [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
+
+## Social Media
+
+Welcoming discussion on:
+
+- [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
+- [Hacker News](https://news.ycombinator.com/item?id=13442421)
 
 ## Authors
 
