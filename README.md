@@ -128,6 +128,13 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 - [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
 
+## Social Media
+
+Welcoming discussion on:
+
+- [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
+- [Hacker News](https://news.ycombinator.com/item?id=13442421)
+
 ## License
 
 Copyright (c) 2017 Kevin van Zonneveld. Licenses under [MIT](LICENSE).
