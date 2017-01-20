@@ -117,16 +117,12 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 ## Invig in the Wild 🌿
 
-- Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 ❣ <https://github.com/transloadit/node-sdk/pull/40>
+- Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
 
 ## Todo
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
 - [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
-
-## Authors
-
-- [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
 
 ## Social Media
 
@@ -134,6 +130,10 @@ Welcoming discussion on:
 
 - [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
 - [Hacker News](https://news.ycombinator.com/item?id=13442421)
+
+## Authors
+
+- [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
 
 ## License
 
