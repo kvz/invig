@@ -17,6 +17,7 @@
     "fix": "eslint . --fix",
     "jest:update": "env DEBUG=invig:* NODE_ENV=test jest --updateSnapshot",
     "jest": "env DEBUG=invig:* NODE_ENV=test jest",
+    "demo": "scripts/demo1.sh",
     "lint": "eslint .",
     "npublish": "npm publish",
     "push": "git push && git push --tags",

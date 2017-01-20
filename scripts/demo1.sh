@@ -25,11 +25,13 @@ pushd ~/code/node-sdk
 popd
 
 cat <<-EOF
+
   yarn global add invig@0.0.9
-  cd ~/code/node-sdk/src
-  vim PaginationStream.coffee
+  cd ~/code/node-sdk
+  vim src/PaginationStream.coffee
   invig --src ./PaginationStream.coffee
-  vim PaginationStream.js
+  vim src/PaginationStream.js
+
 EOF
 
 asciinema rec -t "Invig - ${__base}"
