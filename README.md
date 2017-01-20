@@ -21,8 +21,8 @@ Let's have some fun breathing new life into your legacy project 😚 💨 🌿
 Let's install `invig` and point it to a single CoffeeScript file.
 
 <div align="center">
-![Convert a CoffeeScript file to ES6](https://cloud.githubusercontent.com/assets/26752/22144124/e715257e-defc-11e6-8d23-d8a24aa95825.gif)
-
+<img alt="Convert a CoffeeScript file to ES6" src="https://cloud.githubusercontent.com/assets/26752/22144124/e715257e-defc-11e6-8d23-d8a24aa95825.gif">
+<br>
 *Remember that you can also point Invig to a directory, and it will convert all ES5 *and* CoffeeScript to ES6*
 </div>
 
