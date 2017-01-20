@@ -16,15 +16,15 @@ Invig does this in a highly opinionated, non-configurable, and **destructive** w
 
 Let's have some fun breathing new life into your legacy project 😚 💨 🌿 
 
-## Demo Time
+## Demo
 
-Let's install `invig` and point it to a single CoffeeScript file.
+Let's install `invig` globally and convert a CoffeeScript file to ES6.
 
 <div align="center">
 <br>
 <img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/master/scripts/demo1.gif">
 <br>
-<em>Remember that you can also point Invig to a directory, and <br>
+<em>Remember that you can also point Invig to an entire directory, and <br>
 it will convert all ES5 <strong>and</strong> CoffeeScript to ES6</em>
 <br>
 </div>
