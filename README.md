@@ -139,6 +139,10 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 See [CHANGELOG.md](CHANGELOG.md)
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
 ## Social Media
 
 Welcoming discussion on:
