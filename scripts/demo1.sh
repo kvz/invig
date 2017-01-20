@@ -18,14 +18,16 @@ __base="$(basename ${__file} .sh)"
 type asciinema || brew install asciinema
 type asciinema2gif || brew install asciinema2gif
 
-pushd ~/code/node-sdk
-  git reset --hard
-  git clean -fd
-  git checkout master
-popd
-
 cat <<-EOF
 
+  # preparation
+  pushd ~/code/node-sdk
+    git reset --hard
+    git clean -fd
+    git checkout master
+  popd
+
+  # demo script
   yarn global add invig@0.0.9
   cd ~/code/node-sdk
   vim src/PaginationStream.coffee
