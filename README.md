@@ -8,7 +8,7 @@ Breathes new life into legacy code bases by automatically:
 
  - Transpiling CoffeeScript to ES6
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
- - Applying [Standard](http://standardjs.com) linting with colon alignment
+ - Applying [Standard](http://standardjs.com) linting with colon alignment for enhanced readability
  - Adding the necessary linting and building run-script boilerplate that the project can later independently use
  - Checking for outdated or unused dependencies
  
