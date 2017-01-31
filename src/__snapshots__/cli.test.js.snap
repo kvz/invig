@@ -7,7 +7,7 @@ exports[`test invigorates via cli 2`] = `
  ✔ invig ❯ fixture/tmp ❯ toEs6 ❯ Writing babel project config
  ✔ invig ❯ fixture/tmp ❯ toJs ❯ Writing eslint ignores
  ✔ invig ❯ fixture/tmp ❯ init ❯ Writing back project config
- ✔ invig ❯ fixture/tmp ❯ init ❯ Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies. Add eslint to devDependencies
+ ✔ invig ❯ fixture/tmp ❯ init ❯ Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ yarn install vX.X.X
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ info No lockfile found.
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning No license field
@@ -94,10 +94,10 @@ exports[`test invigorates via cli 5`] = `
     \"babel-plugin-transform-async-to-generator\": \"6.16.0\",
     \"babel-plugin-transform-object-assign\": \"6.8.0\",
     \"babel-preset-es2015\": \"6.18.0\",
+    \"eslint\": \"3.13.1\",
     \"eslint-config-standard\": \"6.2.1\",
     \"eslint-plugin-promise\": \"3.4.0\",
-    \"eslint-plugin-standard\": \"2.0.1\",
-    \"eslint\": \"3.13.1\"
+    \"eslint-plugin-standard\": \"2.0.1\"
   }
 }"
 `;
@@ -111,7 +111,7 @@ exports[`test invigorates via cli 7`] = `
  ✔ invig ❯ fixture/tmp ❯ toEs6 ❯ Writing babel project config
  ✔ invig ❯ fixture/tmp ❯ toJs ❯ Writing eslint ignores
  ✔ invig ❯ fixture/tmp ❯ init ❯ Writing back project config
- ✔ invig ❯ fixture/tmp ❯ init ❯ Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies. Add eslint to devDependencies
+ ✔ invig ❯ fixture/tmp ❯ init ❯ Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ yarn install vX.X.X
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ warning No license field
  ---spinnerframe--- invig ❯ fixture/tmp ❯ init ❯ [1/4] Resolving packages...
@@ -212,10 +212,10 @@ exports[`test invigorates via cli 10`] = `
     \"babel-plugin-transform-async-to-generator\": \"6.16.0\",
     \"babel-plugin-transform-object-assign\": \"6.8.0\",
     \"babel-preset-es2015\": \"6.18.0\",
+    \"eslint\": \"3.13.1\",
     \"eslint-config-standard\": \"6.2.1\",
     \"eslint-plugin-promise\": \"3.4.0\",
-    \"eslint-plugin-standard\": \"2.0.1\",
-    \"eslint\": \"3.13.1\"
+    \"eslint-plugin-standard\": \"2.0.1\"
   }
 }"
 `;
