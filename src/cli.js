@@ -74,9 +74,9 @@ const initProject = (projectPackagePath, cb) => {
     }
     if (!projectPackage.scripts.build) {
       projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
-    }
-    if (!projectPackage.scripts['build:watch']) {
-      projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
+      if (!projectPackage.scripts['build:watch']) {
+        projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
+      }
     }
   }
 

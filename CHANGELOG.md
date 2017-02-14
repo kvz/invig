@@ -10,9 +10,10 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 Released: TBA.
 
-[Diff](https://github.com/transloadit/transloadify/compare/v0.0.7...master).
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.10...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+- [x] Only add `build:watch` if you could add `build`
 
 ## v0.0.10
 
