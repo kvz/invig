@@ -132,7 +132,7 @@ const initProject = (projectPackagePath, cb) => {
   if (npmInstallNeeded.length > 0) {
     scrolex.stick('Running npm install to accomodate these changes: ' + npmInstallNeeded.join('. '), { components: `invig>${projectRootRel}` })
     const cmd = `yarn || npm install`
-    scrolex.exe(cmd, { cwd: projectDir, components: `invig>${projectRootRel}` })
+    scrolex.exe(cmd, { cwd: projectDir, components: `invig>${projectRootRel}` }, cb)
   } else {
     return cb(null)
   }
@@ -140,7 +140,7 @@ const initProject = (projectPackagePath, cb) => {
 
 const toJs = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
-  scrolex.exe(cmd, { cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` })
+  scrolex.exe(cmd, { cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
 }
 
 const toEs6 = (projectDir, srcPath, cb) => {
@@ -217,7 +217,7 @@ try {
 if (stat && stat.isFile()) {
   // File
   const resolve = path.resolve(program.src)
-  files   = [ resolve ]
+  files = [ resolve ]
 } else if (stat && stat.isDirectory()) {
   // Directory
   const resolve = path.resolve(program.src)
@@ -237,7 +237,6 @@ if (!files || files.length === 0) {
   console.error(`Source argument: "${program.src}" returned no input files to work on.`)
   process.exit(1)
 }
-
 
 const projectPackagePath = pkgUp.sync(path.dirname(files[0]))
 

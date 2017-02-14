@@ -20,6 +20,7 @@
     "demo": "scripts/demo1.sh",
     "lint": "eslint .",
     "npublish": "npm publish",
+    "playground": "cp fixture/package.json fixture/hack-sitemap.coffee /tmp && env SCROLEX_INTERVAL=10000 node src/cli.js --src /tmp/hack-sitemap.coffee; cat /tmp/hack-sitemap.js",
     "push": "git push && git push --tags",
     "release:major": "env SEMANTIC=major npm run release",
     "release:minor": "env SEMANTIC=minor npm run release",

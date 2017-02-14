@@ -29,6 +29,7 @@ const removeVariance = (input) => {
 
   input = stripAnsi(input)
 
+  input = input.replace(/^.*Fetching package.*\n/g, '')
   input = input.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
   input = input.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
   input = input.replace(/^.*peer dependency "es6-promise.*\n/gm, '')
