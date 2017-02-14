@@ -20,6 +20,7 @@ Released: 2017-02-14.
 
 [Diff](https://github.com/transloadit/transloadify/compare/v0.0.9...v0.0.10).
 
+- [x] Turn make no bail the default, you now have to explicitly use `--bail` (BREAKING)
 - [x] Upgrade dependencies
 
 ## v0.0.9

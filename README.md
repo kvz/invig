@@ -78,10 +78,10 @@ Optionally check for outdated or unused dependencies after the conversion comple
 invig --src src/ --check
 ```
 
-Ignore any error and continue with the operation for the next file. By default, Invig will abort on the first error for manual intervention:
+Bail out as soon as Invig hits an error. By default Invig will continue processing the next file
 
 ```bash
-invig --src src/ --nobail
+invig --src src/ --bail
 ```
 
 Do a dry run without changing any files (don't trust me, keep your stuff safe in Git):
