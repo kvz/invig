@@ -1,6 +1,6 @@
 {
   "name": "invig",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Take a legacy JS or CoffeeScript codebase and automatically convert it to ES6 & standardjs.com",
   "main": "lib/cli.js",
   "bin": "lib/cli.js",
@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "fakefile": "0.0.8",
-    "cli-spinners": "1.0.0",    
+    "cli-spinners": "1.0.0",
     "jest": "18.1.0",
     "next-update": "1.5.1",
     "npm-run-all": "4.0.1"
