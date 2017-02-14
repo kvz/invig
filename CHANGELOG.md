@@ -6,13 +6,20 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 - [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
 
-## v0.0.11
+## v0.0.12
 
 Released: TBA.
 
-[Diff](https://github.com/transloadit/transloadify/compare/v0.0.10...master).
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.11...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+
+## v0.0.11
+
+Released: 2017-02-14. 
+
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.10...v0.0.11).
+
 - [x] Only add `build:watch` if you could add `build`
 
 ## v0.0.10
