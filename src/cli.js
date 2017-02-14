@@ -5,8 +5,12 @@ const applyEachSeries = require('async/applyEachSeries')
 const queue           = require('async/queue')
 const path            = require('path')
 const fs              = require('fs')
-const Scrolex         = require('scrolex')
 const pkgUp           = require('pkg-up')
+const scrolex         = require('scrolex').persistOpts({
+  announce             : true,
+  addCommandAsComponent: true,
+  components           : `invig`,
+})
 
 const rootDir   = path.dirname(pkgUp.sync(__filename))
 const npmDir    = `${rootDir}/node_modules`
@@ -65,7 +69,7 @@ const initProject = (projectPackagePath, cb) => {
   const invigPackage    = require(`${invigRoot}/package.json`)
   let npmInstallNeeded  = []
 
-  Scrolex.out('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
+  scrolex.stick('Adding npm task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
     if (!projectPackage.scripts) {
       projectPackage.scripts = {}
@@ -84,7 +88,7 @@ const initProject = (projectPackagePath, cb) => {
     }
   }
 
-  Scrolex.out('Adding dependencies task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
+  scrolex.stick('Adding dependencies task project config', scrolexOpts({ components: `invig>${projectRootRel}>npm` }))
   if (program.dryrun === false) {
     if (!projectPackage.dependencies) {
       projectPackage.dependencies = {}
@@ -115,28 +119,28 @@ const initProject = (projectPackagePath, cb) => {
     })
   }
 
-  Scrolex.out('Writing eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
+  scrolex.stick('Writing eslint project config', scrolexOpts({ components: `invig>${projectRootRel}>toEslintStandard` }))
   if (program.dryrun === false) {
     copySyncNoOverwrite(`${invigRoot}/.eslintrc`, `${projectRoot}/.eslintrc`)
   }
 
-  Scrolex.out('Writing babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
+  scrolex.stick('Writing babel project config', scrolexOpts({ components: `invig>${projectRootRel}>toEs6` }))
   if (program.dryrun === false) {
     copySyncNoOverwrite(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
   }
 
-  Scrolex.out('Writing eslint ignores', scrolexOpts({ components: `invig>${projectRootRel}>toJs` }))
+  scrolex.stick('Writing eslint ignores', scrolexOpts({ components: `invig>${projectRootRel}>toJs` }))
   if (program.dryrun === false) {
     copySyncNoOverwrite(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
   }
 
-  Scrolex.out('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
+  scrolex.stick('Writing back project config ', scrolexOpts({ components: `invig>${projectRootRel}>init` }))
   fs.writeFileSync(projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
   if (npmInstallNeeded.length > 0) {
-    Scrolex.out('Running npm install to accomodate these changes: ' + npmInstallNeeded.join('. '), scrolexOpts({ components: `invig>${projectRootRel}>init` }))
+    scrolex.stick('Running npm install to accomodate these changes: ' + npmInstallNeeded.join('. '), scrolexOpts({ components: `invig>${projectRootRel}>init` }))
     const cmd = `yarn || npm install`
-    Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${projectRootRel}>init` }), cb)
+    scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${projectRootRel}>init` }), cb)
   } else {
     return cb(null)
   }
@@ -144,7 +148,7 @@ const initProject = (projectPackagePath, cb) => {
 
 const toJs = (projectDir, srcPath, cb) => {
   const cmd = `${npmBinDir}/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toJs` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toJs` }), cb)
 }
 
 const toEs6 = (projectDir, srcPath, cb) => {
@@ -174,19 +178,19 @@ const toEs6 = (projectDir, srcPath, cb) => {
   const list = [].concat(safe, unsafe).join(',')
   const cmd = `${npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath} && echo lebabed`
 
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toEs6` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toEs6` }), cb)
 }
 
 const toPrettier = (projectDir, srcPath, cb) => {
   srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
-  Scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toPrettier` }), cb)
+  scrolex.exe(cmd, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toPrettier` }), cb)
 }
 
 const toEslintStandard = (projectDir, srcPath, cb) => {
   srcPath = srcPath.replace(/\.coffee$/, '.js')
   const cmd = `${npmBinDir}/eslint --config ${projectDir}/.eslintrc --fix ${srcPath}`
-  Scrolex.exe(
+  scrolex.exe(
     cmd,
     scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}>toEslintStandard` }),
     cb
@@ -255,7 +259,7 @@ initProject(projectPackagePath, err => {
     console.log('Done. ')
 
     if (program.check) {
-      Scrolex.exe(`${npmBinDir}/npm-check ${projectDir}`, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), projectDir)}>depcheck` }))
+      scrolex.exe(`${npmBinDir}/npm-check ${projectDir}`, scrolexOpts({ cwd: projectDir, components: `invig>${path.relative(process.cwd(), projectDir)}>depcheck` }))
     }
   }
 })

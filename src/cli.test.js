@@ -2,43 +2,9 @@ const shelljs    = require('shelljs')
 const fs         = require('fs')
 const path       = require('path')
 const globby     = require('globby')
-const stripAnsi  = require('strip-ansi')
 const fixDir     = `${__dirname}/../fixture`
 const tmpDir     = `${__dirname}/../fixture/tmp`
-const cliSpinner = require('cli-spinners').dots10
-
-const removeVariance = (str) => {
-  // @todo: Remove this hack when stolex no longer adds trailing spinner frames:
-  cliSpinner.frames.forEach((frame) => {
-    while (str.indexOf(frame) !== -1) {
-      // console.log({str, frame})
-      str = str.replace(frame, '---spinnerframe---')
-    }
-  })
-
-  const map = {
-    PWD : process.cwd(),
-    HOME: process.env.HOME,
-    USER: process.env.USER,
-  }
-
-  for (let key in map) {
-    let val = map[key]
-    while (str.indexOf(val) !== -1) {
-      str = str.replace(val, `#{${key}}`)
-    }
-  }
-
-  str = str.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
-  str = str.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
-  str = str.replace(/^.*peer dependency "es6-promise.*\n/gm, '')
-  str = str.replace(/^.*fsevents.*Excluding it from installation.*\n/gm, '')
-  str = str.replace(/^.*fsevents.*incompatible with this module.*\n/gm, '')
-
-  str = stripAnsi(str)
-
-  return str
-}
+const removeVariance = require('./removeVariance')
 
 shelljs.rm('-fR', tmpDir)
 shelljs.mkdir('-p', tmpDir)
