@@ -206,12 +206,19 @@ const convertFile = (projectDir, srcPath, cb) => {
 }
 
 let files = []
+let stat  = {}
+try {
+  stat = fs.lstatSync(program.src)
+} catch (e) {
+  stat = false
+}
+
 // let relative
-if (fs.lstatSync(program.src).isFile()) {
+if (stat && stat.isFile()) {
   // File
   const resolve = path.resolve(program.src)
   files   = [ resolve ]
-} else if (fs.lstatSync(program.src).isDirectory()) {
+} else if (stat && stat.isDirectory()) {
   // Directory
   const resolve = path.resolve(program.src)
   files = globby.sync([
@@ -230,6 +237,7 @@ if (!files || files.length === 0) {
   console.error(`Source argument: "${program.src}" returned no input files to work on.`)
   process.exit(1)
 }
+
 
 const projectPackagePath = pkgUp.sync(path.dirname(files[0]))
 

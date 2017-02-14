@@ -1,37 +1,29 @@
 exports[`test invigorates via cli 1`] = `""`;
 
 exports[`test invigorates via cli 2`] = `
-" › invig › fixture/tmp › npm › Adding npm task project config
- › invig › fixture/tmp › npm › Adding dependencies task project config
- › invig › fixture/tmp › toEslintStandard › Writing eslint project config
- › invig › fixture/tmp › toEs6 › Writing babel project config
- › invig › fixture/tmp › toJs › Writing eslint ignores
- › invig › fixture/tmp › init › Writing back project config
- › invig › fixture/tmp › init › Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
- ---spinnerframe--- invig › fixture/tmp › init › yarn › Executing: yarn || npm install…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › yarn install vX.X.X…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › info No lockfile found.…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › warning No license field…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › [1/4] Resolving packages...…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › [2/4] Fetching packages...…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › [3/4] Linking dependencies...…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › [4/4] Building fresh packages...…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › success Saved lockfile.…
- ---spinnerframe--- invig › fixture/tmp › init › yarn › Done in X.Xs.…
- ✔ invig › fixture/tmp › init › yarn › Successfully executed: yarn || npm install
+"{ y: \'#{SCROLEX_ROOT}/src/../fixture/tmp/hack-sitemap.coffee\' }
+{ x: \'#{SCROLEX_ROOT}/src/../fixture/tmp/hack-sitemap.coffee\' }
+>>>>> a
+{ files: [ \'#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee\' ] }
+ › invig › fixture/tmp › Adding npm task project config
+ › invig › fixture/tmp › Adding dependencies task project config
+ › invig › fixture/tmp › Writing eslint project config
+ › invig › fixture/tmp › Writing babel project config
+ › invig › fixture/tmp › Writing eslint ignores
+ › invig › fixture/tmp › Writing back project config
+ › invig › fixture/tmp › Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
+ ---spinnerframe--- invig › fixture/tmp › yarn › Executing: yarn || npm install…
+ ---spinnerframe--- invig › fixture/tmp › yarn › yarn install vX.X.X…
+ ---spinnerframe--- invig › fixture/tmp › yarn › info No lockfile found.…
+ ---spinnerframe--- invig › fixture/tmp › yarn › warning No license field…
+ ---spinnerframe--- invig › fixture/tmp › yarn › [1/4] Resolving packages...…
+ ---spinnerframe--- invig › fixture/tmp › yarn › [2/4] Fetching packages...…
+ ---spinnerframe--- invig › fixture/tmp › yarn › [3/4] Linking dependencies...…
+ ---spinnerframe--- invig › fixture/tmp › yarn › [4/4] Building fresh packages...…
+ ---spinnerframe--- invig › fixture/tmp › yarn › success Saved lockfile.…
+ ---spinnerframe--- invig › fixture/tmp › yarn › Done in X.Xs.…
+ ✔ invig › fixture/tmp › yarn › Successfully executed: yarn || npm install
  ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.coffee › toJs › rm › Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee…
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.coffee › toJs › rm › #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee → #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js…
- ✔ invig › fixture/tmp/hack-sitemap.coffee › toJs › rm › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › toEs6 › echo › Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed…
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › toEs6 › echo › lebabed…
- ✔ invig › fixture/tmp/hack-sitemap.js › toEs6 › echo › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › toEslintStandard › eslint › Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js…
- ✔ invig › fixture/tmp/hack-sitemap.js › toEslintStandard › eslint › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
- ✔ 
-Done. 
 "
 `;
 
@@ -39,71 +31,71 @@ exports[`test invigorates via cli 3`] = `0`;
 
 exports[`test invigorates via cli 4`] = `
 "#!/usr/bin/env node
-const debug              = require(\'debug\')(\'tlc:formats\')
-const fs                 = require(\'fs\')
+const debug              = require('debug')('tlc:formats')
+const fs                 = require('fs')
 const fileSitemap        = \`\${__dirname}/../_site/sitemap.xml\`
-let sitemap            = fs.readFileSync(fileSitemap, \'utf8\')
+let sitemap            = fs.readFileSync(fileSitemap, 'utf8')
 
-const baseUrl = \'https://transloadit.com\'
+const baseUrl = 'https://transloadit.com'
 
 const additions = [
-  \'/login/\',
-  \'/accounts/forgot_pw/\',
+  '/login/',
+  '/accounts/forgot_pw/',
 ]
 
 const removals = [
-  \'/jekyll.lanyon_assets.yml\',
-  \'/denied/\',
-  \'/unpublished/\',
+  '/jekyll.lanyon_assets.yml',
+  '/denied/',
+  '/unpublished/',
 ]
 
-let xmlAppend = \'\'
+let xmlAppend = ''
 for (let addition of Array.from(additions)) {
-  debug(\`Processing \'\${baseUrl}\${addition}\'\`)
-  let item      = \'\'
-  item      = \`\${item}<url>\\n\`
-  item      = \`\${item}<loc>\${baseUrl}\${addition}</loc>\\n\`
-  item      = \`\${item}<lastmod>2016-08-17T10:09:28+02:00</lastmod>\\n\`
-  item      = \`\${item}</url>\\n\`
+  debug(\`Processing '\${baseUrl}\${addition}'\`)
+  let item      = ''
+  item      = \`\${item}<url>\n\`
+  item      = \`\${item}<loc>\${baseUrl}\${addition}</loc>\n\`
+  item      = \`\${item}<lastmod>2016-08-17T10:09:28+02:00</lastmod>\n\`
+  item      = \`\${item}</url>\n\`
   xmlAppend = \`\${xmlAppend}\${item}\`
 }
 
 xmlAppend = \`\${xmlAppend}</urlset>\`
 
-sitemap = sitemap.replace(\'</urlset>\', xmlAppend)
+sitemap = sitemap.replace('</urlset>', xmlAppend)
 
 for (let removal of Array.from(removals)) {
-  const pattern = new RegExp(\`<url>\\\\s*<loc>\\\\s*\${baseUrl}\${removal}[^<]*</loc>\\\\s*</url>\\\\s*\`, \'gmi\')
-  sitemap = sitemap.replace(pattern, \'\')
+  const pattern = new RegExp(\`<url>\\s*<loc>\\s*\${baseUrl}\${removal}[^<]*</loc>\\s*</url>\\s*\`, 'gmi')
+  sitemap = sitemap.replace(pattern, '')
 }
 
 debug(\`Writing \${fileSitemap}\`)
-fs.writeFileSync(fileSitemap, sitemap, \'utf8\')"
+fs.writeFileSync(fileSitemap, sitemap, 'utf8')"
 `;
 
 exports[`test invigorates via cli 5`] = `
 "{
-  \"scripts\": {
-    \"lint\": \"eslint .\",
-    \"fix\": \"eslint . --fix\",
-    \"build\": \"babel src --source-maps --out-dir lib\",
-    \"build:watch\": \"babel src --watch --source-maps --out-dir lib\"
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix",
+    "build": "babel src --source-maps --out-dir lib",
+    "build:watch": "babel src --watch --source-maps --out-dir lib"
   },
-  \"dependencies\": {},
-  \"devDependencies\": {
-    \"babel-cli\": \"6.23.0\",
-    \"babel-core\": \"6.23.1\",
-    \"babel-eslint\": \"7.1.1\",
-    \"babel-plugin-add-module-exports\": \"0.2.1\",
-    \"babel-plugin-es6-promise\": \"1.1.1\",
-    \"babel-plugin-syntax-async-functions\": \"6.13.0\",
-    \"babel-plugin-transform-async-to-generator\": \"6.22.0\",
-    \"babel-plugin-transform-object-assign\": \"6.22.0\",
-    \"babel-preset-es2015\": \"6.22.0\",
-    \"eslint\": \"3.15.0\",
-    \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.1\",
-    \"eslint-plugin-standard\": \"2.0.1\"
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.23.0",
+    "babel-core": "6.23.1",
+    "babel-eslint": "7.1.1",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-es6-promise": "1.1.1",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-async-to-generator": "6.22.0",
+    "babel-plugin-transform-object-assign": "6.22.0",
+    "babel-preset-es2015": "6.22.0",
+    "eslint": "3.15.0",
+    "eslint-config-standard": "6.2.1",
+    "eslint-plugin-promise": "3.4.1",
+    "eslint-plugin-standard": "2.0.1"
   }
 }"
 `;
@@ -147,14 +139,14 @@ exports[`test invigorates via cli 9`] = `
 // - collects a mapping of original basename -> original variant (development)
 // - ouputs the collection as yaml, for use in e.g. overriding Jekyll config
 
-const argv = require(\'minimist\')(process.argv.slice(2))
-const path = require(\'path\')
-const crypto = require(\'crypto\')
-const fs = require(\'fs\')
-const yaml = require(\'js-yaml\')
+const argv = require('minimist')(process.argv.slice(2))
+const path = require('path')
+const crypto = require('crypto')
+const fs = require('fs')
+const yaml = require('js-yaml')
 const collection = {
-  \'production\' : {},
-  \'development\': {},
+  'production' : {},
+  'development': {},
 }
 
 argv._.forEach(filename => {
@@ -167,31 +159,31 @@ argv._.forEach(filename => {
     return
   }
 
-  const md5sum = crypto.createHash(\'md5\')
+  const md5sum = crypto.createHash('md5')
   const s = fs.ReadStream(filename)
-  s.on(\'data\', d => {
+  s.on('data', d => {
     md5sum.update(d)
   })
 
-  s.on(\'end\', () => {
-    const hash = md5sum.digest(\'hex\')
+  s.on('end', () => {
+    const hash = md5sum.digest('hex')
     const destFile = hash + extension
     const destPath = \`\${path.dirname(filename)}/\${destFile}\`
-    const cleanExtension = extension.replace(\'.\', \'\')
-    fs.writeFileSync(destPath, fs.readFileSync(filename, \'utf-8\'))
-    if (!collection[\'development\'][cleanExtension]) {
-      collection[\'development\'][cleanExtension] = {}
+    const cleanExtension = extension.replace('.', '')
+    fs.writeFileSync(destPath, fs.readFileSync(filename, 'utf-8'))
+    if (!collection['development'][cleanExtension]) {
+      collection['development'][cleanExtension] = {}
     }
-    if (!collection[\'production\'][cleanExtension]) {
-      collection[\'production\'][cleanExtension] = {}
+    if (!collection['production'][cleanExtension]) {
+      collection['production'][cleanExtension] = {}
     }
 
-    collection[\'development\'][cleanExtension][cleanbase] = path.basename(filename)
-    collection[\'production\'][cleanExtension][cleanbase] = destFile
+    collection['development'][cleanExtension][cleanbase] = path.basename(filename)
+    collection['production'][cleanExtension][cleanbase] = destFile
   })
 })
 
-process.on(\'exit\', () => {
+process.on('exit', () => {
   if (!argv.environment) {
     console.log(yaml.safeDump(collection))
   } else {
@@ -206,27 +198,27 @@ process.on(\'exit\', () => {
 
 exports[`test invigorates via cli 10`] = `
 "{
-  \"scripts\": {
-    \"lint\": \"eslint .\",
-    \"fix\": \"eslint . --fix\",
-    \"build\": \"babel src --source-maps --out-dir lib\",
-    \"build:watch\": \"babel src --watch --source-maps --out-dir lib\"
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix",
+    "build": "babel src --source-maps --out-dir lib",
+    "build:watch": "babel src --watch --source-maps --out-dir lib"
   },
-  \"dependencies\": {},
-  \"devDependencies\": {
-    \"babel-cli\": \"6.23.0\",
-    \"babel-core\": \"6.23.1\",
-    \"babel-eslint\": \"7.1.1\",
-    \"babel-plugin-add-module-exports\": \"0.2.1\",
-    \"babel-plugin-es6-promise\": \"1.1.1\",
-    \"babel-plugin-syntax-async-functions\": \"6.13.0\",
-    \"babel-plugin-transform-async-to-generator\": \"6.22.0\",
-    \"babel-plugin-transform-object-assign\": \"6.22.0\",
-    \"babel-preset-es2015\": \"6.22.0\",
-    \"eslint\": \"3.15.0\",
-    \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.1\",
-    \"eslint-plugin-standard\": \"2.0.1\"
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.23.0",
+    "babel-core": "6.23.1",
+    "babel-eslint": "7.1.1",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-es6-promise": "1.1.1",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-async-to-generator": "6.22.0",
+    "babel-plugin-transform-object-assign": "6.22.0",
+    "babel-preset-es2015": "6.22.0",
+    "eslint": "3.15.0",
+    "eslint-config-standard": "6.2.1",
+    "eslint-plugin-promise": "3.4.1",
+    "eslint-plugin-standard": "2.0.1"
   }
 }"
 `;

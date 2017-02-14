@@ -90,6 +90,12 @@ Do a dry run without changing any files (don't trust me, keep your stuff safe in
 invig --src src/ --dryrun
 ```
 
+Apply Invig on a pattern (use quotes!)
+
+```bash
+invig --src 'src/**.js'
+```
+
 ## Workflow 
 
 The recommended way to use Invig is to:
