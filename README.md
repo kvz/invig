@@ -47,7 +47,7 @@ it will convert all ES5 <strong>and</strong> CoffeeScript to ES6</em>
 Invig is meant to be run on a code base once (or a few times in one session). That's why it should not be used as a dependency but be installed globally instead.
 
 ```bash
-yarn global add invig@latest || npm install --global invig@latest
+yarn global add invig || npm install invig --global 
 ```
 
 ## Use
