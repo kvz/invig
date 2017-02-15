@@ -1014,7 +1014,7 @@ cli-spinners@0.1.2, cli-spinners@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-0.1.2.tgz#bb764d88e185fb9e1e6a2a1f19772318f605e31c"
 
-cli-spinners@^1.0.0:
+cli-spinners@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-1.0.0.tgz#ef987ed3d48391ac3dab9180b406a742180d6e6a"
 
@@ -1243,9 +1243,9 @@ decaffeinate-parser@^16.0.3:
     decaffeinate-coffeescript "^1.10.0-patch19"
     lines-and-columns "^1.1.6"
 
-decaffeinate@2.47.3:
-  version "2.47.3"
-  resolved "https://registry.yarnpkg.com/decaffeinate/-/decaffeinate-2.47.3.tgz#8393e3f14810e3f36cedb13b10a84591ec5c6974"
+decaffeinate@2.47.5:
+  version "2.47.5"
+  resolved "https://registry.yarnpkg.com/decaffeinate/-/decaffeinate-2.47.5.tgz#1aef0a5a40aff4a887b6fe3313f4d72a0131eba0"
   dependencies:
     add-variable-declarations "^2.0.1"
     ast-processor-babylon-config "^1.0.0"
@@ -3627,9 +3627,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-0.17.0.tgz#785940a2b95bd6c7cd4d14fa11a1112bfed3cf83"
+prettier@0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-0.17.1.tgz#a56cdf72b6ed31cae408b8306f4aeae985570e72"
   dependencies:
     ast-types "0.9.4"
     babel-code-frame "6.22.0"

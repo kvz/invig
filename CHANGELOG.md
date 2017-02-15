@@ -6,13 +6,21 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 - [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
 
-## v0.0.13
+## v0.0.14
 
 Released: TBA.
 
-[Diff](https://github.com/transloadit/transloadify/compare/v0.0.12...master).
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.13...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+
+## v0.0.13
+
+Released: 2017-02-15. 
+
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.12...v0.0.13).
+
+- [x] Upgrade to `prettier@0.17.1` so we won't run into `TypeError: process.stdout.clearLine is not a function` https://github.com/jlongster/prettier/pull/687
 
 ## v0.0.12
 
