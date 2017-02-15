@@ -18,7 +18,7 @@ test('invigorates via cli', () => {
 
     shelljs.cp('-f', path.dirname(src) + '/package.json', path.dirname(dst) + '/package.json')
     shelljs.cp('-f', src, dst)
-    const cmd = `env SCROLEX_INTERVAL=10000 node ${__dirname}/cli.js --src "${dst}"`
+    const cmd = `env SCROLEX_MODE=passthru node ${__dirname}/cli.js --src "${dst}"`
     // console.log(cmd)
     const p = shelljs.exec(cmd)
     expect(removeVariance(p.stderr.trim())).toMatchSnapshot()

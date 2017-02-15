@@ -1,38 +1,34 @@
 exports[`test invigorates via cli 1`] = `""`;
 
 exports[`test invigorates via cli 2`] = `
-" › invig › fixture/tmp › Adding npm task project config
- › invig › fixture/tmp › Adding dependencies task project config
- › invig › fixture/tmp › Writing eslint project config
- › invig › fixture/tmp › Writing babel project config
- › invig › fixture/tmp › Writing eslint ignores
- › invig › fixture/tmp › Writing back project config
- › invig › fixture/tmp › Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
- ---spinnerframe--- invig › fixture/tmp › yarn › Executing: yarn || npm install…
- ---spinnerframe--- invig › fixture/tmp › yarn › yarn install vX.X.X…
- ---spinnerframe--- invig › fixture/tmp › yarn › info No lockfile found.…
- ---spinnerframe--- invig › fixture/tmp › yarn › warning No license field…
- ---spinnerframe--- invig › fixture/tmp › yarn › [1/4] Resolving packages...…
- ---spinnerframe--- invig › fixture/tmp › yarn › [2/4] Fetching packages...…
- ---spinnerframe--- invig › fixture/tmp › yarn › [3/4] Linking dependencies...…
- ---spinnerframe--- invig › fixture/tmp › yarn › [4/4] Building fresh packages...…
- ---spinnerframe--- invig › fixture/tmp › yarn › success Saved lockfile.…
- ---spinnerframe--- invig › fixture/tmp › yarn › Done in X.Xs.…
- ✔ invig › fixture/tmp › yarn › Successfully executed: yarn || npm install
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.coffee › rm › Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee…
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.coffee › rm › #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee → #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js…
- ✔ invig › fixture/tmp/hack-sitemap.coffee › rm › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › echo › Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed…
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › echo › lebabed…
- ✔ invig › fixture/tmp/hack-sitemap.js › echo › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/hack-sitemap.js › eslint › Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js…
- ✔ invig › fixture/tmp/hack-sitemap.js › eslint › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
- ✔ 
-Done. 
-"
+"› invig › fixture/tmp ›
+   Adding npm task project config
+   Adding dependencies task project config
+   Writing eslint project config
+   Writing babel project config
+   Writing eslint ignores
+   Writing back project config
+   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
+ › invig › fixture/tmp › yarn ›
+   Executing: yarn || npm install
+   yarn install vX.X.X
+   info No lockfile found.
+   warning No license field
+   [1/4] Resolving packages...
+   [2/4] Fetching packages...
+   [3/4] Linking dependencies...
+   [4/4] Building fresh packages...
+   success Saved lockfile.
+   Done in X.Xs.
+ › invig › fixture/tmp/hack-sitemap.coffee › rm ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
+   #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee → #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
+ › invig › fixture/tmp/hack-sitemap.js › echo ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed
+   lebabed
+ › invig › fixture/tmp/hack-sitemap.js › eslint ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
+Done."
 `;
 
 exports[`test invigorates via cli 3`] = `0`;
@@ -111,30 +107,27 @@ exports[`test invigorates via cli 5`] = `
 exports[`test invigorates via cli 6`] = `""`;
 
 exports[`test invigorates via cli 7`] = `
-" › invig › fixture/tmp › Adding npm task project config
- › invig › fixture/tmp › Adding dependencies task project config
- › invig › fixture/tmp › Writing eslint project config
- › invig › fixture/tmp › Writing babel project config
- › invig › fixture/tmp › Writing eslint ignores
- › invig › fixture/tmp › Writing back project config
- › invig › fixture/tmp › Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
- ---spinnerframe--- invig › fixture/tmp › yarn › Executing: yarn || npm install…
- ---spinnerframe--- invig › fixture/tmp › yarn › yarn install vX.X.X…
- ---spinnerframe--- invig › fixture/tmp › yarn › warning No license field…
- ---spinnerframe--- invig › fixture/tmp › yarn › [1/4] Resolving packages...…
- ---spinnerframe--- invig › fixture/tmp › yarn › success Already up-to-date.…
- ---spinnerframe--- invig › fixture/tmp › yarn › Done in X.Xs.…
- ✔ invig › fixture/tmp › yarn › Successfully executed: yarn || npm install
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/asset-index.js › echo › Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed…
- ---spinnerframe--- invig › fixture/tmp/asset-index.js › echo › lebabed…
- ✔ invig › fixture/tmp/asset-index.js › echo › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed
- ✔ 
- ---spinnerframe--- invig › fixture/tmp/asset-index.js › eslint › Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js…
- ✔ invig › fixture/tmp/asset-index.js › eslint › Successfully executed: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
- ✔ 
-Done. 
-"
+"› invig › fixture/tmp ›
+   Adding npm task project config
+   Adding dependencies task project config
+   Writing eslint project config
+   Writing babel project config
+   Writing eslint ignores
+   Writing back project config
+   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
+ › invig › fixture/tmp › yarn ›
+   Executing: yarn || npm install
+   yarn install vX.X.X
+   warning No license field
+   [1/4] Resolving packages...
+   success Already up-to-date.
+   Done in X.Xs.
+ › invig › fixture/tmp/asset-index.js › echo ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed
+   lebabed
+ › invig › fixture/tmp/asset-index.js › eslint ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
+Done."
 `;
 
 exports[`test invigorates via cli 8`] = `0`;
