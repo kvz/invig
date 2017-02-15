@@ -136,6 +136,7 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 ## Invig in the Wild
 
 - Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
+- Here's the RethinkDB WebUI ported from CoffeeScript to ES6: <https://github.com/rethinkdb/rethinkdb/pull/6262>
 
 ## Todo
 
