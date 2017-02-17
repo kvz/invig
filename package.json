@@ -69,13 +69,13 @@
     "os-tmpdir": "1.0.2",
     "pkg-up": "1.0.0",
     "prettier": "0.17.1",
-    "scrolex": "0.0.20",
+    "scrolex": "0.0.26",
     "strip-ansi": "3.0.1",
     "untildify": "3.0.2"
   },
   "devDependencies": {
-    "fakefile": "0.0.8",
     "cli-spinners": "1.0.0",
+    "fakefile": "0.0.8",
     "jest": "18.1.0",
     "next-update": "1.5.1",
     "npm-run-all": "4.0.1"

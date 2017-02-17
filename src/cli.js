@@ -46,7 +46,6 @@ scrolex.persistOpts({
   announce             : true,
   addCommandAsComponent: true,
   components           : `invig`,
-  mode                 : process.env.SCROLEX_MODE || 'singlescroll',
   shell                : true,
   fatal                : program.bail,
   dryrun               : program.dryrun,

@@ -6,13 +6,21 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 - [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
 
-## v0.0.14
+## master
 
 Released: TBA.
 
 [Diff](https://github.com/transloadit/transloadify/compare/v0.0.13...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+
+## v0.0.14
+
+Released: 2017-02-17. 
+
+[Diff](https://github.com/transloadit/transloadify/compare/v0.0.13...v0.0.14).
+
+- [x] Upgrade to `scrolex@0.0.26` which will default to `passthru` `mode` on Travis CI and non-TTY environments
 
 ## v0.0.13
 
