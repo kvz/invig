@@ -38,3 +38,10 @@ jspm_packages
 
 lib/
 fixture/tmp/
+
+website/_site/
+website/.jekyll-metadata
+website/.lanyon
+website/assets/build/
+website/*.md
+env.sh

@@ -2,17 +2,26 @@ language: node_js
 sudo: true
 cache:
   apt: true
+  yarn: true
+  directories:
+  - website/.lanyon
 node_js:
 - 7
-# addons:
-#   apt:
-#     sources:
-#     - ubuntu-toolchain-r-test
-#     packages:
-#     - g++-4.8
-# env:
-#   global:
-#   - CXX=g++-4.8
 script:
 - npm run lint
 - npm test
+before_cache:
+- rm -f ./node_modules/.bin/which
+before_deploy: node_modules/.bin/lanyon install
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: website/.lanyon/bin/deploy
+  on:
+    branch: master
+    condition: $TRAVIS_OS_NAME = linux
+env:
+  global:
+  - secure: X5pUBFThL8OBqzzzvDZpqmyMKv2EgpIPz8hYcgJwPzlDLWqHoAgAKyfvvVJvyXIYrIdlwlU1e6srbcA1mAh/L62nLQpLUk+G/WruosXjuXOUqyy/rpc9mDjQbkJOCw4/D1Av+0F94K66z8neU72FCEfjhK/F0dyd3nIve15objlliPSZbKYrSsKNzrLy0MWvc8YqyJmWNYpS/VV6kkgOtMnvC5aP36ikxqRkLBVJPgerVHu46B/uf7Cs87ESo9ML9XDvxBwmwCrcp8r9ju8FWlRTkAjdwgpeNg5e7Inz7PF4EbBSEflxIEJTiD0XNOrlm6KVtIKHiisch8N+xUMBQrHxQcBd5ADxwKsmLlUGO/moiF1alOmoU1ajsD9TSZPA2h2v+vSiMVKwE/jKV9JPhXsCODgnTF9AG15aYV5Dgm7Ho7MZawE+ZTYmSSxM00DFa489RERmSJ9xzfOToTfpdHoToHZ3b+9LxLCstQkDV5miJy3Kk93jwACi+c1fLlEdh2dDhyxrJ5HPiKElqtJWEWPLuNpono0YIqxEQnwv2Mw630ljDiO2K+73cC1gfZX3FGRZEGFxscCJUCwcukzOh3KZfqK2lD2fQImlF8RDvEHMckATLJwhli0QZkVK13YpeUs2sVPyzAZD6lHQokBNemwEc+lGTYDk3GwK9ktifuE=
+  - secure: fPEdgP/jSw03yQbZT9Dd507Pq1BsAAhk2f1o82kKidAvsZf18M02hxZpot6ffE5c+S8vZHgxkFCyibuliJ8kvOyZlSKirHuRR+nTOnmg5LfuVtVzSHzpltZz34ZDtPlIYC32poxvyKu/qClZE1Ivexj9mTohWYSbIrJcDsYYuSoPob0oRGSXbU3GhIj4yDDB7eafwtOch34ZIZzUC67BxAE7KkOAVLiG57I1iIFl5jwzoDPZzn50EAhRpPE9YCmFDqLN+ElXZKWPDpp808qchu+U/qRtFSVGjVrpgA/5E6NHHQxF6n6u1sg1bK1KSOYbo24IvlUOJXWlYVOhbV6Bl4j7tm3Ujtci7+Es0p9hdNNH8UcajHZKXKc8hVhVoFsVzv3n902Yo7qtv51t80Z7XRL96LteZbC53wpOpF47qmpKcLGIgz9ibfteC5FXf/aKjU4Z83iaSOt4182QUy+DdyDAYG/4ZHzSlpZete8l47oTxe1qYV9P39QFOeaQcgnmj+TwjhU4vJ3psigkCW7rCLioUmdvZB6sPGdOwYQKgFcQo/f6v1x5/a19DcldNPr/ri4q4KLrT//77zQgL+1X65bc8fiTTcGM0usv9Fd7JrxDea+Nizf/Yc5VFLNpc/6ExVw6FFhC6EvoqYLL6XA7hF/39mlD5T9GcQtnavaPVzM=
+  - secure: MIw5SLdmq+to+kt/lXTrBMgBum8d1qn9unn0WihLnI2gKOHT8yBYbaGRgeKSjEMnJofTKLwFoqC8NrSzqaP2M8cd7c6+IuyI0Jlgrkbf4aXKAzdAFzs0DjdTLM8JcIGtv5QKuQDZW7x1g8Me2OievINVsZF5jtD8Km1VH2Y2fwGPbur75B66/wAahT7epPN76eoVjxtpVeusU5heYOARfI0Rn4jI2E+3babJJphWOcB9XgnimglWgxgK2ClMQBLQeqYjcdkkGz1UUETVl6RiqlWp3ameShXcD1nj839Fx2Vl3E164EU3DMmOI4S2s9/iN9qb6ZOIJaxccnlo+PRdZ33JE41CaN1xy16UDir5nhLQV11X346fJAq9hBpg35WW/z6qE11DxtYUbPPgK/DCy5FIS74iBzcDX+kQybE3nqAWdSm3Jl5env9CHLQI6MOWcjgrLxV8jAiPW54rjEELzufnAnMC8vi/n5+4X/EKMgjK56EHY1dYTakz2jOGhyggVkK0gDQOw4iM9/UlFF7kUz7/27CGO4zLW4ScTL08Snc5o9GSSyLmeIDGmVym/JtgTbQ1TUXW0moSZcmTrU4Dj1484gG56q6FX0BjlZS9ryiZbyUVKHWkhQVXAhjjpK2y0gG+DG0UuVVnMCGxsvM9lkm7XJJzaSYgZdifac3uhxw=

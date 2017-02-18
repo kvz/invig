@@ -2,6 +2,8 @@
 
 > Here's another one of my more upsetting projects 👌
 
+<!--more-->
+
 # 🌿 Invig
 
 Breathes new life into legacy code bases by automatically:

@@ -11,6 +11,14 @@
       "src/"
     ]
   },
+  "lanyon": {
+    "projectDir": "website",
+    "prebuild": "./_scripts/inject.sh",
+    "contentScandir": "../",
+    "contentIgnore": [
+      "website/*.md"
+    ]
+  },
   "scripts": {
     "build:watch": "babel src --watch --source-maps --out-dir lib",
     "build": "babel src --source-maps --out-dir lib",
@@ -28,6 +36,12 @@
     "release": "npm version ${SEMANTIC:-patch} -m \"Release %s\" && npm-run-all build push npublish",
     "test:update": "npm run jest:update",
     "test": "npm run jest",
+    "web:build:production": "LANYON_ENV=production lanyon build",
+    "web:build": "lanyon build",
+    "web:encrypt": "lanyon encrypt",
+    "web:install": "lanyon install",
+    "web:serve:production": "LANYON_ENV=production lanyon serve",
+    "web:start": "lanyon start",
     "upgrade:modules": "next-update --keep true --tldr --test /usr/bin/true && npm run test:update && echo 'inspect git diff now'"
   },
   "repository": {
@@ -77,6 +91,7 @@
     "cli-spinners": "1.0.0",
     "fakefile": "0.0.8",
     "jest": "18.1.0",
+    "lanyon": "0.0.61",
     "next-update": "1.5.1",
     "npm-run-all": "4.0.1"
   },

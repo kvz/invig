@@ -1,0 +1,7 @@
+title: Invig
+
+exclude:
+  - not-this
+
+gems:
+  - jekyll-redirect-from
