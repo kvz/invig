@@ -54,7 +54,7 @@ body.background-4 #header-overlay {
 
 #logo {
   display: block;
-  /*background: url(http://thecatapi.com/api/images/get?format=src&type=gif) center;*/
+  background: url(images/logos/invig1.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   width: 400px;
@@ -62,7 +62,7 @@ body.background-4 #header-overlay {
   line-height: 120px;
   position: absolute;
   text-align: center;
-  color: white;
+  color: transparent;
   font-size: 50px;
   top: 50%;
   left: 50%;
