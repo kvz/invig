@@ -38,6 +38,7 @@
     "test": "npm run jest",
     "web:build:production": "LANYON_ENV=production lanyon build",
     "web:build": "lanyon build",
+    "web:deploy": "lanyon deploy",
     "web:encrypt": "lanyon encrypt",
     "web:install": "lanyon install",
     "web:serve:production": "LANYON_ENV=production lanyon serve",
