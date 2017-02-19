@@ -174,6 +174,7 @@ Welcoming discussion on:
 
 - [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
 - [Hacker News](https://news.ycombinator.com/item?id=13442421)
+- [Product Hunt](https://www.producthunt.com/posts/invig)
 
 ## Authors & Contributors
 
