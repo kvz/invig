@@ -196,9 +196,7 @@ const convertFile = (projectDir, srcPath, cb) => {
     fns.push(toJs.bind(toJs, projectDir))
   }
   fns.push(toEs6.bind(toEs6, projectDir))
-  if (process.env.INVIG_PRETTIER === '1') {
-    fns.push(toPrettier.bind(toPrettier, projectDir))
-  }
+  fns.push(toPrettier.bind(toPrettier, projectDir))
   fns.push(toEslintStandard.bind(toEslintStandard, projectDir))
 
   applyEachSeries(fns, srcPath, cb)

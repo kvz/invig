@@ -43,7 +43,7 @@
     "web:install": "lanyon install",
     "web:serve:production": "LANYON_ENV=production lanyon serve",
     "web:start": "lanyon start",
-    "upgrade:modules": "next-update --keep true --tldr --test /usr/bin/true && npm run test:update && echo 'inspect git diff now'"
+    "upgrade:modules": "npm-check-updates -u --semverLevel major && yarn && npm run test:update && echo 'Inspect Git diff now plz'"
   },
   "repository": {
     "type": "git",
@@ -93,7 +93,7 @@
     "fakefile": "0.0.8",
     "jest": "18.1.0",
     "lanyon": "0.0.61",
-    "next-update": "1.5.1",
+    "npm-check-updates": "2.10.3",
     "npm-run-all": "4.0.1"
   },
   "homepage": "https://github.com/kvz/invig#readme"
