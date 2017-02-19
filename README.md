@@ -35,13 +35,7 @@ While CoffeeScript lovers might agree already that uniform styling is pleasant a
 ## Demo
 
 <div align="center">
-Let's install Invig globally and convert a CoffeeScript file to ES6.
-<br>
-<img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/master/scripts/demo1.gif">
-<br>
-<em>Remember that you can also point Invig to an entire directory, and <br>
-it will convert all ES5 <strong>and</strong> CoffeeScript to ES6</em>
-<br>
+<img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/b68b038bce4caabc0543bbc09683be33830177d3/scripts/demo2.png">
 </div>
 
 ## Install
