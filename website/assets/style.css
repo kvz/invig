@@ -8,7 +8,7 @@ body {
 }
 
 #header-overlay {
-  background: #62c6ff 50% 100% no-repeat;
+  background: #ddd 50% 100% no-repeat;
   /*background-image = url(/assets/images/1.jpg);*/
   background-size: cover;
   height: 25vh;
