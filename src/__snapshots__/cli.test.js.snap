@@ -22,6 +22,9 @@ exports[`test invigorates via cli 2`] = `
  › invig › fixture/tmp/hack-sitemap.js › echo ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed
    lebabed
+ › invig › fixture/tmp/hack-sitemap.js › prettier ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
+   #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js 47ms
  › invig › fixture/tmp/hack-sitemap.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
 Done."
@@ -31,32 +34,25 @@ exports[`test invigorates via cli 3`] = `0`;
 
 exports[`test invigorates via cli 4`] = `
 "#!/usr/bin/env node
-const debug              = require(\'debug\')(\'tlc:formats\')
-const fs                 = require(\'fs\')
-const fileSitemap        = \`\${__dirname}/../_site/sitemap.xml\`
-let sitemap            = fs.readFileSync(fileSitemap, \'utf8\')
+const debug = require(\'debug\')(\'tlc:formats\')
+const fs = require(\'fs\')
+const fileSitemap = \`\${__dirname}/../_site/sitemap.xml\`
+let sitemap = fs.readFileSync(fileSitemap, \'utf8\')
 
 const baseUrl = \'https://transloadit.com\'
 
-const additions = [
-  \'/login/\',
-  \'/accounts/forgot_pw/\',
-]
+const additions = [\'/login/\', \'/accounts/forgot_pw/\']
 
-const removals = [
-  \'/jekyll.lanyon_assets.yml\',
-  \'/denied/\',
-  \'/unpublished/\',
-]
+const removals = [\'/jekyll.lanyon_assets.yml\', \'/denied/\', \'/unpublished/\']
 
 let xmlAppend = \'\'
 for (let addition of Array.from(additions)) {
   debug(\`Processing \'\${baseUrl}\${addition}\'\`)
-  let item      = \'\'
-  item      = \`\${item}<url>\\n\`
-  item      = \`\${item}<loc>\${baseUrl}\${addition}</loc>\\n\`
-  item      = \`\${item}<lastmod>2016-08-17T10:09:28+02:00</lastmod>\\n\`
-  item      = \`\${item}</url>\\n\`
+  let item = \'\'
+  item = \`\${item}<url>\\n\`
+  item = \`\${item}<loc>\${baseUrl}\${addition}</loc>\\n\`
+  item = \`\${item}<lastmod>2016-08-17T10:09:28+02:00</lastmod>\\n\`
+  item = \`\${item}</url>\\n\`
   xmlAppend = \`\${xmlAppend}\${item}\`
 }
 
@@ -65,7 +61,10 @@ xmlAppend = \`\${xmlAppend}</urlset>\`
 sitemap = sitemap.replace(\'</urlset>\', xmlAppend)
 
 for (let removal of Array.from(removals)) {
-  const pattern = new RegExp(\`<url>\\\\s*<loc>\\\\s*\${baseUrl}\${removal}[^<]*</loc>\\\\s*</url>\\\\s*\`, \'gmi\')
+  const pattern = new RegExp(
+    \`<url>\\\\s*<loc>\\\\s*\${baseUrl}\${removal}[^<]*</loc>\\\\s*</url>\\\\s*\`,
+    \'gmi\'
+  )
   sitemap = sitemap.replace(pattern, \'\')
 }
 
@@ -94,7 +93,7 @@ exports[`test invigorates via cli 5`] = `
     \"babel-preset-es2015\": \"6.22.0\",
     \"eslint\": \"3.15.0\",
     \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.1\",
+    \"eslint-plugin-promise\": \"3.4.2\",
     \"eslint-plugin-standard\": \"2.0.1\"
   }
 }"
@@ -119,6 +118,9 @@ exports[`test invigorates via cli 7`] = `
  › invig › fixture/tmp/asset-index.js › echo ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed
    lebabed
+ › invig › fixture/tmp/asset-index.js › prettier ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
+   #{SCROLEX_ROOT}/fixture/tmp/asset-index.js#{SCROLEX_ROOT}/fixture/tmp/asset-index.js 55ms
  › invig › fixture/tmp/asset-index.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
 Done."
@@ -140,8 +142,8 @@ const crypto = require(\'crypto\')
 const fs = require(\'fs\')
 const yaml = require(\'js-yaml\')
 const collection = {
-  \'production\' : {},
-  \'development\': {},
+  production : {},
+  development: {},
 }
 
 argv._.forEach(filename => {
@@ -212,7 +214,7 @@ exports[`test invigorates via cli 10`] = `
     \"babel-preset-es2015\": \"6.22.0\",
     \"eslint\": \"3.15.0\",
     \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.1\",
+    \"eslint-plugin-promise\": \"3.4.2\",
     \"eslint-plugin-standard\": \"2.0.1\"
   }
 }"
