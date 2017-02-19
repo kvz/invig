@@ -131,7 +131,12 @@ class Invig {
     ]
 
     const list = [].concat(safe, unsafe).join(',')
-    const cmd = `${this.opts.npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && mv -f ${srcPath}.es6 ${srcPath}`
+
+    const moveCommandWin =  `move /y ${srcPath.replace(/\//g, '\\')}.es6 ${srcPath.replace(/\//g, '\\')}`
+    const moveCommandOthers = `mv -f ${srcPath}.es6 ${srcPath}`
+    const moveCommand = /^win/.test(process.platform) ? moveCommandWin : moveCommandOthers
+
+    const cmd = `${this.opts.npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && ${moveCommand}`
 
     scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
   }
