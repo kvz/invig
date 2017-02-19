@@ -14,6 +14,14 @@ Released: TBA.
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
 
+## v0.0.16
+
+Released: 2017-02-19. 
+
+[Diff](https://github.com/kvz/invig/compare/v0.0.15...v0.0.16).
+
+- [x] Add support for STDIN conversion via `echo 'cubes = (math.cube num for num in list)' | invig -s -`
+
 ## v0.0.15
 
 Released: 2017-02-19. 
