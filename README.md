@@ -38,9 +38,9 @@ While CoffeeScript lovers might agree already that uniform styling is pleasant a
 
 ## Demo
 
-<div align="center">
-<img alt="Convert a CoffeeScript file to ES6" src="https://github.com/kvz/invig/raw/b68b038bce4caabc0543bbc09683be33830177d3/scripts/demo2.png">
-</div>
+Let's take a look at installing Invig at converting CoffeeScript to Standard compatible ES6 via STDIN
+
+![](https://github.com/kvz/invig/raw/b68b038bce4caabc0543bbc09683be33830177d3/scripts/demo2.png)
 
 ## Install
 
