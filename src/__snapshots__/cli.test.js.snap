@@ -14,10 +14,6 @@ exports[`test invigorates via cli 2`] = `
    yarn install vX.X.X
    info No lockfile found.
    warning No license field
-   [1/4] Resolving packages...
-   [2/4] Fetching packages...
-   [3/4] Linking dependencies...
-   [4/4] Building fresh packages...
    success Saved lockfile.
    Done in X.Xs.
  › invig › fixture/tmp/hack-sitemap.coffee › rm ›
@@ -119,8 +115,6 @@ exports[`test invigorates via cli 7`] = `
    Executing: yarn || npm install
    yarn install vX.X.X
    warning No license field
-   [1/4] Resolving packages...
-   success Already up-to-date.
    Done in X.Xs.
  › invig › fixture/tmp/asset-index.js › echo ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed
