@@ -142,16 +142,16 @@ I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
 Projects where Invig is used to breathe new life into old codebases:
 
-- [Transloadit's Node.js SDK](https://github.com/transloadit/node-sdk/pull/40), Invig's first PR, changing a CoffeeScript codebase to ES6 💚
-- [RethinkDB WebUI](https://github.com/rethinkdb/rethinkdb/pull/6262) is being ported from CoffeeScript to ES6
+- [Transloadit's Node.js SDK](https://github.com/transloadit/node-sdk/pull/40) is Invig's first PR, changing a CoffeeScript codebase to ES6 💚
+- [RethinkDB's WebUI](https://github.com/rethinkdb/rethinkdb/pull/6262) is being ported from CoffeeScript to ES6
 
 ## Todo & Changelog
 
-Please see [CHANGELOG.md](CHANGELOG.md)
+Please see [CHANGELOG.md](CHANGELOG.md).
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Social Media
 
