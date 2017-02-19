@@ -1,6 +1,6 @@
-exports[`test invigorates via cli 1`] = `""`;
+exports[`Invig cli invigorates an entire directory 1`] = `""`;
 
-exports[`test invigorates via cli 2`] = `
+exports[`Invig cli invigorates an entire directory 2`] = `
 "› invig › fixture/tmp ›
    Adding npm task project config
    Adding dependencies task project config
@@ -30,9 +30,9 @@ exports[`test invigorates via cli 2`] = `
    Done"
 `;
 
-exports[`test invigorates via cli 3`] = `0`;
+exports[`Invig cli invigorates an entire directory 3`] = `0`;
 
-exports[`test invigorates via cli 4`] = `
+exports[`Invig cli invigorates an entire directory 4`] = `
 "#!/usr/bin/env node
 const debug = require(\'debug\')(\'tlc:formats\')
 const fs = require(\'fs\')
@@ -72,7 +72,7 @@ debug(\`Writing \${fileSitemap}\`)
 fs.writeFileSync(fileSitemap, sitemap, \'utf8\')"
 `;
 
-exports[`test invigorates via cli 5`] = `
+exports[`Invig cli invigorates an entire directory 5`] = `
 "{
   \"scripts\": {
     \"lint\": \"eslint .\",
@@ -99,9 +99,9 @@ exports[`test invigorates via cli 5`] = `
 }"
 `;
 
-exports[`test invigorates via cli 6`] = `""`;
+exports[`Invig cli invigorates an entire directory 6`] = `""`;
 
-exports[`test invigorates via cli 7`] = `
+exports[`Invig cli invigorates an entire directory 7`] = `
 "› invig › fixture/tmp ›
    Adding npm task project config
    Adding dependencies task project config
@@ -126,9 +126,9 @@ exports[`test invigorates via cli 7`] = `
    Done"
 `;
 
-exports[`test invigorates via cli 8`] = `0`;
+exports[`Invig cli invigorates an entire directory 8`] = `0`;
 
-exports[`test invigorates via cli 9`] = `
+exports[`Invig cli invigorates an entire directory 9`] = `
 "// This file:
 // - traverses over its arguments
 // - clones assets to a new name, by the md5 of the original content
@@ -193,7 +193,7 @@ process.on(\'exit\', () => {
 })"
 `;
 
-exports[`test invigorates via cli 10`] = `
+exports[`Invig cli invigorates an entire directory 10`] = `
 "{
   \"scripts\": {
     \"lint\": \"eslint .\",
