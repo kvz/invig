@@ -24,7 +24,7 @@ exports[`test invigorates via cli 2`] = `
    lebabed
  › invig › fixture/tmp/hack-sitemap.js › prettier ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
-   #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js 47ms
+   #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js XXms
  › invig › fixture/tmp/hack-sitemap.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
 Done."
@@ -120,7 +120,7 @@ exports[`test invigorates via cli 7`] = `
    lebabed
  › invig › fixture/tmp/asset-index.js › prettier ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
-   #{SCROLEX_ROOT}/fixture/tmp/asset-index.js#{SCROLEX_ROOT}/fixture/tmp/asset-index.js 55ms
+   #{SCROLEX_ROOT}/fixture/tmp/asset-index.js#{SCROLEX_ROOT}/fixture/tmp/asset-index.js XXms
  › invig › fixture/tmp/asset-index.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
 Done."

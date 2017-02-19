@@ -39,6 +39,7 @@ const removeVariance = (input) => {
   input = input.replace(/^.*Resolving packages.*\n/gm, '')
   input = input.replace(/^.*There appears to be trouble with your network connection.*\n/gm, '')
   input = input.replace(/Done in \d+\.\d+s/g, 'Done in X.Xs')
+  input = input.replace(/\d+ms/g, 'XXms')
   input = input.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
 
   // @todo: Remove this hack when scrolex no longer adds trailing spinner frames:

@@ -20,7 +20,7 @@ Released: 2017-02-19.
 
 [Diff](https://github.com/kvz/invig/compare/v0.0.14...v0.0.15).
 
-- [x] Run Prettier by default now
+- [x] Run Prettier by default now that critical bugs have been fixed
 
 ## v0.0.14
 
