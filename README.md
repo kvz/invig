@@ -124,7 +124,7 @@ The recommended way to use Invig is to:
 1. Be in `master` and have a clean Git working tree first
 1. `git checkout -b es6`
 2. Run Invig on your repo, point it to wherever your legacy sources live
-3. Apply manual fixes where the automation falls short (Invig will tell you)
+3. Apply manual fixes where the automation falls short (Invig and your build & test suite will tell you)
 4. Inspect the Git diff (I recommend the [GitHub Desktop](https://desktop.github.com) app for inspecting Invig's changes, even if you are a cli-god. Can't stress this enough) and repeat step 3 & 4
 5. Commit, push, send a PR for your `es6` branch
 6. Have someone review the PR and merge it
