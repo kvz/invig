@@ -54,49 +54,49 @@ npm install invig --global
 
 **⚠️ WARNING** Changes are made in-place, make sure your code is protected by version control before using Invig 
 
-Port one ES5 file to ES6:
+Port one **ES5 file** to ES6:
 
 ```bash
 invig --src old-file.js
 ```
 
-Port one CoffeeScript file to ES6 (deleting the old `.coffee` file.):
+Port one **CoffeeScript file** to ES6 (deleting the old `.coffee` file.):
 
 ```bash
 invig --src old-file.coffee
 ```
 
-Port an entire directory of CoffeeScript or ES5 files to ES6:
+Port an **entire directory** of CoffeeScript or ES5 files to ES6:
 
 ```bash
 invig --src src/
 ```
 
-Optionally check for outdated or unused dependencies after the conversion completes:
+Optionally check for outdated or **unused dependencies** after the conversion completes:
 
 ```bash
 invig --src src/ --check
 ```
 
-Bail out as soon as Invig hits an error. By default Invig will continue processing the next file
+**Bail out** as soon as Invig hits an error. By default Invig will continue processing the next file
 
 ```bash
 invig --src src/ --bail
 ```
 
-Do a dry run without changing any files (don't trust me, keep your stuff safe in Git):
+Do a **dry run** without changing any files (don't trust me, keep your stuff safe in Git):
 
 ```bash
 invig --src src/ --dryrun
 ```
 
-Apply Invig on a pattern (use quotes!)
+Apply Invig on a **pattern** (use quotes!)
 
 ```bash
 invig --src 'src/**.js'
 ```
 
-Transpile from STDIN
+Transpile from **STDIN**
 
 ```bash
 cat old-file.coffee | invig --src -
@@ -117,13 +117,13 @@ The recommended way to use Invig is to:
 
 ## State
 
-Invig is young, but as long as your code is in Git, feel free to have some fun with it.
+Invig is young, but as long as your code is in Git, feel free to have some fun with it, Invig has already ported some very [large codebases](#invig-in-the-wild).
 
 Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
 
 ## Gotchas
 
-- It's recommended to first make sure all CoffeeLint errors and warnings are fixed before porting your project
+- It's recommended to first make sure all CoffeeLint errors and warnings are fixed before porting your project.
 - Although Invig is destructive in nature, it currently leaves your `build` run script alone if you have already defined it. If you currently have CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
 The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `.eslintrc`, and `.babelrc` files. The advantage of this that you can run Invig multiple times even though you have customized these components that are used in the modern setup.
 - **⚠️ WARNING** Invig needs a sense of a project so that it can add ESLint config and similar, so from the first file you point it to, it traverses upwards to find a `package.json`, and **modifies this in-place** also.
