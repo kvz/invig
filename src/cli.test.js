@@ -1,7 +1,7 @@
 const shelljs        = require('shelljs')
 const fs             = require('fs')
 const path           = require('path')
-const child_process  = require('child_process')
+const childProcess  = require('child_process')
 const globby         = require('globby')
 const fixDir         = `${__dirname}/../fixture`
 const tmpDir         = `${__dirname}/../fixture/tmp`
@@ -34,6 +34,26 @@ describe('Invig', () => {
 
         const pkg = fs.readFileSync(path.dirname(dst) + '/package.json', 'utf-8').trim()
         expect(pkg).toMatchSnapshot()
+      })
+    })
+    test('invigorates via stdin', (done) => {
+      const child = childProcess.spawn(process.argv[0], [`${__dirname}/cli.js`, `-qs`, `-`], {
+        env: {
+          SCROLEX_MODE: `passthru`,
+        },
+      })
+
+      child.stdin.write(`console.log("hello")`)
+      child.stdin.end()
+
+      let buf = ''
+      child.stdout.on('data', (data) => {
+        buf += `${data}`
+      })
+
+      child.on('close', (code) => {
+        expect(removeVariance(buf)).toMatchSnapshot()
+        done()
       })
     })
   })

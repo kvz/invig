@@ -219,3 +219,5 @@ exports[`Invig cli invigorates an entire directory 10`] = `
   }
 }"
 `;
+
+exports[`Invig cli invigorates via stdin 1`] = `"console.log(\"hello\")"`;
