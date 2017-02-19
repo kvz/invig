@@ -12,7 +12,7 @@ Breathes new life into legacy code bases by automatically:
  - Transpiling ES5 to ES6 (without the stuff that recent Node hasn't nailed yet (e.g. we stick to `require` vs `import` for now))
  - Applying [Standard](http://standardjs.com) linting with colon alignment for enhanced readability
  - Adding the necessary linting and building run-script boilerplate that the project can later independently use
- - Checking for outdated or unused dependencies
+ - Optionally checking for outdated or unused dependencies
  
 Invig does this in a highly opinionated, non-configurable, and **destructive** way. 
 
@@ -52,7 +52,7 @@ npm install invig --global
 
 ## Use
 
-**⚠️ WARNING** All changes are made in-place, make sure your code is protected by version control before using Invig 
+**⚠️ WARNING** Changes are made in-place, make sure your code is protected by version control before using Invig 
 
 Port one ES5 file to ES6:
 
@@ -96,6 +96,12 @@ Apply Invig on a pattern (use quotes!)
 invig --src 'src/**.js'
 ```
 
+Transpile from STDIN
+
+```bash
+cat old-file.coffee | invig --src -
+```
+
 ## Workflow 
 
 The recommended way to use Invig is to:
@@ -111,7 +117,7 @@ The recommended way to use Invig is to:
 
 ## State
 
-Invig is Young, but as long as your code is in Git, feel free to have some fun with it.
+Invig is young, but as long as your code is in Git, feel free to have some fun with it.
 
 Pre-`1.0.0`, we're allowing ourselves to make breaking changes at any release.
 
@@ -126,28 +132,26 @@ The same goes for the `lint`, `fix`, and `build:watch` scripts, as well as the `
 
 I deserve no credit, Invig is just a tiny wrapper around these mastodons:
 
-- <https://github.com/decaffeinate/decaffeinate>
-- <http://lebab.io>
-- <http://eslint.org>
-- <https://github.com/jlongster/prettier>
-- <http://standardjs.com>
+- [Decaffeinate](https://github.com/decaffeinate/decaffeinate) (CoffeeScript to JavaScript)
+- [Lebab](http://lebab.io) (ES5 to ES6)
+- [Prettier](https://github.com/jlongster/prettier) (JavaScript consistent formatter)
+- [ESLint](http://eslint.org) (JavaScript linter and fixer)
+- [JavaScript Standard Style](http://standardjs.com) (One JavaScript Style Guide to Rule Them All)
 
 ## Invig in the Wild
 
-- Here's the first PR by Invig, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
-- Here's the RethinkDB WebUI ported from CoffeeScript to ES6: <https://github.com/rethinkdb/rethinkdb/pull/6262>
+Projects where Invig is used to breathe new life into old codebases:
 
-## Todo
+- [Transloadit's Node.js SDK](https://github.com/transloadit/node-sdk/pull/40), Invig's first PR, changing a CoffeeScript codebase to ES6 💚 <https://github.com/transloadit/node-sdk/pull/40>
+- [RethinkDB WebUI](https://github.com/rethinkdb/rethinkdb/pull/6262) is being ported from CoffeeScript to ES6
 
-See [CHANGELOG.md](CHANGELOG.md)
+## Todo & Changelog
 
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md)
+Please see [CHANGELOG.md](CHANGELOG.md)
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+Please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Social Media
 
@@ -156,7 +160,7 @@ Welcoming discussion on:
 - [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
 - [Hacker News](https://news.ycombinator.com/item?id=13442421)
 
-## Authors
+## Authors & Contributors
 
 - [Kevin van Zonneveld](https://transloadit.com/about/#kevin)
 
