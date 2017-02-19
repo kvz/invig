@@ -59,19 +59,19 @@ const invig = new Invig({
   npmBinDir  : npmBinDir,
 })
 
-getStdin().then(stdin => {
-  let method = null
-  if (program.src === '-') {
-    if (!stdin) {
-      scrolex.failure(`There was no STDIN, yet '--src -' was specified`)
-      process.exit(1)
-    }
-    method = invig.runOnStdIn.bind(invig, stdin)
-  } else {
-    method = invig.runOnPattern.bind(invig)
-  }
-
-  method((err) => {
+if (program.src === '-') {
+  getStdin().then(stdin => {
+    invig.runOnStdIn(stdin, (err) => {
+      if (err) {
+        scrolex.failure(`${err}`)
+        process.exit(1)
+      } else {
+        scrolex.success(`Done`)
+      }
+    })
+  })
+} else {
+  invig.runOnPattern((err) => {
     if (err) {
       scrolex.failure(`${err}`)
       process.exit(1)
@@ -79,4 +79,4 @@ getStdin().then(stdin => {
       scrolex.success(`Done`)
     }
   })
-})
+}

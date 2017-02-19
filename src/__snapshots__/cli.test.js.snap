@@ -19,15 +19,15 @@ exports[`test invigorates via cli 2`] = `
  › invig › fixture/tmp/hack-sitemap.coffee › rm ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
    #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee → #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
- › invig › fixture/tmp/hack-sitemap.js › echo ›
-   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js && echo lebabed
-   lebabed
+ › invig › fixture/tmp/hack-sitemap.js › mv ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
  › invig › fixture/tmp/hack-sitemap.js › prettier ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
    #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js XXms
  › invig › fixture/tmp/hack-sitemap.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
-Done."
+ › invig ›
+   Done"
 `;
 
 exports[`test invigorates via cli 3`] = `0`;
@@ -115,15 +115,15 @@ exports[`test invigorates via cli 7`] = `
    yarn install vX.X.X
    warning No license field
    Done in X.Xs.
- › invig › fixture/tmp/asset-index.js › echo ›
-   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js && echo lebabed
-   lebabed
+ › invig › fixture/tmp/asset-index.js › mv ›
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
  › invig › fixture/tmp/asset-index.js › prettier ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
    #{SCROLEX_ROOT}/fixture/tmp/asset-index.js#{SCROLEX_ROOT}/fixture/tmp/asset-index.js XXms
  › invig › fixture/tmp/asset-index.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
-Done."
+ › invig ›
+   Done"
 `;
 
 exports[`test invigorates via cli 8`] = `0`;
