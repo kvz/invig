@@ -30,7 +30,7 @@ ES6 let's you express yourself in more powerful ways, typically meaning less boi
 
 **Why ditch CoffeeScript?**
 
-While CoffeeScript lovers might agree already that uniform styling is pleasant and that ES6 is an upgrade over ES5, they might feel there are still a number of syntactical advantages CoffeeScript offers, missing from ES6. While that may be true:
+While CoffeeScript lovers might agree already that uniform styling is pleasant and that ES6 is an upgrade over ES5, they might feel there are still a number of syntactical advantages CoffeeScript offers, missing from ES6. Our benchmark demo even results in lengthier ES6 code(!). While that may be true:
 
 - The syntactical sugar argument is losing ground with every ECMA iteration (1 a year now) 
 - The ES6 ecosystem is vast. This results in more resources online, being able to attract more developers to help with your project, and linters like Flow and ESLint that can prevent more possible bugs and errors than CoffeeLint can. 
