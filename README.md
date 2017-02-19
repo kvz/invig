@@ -52,7 +52,28 @@ npm install invig --global
 
 ## Use
 
-**⚠️ WARNING** Changes are made in-place, make sure your code is protected by version control before using Invig 
+**⚠️ WARNING** Changes are made in-place, make sure your code is protected by version control before using Invig. 
+
+Recursively port CoffeeScript/ES5 files to ES6 in-place:
+
+```bash
+invig -s ./src
+```
+
+### Command line arguments
+
+    Usage: invig [options]
+
+    Options:
+
+      -h, --help       output usage information
+      -V, --version    output the version number
+      -s, --src <dir>  Directory, file or pattern to convert
+      -b, --bail       Abort on the first error instead of continuing to port next file
+      -c, --check      When done, hunt for unused and un-updated dependencies
+      -q, --quiet      Hide any output
+
+### More Examples
 
 Port one **ES5 file** to ES6:
 
@@ -64,12 +85,6 @@ Port one **CoffeeScript file** to ES6 (deleting the old `.coffee` file.):
 
 ```bash
 invig --src old-file.coffee
-```
-
-Port an **entire directory** of CoffeeScript or ES5 files to ES6:
-
-```bash
-invig --src src/
 ```
 
 Optionally check for outdated or **unused dependencies** after the conversion completes:
