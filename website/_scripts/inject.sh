@@ -35,7 +35,7 @@ __root="$(cd "$(dirname $(dirname "${__dir}"))" && pwd)"
 
 pushd "${__root}"
 
-for doc in "README" "CHANGELOG"; do
+for doc in "README" "CHANGELOG" "CONTRIBUTING"; do
   targetName="$(echo "${doc}" | awk '{print tolower($0)}')"
   permalink="/${targetName}/"
   subtitle="$(tr '[:lower:]' '[:upper:]' <<< ${targetName:0:1})${targetName:1} | "

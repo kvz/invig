@@ -38,6 +38,20 @@
 
       {{content}}
 
+      {% if page.url == "/" %}
+        <h2 id="activity-feed">On GitHub</h2>
+        <p>
+          We'd love to hear what you think <a href="https://github.com/kvz/invig">on GitHub</a>.
+          Here's what's been going on recently.
+        </p>
+        <div class="on-the-githubs" data-event-source="repos/kvz/invig">Loading...</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+        <script type="text/javascript">
+          $('.on-the-githubs').onthegithubs();
+        </script>
+      {% endif %}
+
       <div class="Social">
         <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=invig&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
       </div>
