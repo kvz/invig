@@ -24,6 +24,10 @@ I'm dealing with an ever-growing number of projects that each have a slightly di
 
 The tools are there now to automate all difference away - it's just a matter of picking defaults and stringing those tools together. That's what Invig does. After successfully running Invig on your codebase, you can put your brain at ease thanks to uniformity, focus more on the work at hand, have a better time doing so thanks to syntactical goodness, while producing less bugs thanks to ESlint.
 
+**Why ditch ES5?**
+
+ES6 let's you express yourself in more powerful ways, typically meaning less boilerplate and more readable code.
+
 **Why ditch CoffeeScript?**
 
 While CoffeeScript lovers might agree already that uniform styling is pleasant and that ES6 is an upgrade over ES5, they might feel there are still a number of syntactical advantages CoffeeScript offers, missing from ES6. While that may be true:
