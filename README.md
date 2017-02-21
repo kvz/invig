@@ -172,7 +172,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Welcoming discussion on:
 
-- [Reddit](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
+- [Reddit](https://www.reddit.com/r/javascript/comments/5uzed1/invig_an_open_source_cli_tool_to_modernize_code/) [2](https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/)
 - [Hacker News](https://news.ycombinator.com/item?id=13442421)
 - [Product Hunt](https://www.producthunt.com/posts/invig)
 
