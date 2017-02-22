@@ -13,6 +13,7 @@ Released: TBA.
 [Diff](https://github.com/kvz/invig/compare/v0.0.13...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+- [x] Upgrade `scrolex@0.0.27`
 
 ## v0.0.16
 
