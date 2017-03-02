@@ -143,7 +143,7 @@ class Invig {
 
   toPrettier (srcPath, cb) {
     srcPath = srcPath.replace(/\.coffee$/, '.js')
-    const cmd = `${this.opts.npmBinDir}/prettier --single-quote --print-width 100 --write ${srcPath}`
+    const cmd = `${this.opts.npmBinDir}/prettier --single-quote --print-width 180 --write ${srcPath}`
     scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
   }
 

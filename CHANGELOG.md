@@ -10,10 +10,18 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 Released: TBA.
 
-[Diff](https://github.com/kvz/invig/compare/v0.0.13...master).
+[Diff](https://github.com/kvz/invig/compare/v0.0.17...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
-- [x] Upgrade `scrolex@0.0.27`
+
+## v0.0.17
+
+Released: 2017-03-02. 
+
+[Diff](https://github.com/kvz/invig/compare/v0.0.16...v0.0.17).
+
+- [x] Upgrade dependencies
+- [x] Set max line length of prettier to (an extreme) 180, as line-breaks are is still a source of buggy rewriting
 
 ## v0.0.16
 

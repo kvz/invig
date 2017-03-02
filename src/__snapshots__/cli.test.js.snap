@@ -22,7 +22,7 @@ exports[`Invig cli invigorates an entire directory 2`] = `
  › invig › fixture/tmp/hack-sitemap.js › mv ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
  › invig › fixture/tmp/hack-sitemap.js › prettier ›
-   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 180 --write #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
    #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js#{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js XXms
  › invig › fixture/tmp/hack-sitemap.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
@@ -61,10 +61,7 @@ xmlAppend = \`\${xmlAppend}</urlset>\`
 sitemap = sitemap.replace(\'</urlset>\', xmlAppend)
 
 for (let removal of Array.from(removals)) {
-  const pattern = new RegExp(
-    \`<url>\\\\s*<loc>\\\\s*\${baseUrl}\${removal}[^<]*</loc>\\\\s*</url>\\\\s*\`,
-    \'gmi\'
-  )
+  const pattern = new RegExp(\`<url>\\\\s*<loc>\\\\s*\${baseUrl}\${removal}[^<]*</loc>\\\\s*</url>\\\\s*\`, \'gmi\')
   sitemap = sitemap.replace(pattern, \'\')
 }
 
@@ -91,10 +88,10 @@ exports[`Invig cli invigorates an entire directory 5`] = `
     \"babel-plugin-transform-async-to-generator\": \"6.22.0\",
     \"babel-plugin-transform-object-assign\": \"6.22.0\",
     \"babel-preset-es2015\": \"6.22.0\",
-    \"eslint\": \"3.15.0\",
+    \"eslint\": \"3.16.1\",
     \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.2\",
-    \"eslint-plugin-standard\": \"2.0.1\"
+    \"eslint-plugin-promise\": \"3.5.0\",
+    \"eslint-plugin-standard\": \"2.1.0\"
   }
 }"
 `;
@@ -118,7 +115,7 @@ exports[`Invig cli invigorates an entire directory 7`] = `
  › invig › fixture/tmp/asset-index.js › mv ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
  › invig › fixture/tmp/asset-index.js › prettier ›
-   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 100 --write #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/prettier --single-quote --print-width 180 --write #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
    #{SCROLEX_ROOT}/fixture/tmp/asset-index.js#{SCROLEX_ROOT}/fixture/tmp/asset-index.js XXms
  › invig › fixture/tmp/asset-index.js › eslint ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/eslint --config #{SCROLEX_ROOT}/fixture/tmp/.eslintrc --fix #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
@@ -212,10 +209,10 @@ exports[`Invig cli invigorates an entire directory 10`] = `
     \"babel-plugin-transform-async-to-generator\": \"6.22.0\",
     \"babel-plugin-transform-object-assign\": \"6.22.0\",
     \"babel-preset-es2015\": \"6.22.0\",
-    \"eslint\": \"3.15.0\",
+    \"eslint\": \"3.16.1\",
     \"eslint-config-standard\": \"6.2.1\",
-    \"eslint-plugin-promise\": \"3.4.2\",
-    \"eslint-plugin-standard\": \"2.0.1\"
+    \"eslint-plugin-promise\": \"3.5.0\",
+    \"eslint-plugin-standard\": \"2.1.0\"
   }
 }"
 `;
