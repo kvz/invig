@@ -4,7 +4,7 @@ cache:
   apt: true
   yarn: true
   directories:
-  - website/.lanyon
+  - .lanyon
 node_js:
 - 7
 script:
@@ -12,11 +12,11 @@ script:
 - npm test
 before_cache:
 - rm -f ./node_modules/.bin/which
-before_deploy: node_modules/.bin/lanyon install
+before_deploy: .lanyon/bin/install
 deploy:
   skip_cleanup: true
   provider: script
-  script: website/.lanyon/bin/deploy
+  script: .lanyon/bin/deploy
   on:
     branch: master
     condition: $TRAVIS_OS_NAME = linux
