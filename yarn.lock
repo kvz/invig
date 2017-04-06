@@ -4814,9 +4814,9 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-lanyon@0.0.78:
-  version "0.0.78"
-  resolved "https://registry.yarnpkg.com/lanyon/-/lanyon-0.0.78.tgz#d76244a6cbf5d4686fbdeee18d6a7338b2649e91"
+lanyon@0.0.79:
+  version "0.0.79"
+  resolved "https://registry.yarnpkg.com/lanyon/-/lanyon-0.0.79.tgz#64f3ecb6703587fa5f171956b341fcee47ba9ed5"
   dependencies:
     assets-webpack-plugin "3.5.1"
     async "^2.3.0"
