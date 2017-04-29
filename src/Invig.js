@@ -51,7 +51,7 @@ class Invig {
       }
 
       for (let name in invigPackage.dependencies) {
-        if (name.match(/^(babel|eslint)/)) {
+        if (name.match(/^(babel|eslint|es6-promise)/)) {
           if (projectPackage.devDependencies[name] !== invigPackage.dependencies[name]) {
             projectPackage.devDependencies[name] = invigPackage.dependencies[name]
             npmInstallNeeded.push(`Add ${name} to devDependencies`)

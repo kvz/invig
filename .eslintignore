@@ -1,3 +1,5 @@
 node_modules/
 lib/
 fixture/
+website/assets/build/
+website/_site/
