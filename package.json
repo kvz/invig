@@ -7,7 +7,7 @@
   "preferGlobal": true,
   "jest": {
     "verbose": true,
-    "testPathDirs": [
+    "roots": [
       "src/"
     ]
   },

@@ -20,7 +20,7 @@ Released: 2017-05-10.
 
 [Diff](https://github.com/kvz/invig/compare/v0.0.19...v0.0.20).
 
-- [x] Add `decaffeinate --loose-include --loose-for-of`
+- [x] Add `decaffeinate --loose-includes --loose-for-of`
 - [x] Upgrade dependencies
 
 ## v0.0.19
