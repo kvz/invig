@@ -14,6 +14,15 @@ Released: TBA.
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
 
+## v0.0.20
+
+Released: 2017-05-10. 
+
+[Diff](https://github.com/kvz/invig/compare/v0.0.19...v0.0.20).
+
+- [x] Add `decaffeinate --loose-include --loose-for-of`
+- [x] Upgrade dependencies
+
 ## v0.0.19
 
 Released: 2017-04-29. 
