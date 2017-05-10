@@ -176,6 +176,11 @@ Welcoming discussion on:
 - [Hacker News](https://news.ycombinator.com/item?id=13442421)
 - [Product Hunt](https://www.producthunt.com/posts/invig)
 
+## Links
+
+- <https://github.com/prettier/prettier/blob/master/CHANGELOG.md>
+- <https://github.com/decaffeinate/decaffeinate/releases>
+
 ## Authors & Contributors
 
 - [Kevin van Zonneveld](https://transloadit.com/about/#kevin)

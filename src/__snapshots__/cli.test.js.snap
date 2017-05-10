@@ -10,7 +10,7 @@ exports[`Invig cli invigorates an entire directory 2`] = `
    Writing babel project config
    Writing eslint ignores
    Writing back project config
-   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-import to devDependencies. Add eslint-plugin-node to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
+   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-import to devDependencies. Add eslint-plugin-node to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-react to devDependencies. Add eslint-plugin-standard to devDependencies
  › invig › fixture/tmp › yarn ›
    Executing: yarn || npm install
    yarn install vX.X.X
@@ -95,6 +95,7 @@ exports[`Invig cli invigorates an entire directory 5`] = `
     \\"eslint-plugin-import\\": \\"^2.2.0\\",
     \\"eslint-plugin-node\\": \\"^4.2.2\\",
     \\"eslint-plugin-promise\\": \\"3.5.0\\",
+    \\"eslint-plugin-react\\": \\"6.10.3\\",
     \\"eslint-plugin-standard\\": \\"3.0.1\\"
   }
 }"
@@ -110,7 +111,7 @@ exports[`Invig cli invigorates an entire directory 7`] = `
    Writing babel project config
    Writing eslint ignores
    Writing back project config
-   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-import to devDependencies. Add eslint-plugin-node to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-standard to devDependencies
+   Running npm install to accomodate these changes: Add babel-cli to devDependencies. Add babel-core to devDependencies. Add babel-eslint to devDependencies. Add babel-plugin-add-module-exports to devDependencies. Add babel-plugin-es6-promise to devDependencies. Add babel-plugin-syntax-async-functions to devDependencies. Add babel-plugin-transform-async-to-generator to devDependencies. Add babel-plugin-transform-object-assign to devDependencies. Add babel-preset-es2015 to devDependencies. Add eslint to devDependencies. Add eslint-config-standard to devDependencies. Add eslint-plugin-import to devDependencies. Add eslint-plugin-node to devDependencies. Add eslint-plugin-promise to devDependencies. Add eslint-plugin-react to devDependencies. Add eslint-plugin-standard to devDependencies
  › invig › fixture/tmp › yarn ›
    Executing: yarn || npm install
    yarn install vX.X.X
@@ -218,6 +219,7 @@ exports[`Invig cli invigorates an entire directory 10`] = `
     \\"eslint-plugin-import\\": \\"^2.2.0\\",
     \\"eslint-plugin-node\\": \\"^4.2.2\\",
     \\"eslint-plugin-promise\\": \\"3.5.0\\",
+    \\"eslint-plugin-react\\": \\"6.10.3\\",
     \\"eslint-plugin-standard\\": \\"3.0.1\\"
   }
 }"
