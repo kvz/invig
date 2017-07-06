@@ -15,7 +15,6 @@ exports[`Invig cli invigorates an entire directory 2`] = `
    Executing: yarn || npm install
    yarn install vX.X.X
    info No lockfile found.
-   warning No license field
    success Saved lockfile.
    Done in X.Xs.
  › invig › fixture/tmp/hack-sitemap.coffee › rm ›
@@ -82,7 +81,7 @@ exports[`Invig cli invigorates an entire directory 5`] = `
   \\"dependencies\\": {},
   \\"devDependencies\\": {
     \\"babel-cli\\": \\"6.24.1\\",
-    \\"babel-core\\": \\"6.24.1\\",
+    \\"babel-core\\": \\"6.25.0\\",
     \\"babel-eslint\\": \\"7.2.3\\",
     \\"babel-plugin-add-module-exports\\": \\"0.2.1\\",
     \\"babel-plugin-es6-promise\\": \\"1.1.1\\",
@@ -115,7 +114,6 @@ exports[`Invig cli invigorates an entire directory 7`] = `
  › invig › fixture/tmp › yarn ›
    Executing: yarn || npm install
    yarn install vX.X.X
-   warning No license field
    Done in X.Xs.
  › invig › fixture/tmp/asset-index.js › mv ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/asset-index.js --out-file #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/asset-index.js.es6 #{SCROLEX_ROOT}/fixture/tmp/asset-index.js
@@ -206,7 +204,7 @@ exports[`Invig cli invigorates an entire directory 10`] = `
   \\"dependencies\\": {},
   \\"devDependencies\\": {
     \\"babel-cli\\": \\"6.24.1\\",
-    \\"babel-core\\": \\"6.24.1\\",
+    \\"babel-core\\": \\"6.25.0\\",
     \\"babel-eslint\\": \\"7.2.3\\",
     \\"babel-plugin-add-module-exports\\": \\"0.2.1\\",
     \\"babel-plugin-es6-promise\\": \\"1.1.1\\",

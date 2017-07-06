@@ -61,9 +61,9 @@
     "url": "https://github.com/kvz/invig/issues"
   },
   "dependencies": {
-    "async": "2.4.1",
+    "async": "2.5.0",
     "babel-cli": "6.24.1",
-    "babel-core": "6.24.1",
+    "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-es6-promise": "1.1.1",
@@ -71,8 +71,8 @@
     "babel-plugin-transform-async-to-generator": "6.24.1",
     "babel-plugin-transform-object-assign": "6.22.0",
     "babel-preset-es2015": "6.24.1",
-    "commander": "2.9.0",
-    "decaffeinate": "2.56.2",
+    "commander": "2.11.0",
+    "decaffeinate": "2.58.0",
     "depurar": "0.3.0",
     "eslint": "3.19.0",
     "eslint-config-standard": "10.2.1",
@@ -87,14 +87,14 @@
     "npm-check": "5.4.4",
     "os-tmpdir": "1.0.2",
     "pkg-up": "1.0.0",
-    "prettier": "1.3.1",
+    "prettier": "1.5.2",
     "scrolex": "0.0.27",
     "strip-ansi": "3.0.1",
     "untildify": "3.0.2"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
-    "babel-core": "6.24.1",
+    "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-es6-promise": "1.1.1",
@@ -111,7 +111,7 @@
     "fakefile": "0.0.9",
     "jest": "19.3.0-alpha.85402254",
     "lanyon": "0.0.92",
-    "npm-check-updates": "2.11.1",
+    "npm-check-updates": "2.12.1",
     "npm-run-all": "4.0.2"
   },
   "homepage": "https://github.com/kvz/invig#readme"
