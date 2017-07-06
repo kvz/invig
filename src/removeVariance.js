@@ -29,6 +29,7 @@ const removeVariance = (input) => {
 
   input = stripAnsi(input)
 
+  input = input.replace(/^.*No license field.*\n/gm, '')
   input = input.replace(/^.*Already up-to-date.*\n/gm, '')
   input = input.replace(/^.*Building fresh packages.*\n/gm, '')
   input = input.replace(/^.*Fetching package.*\n/gm, '')
