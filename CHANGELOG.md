@@ -10,9 +10,17 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 Released: TBA.
 
-[Diff](https://github.com/kvz/invig/compare/v0.0.21...master).
+[Diff](https://github.com/kvz/invig/compare/v0.0.22...master).
 
 - [ ] Rewrite CoffeeScript mocha run scripts to `mocha --require babel-polyfill --compilers js:babel-register`
+
+## v0.0.22
+
+Released: 2017-07-06. 
+
+[Diff](https://github.com/kvz/invig/compare/v0.0.21...v0.0.22).
+
+- [x] Upgrade decaffeinate from 2.58.0 to 3.1.1 (breaking)
 
 ## v0.0.21
 

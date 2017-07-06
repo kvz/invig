@@ -18,7 +18,7 @@ exports[`Invig cli invigorates an entire directory 2`] = `
    success Saved lockfile.
    Done in X.Xs.
  › invig › fixture/tmp/hack-sitemap.coffee › rm ›
-   Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --loose-includes --loose-for-of --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
+   Executing: #{SCROLEX_ROOT}/node_modules/.bin/decaffeinate --no-array-includes --loose-includes --loose-for-of --allow-invalid-constructors --loose-default-params #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee && rm -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee
    #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.coffee → #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js
  › invig › fixture/tmp/hack-sitemap.js › mv ›
    Executing: #{SCROLEX_ROOT}/node_modules/.bin/lebab --transform=arrow,for-of,for-each,arg-rest,arg-spread,obj-method,obj-shorthand,no-strict,multi-var,let,class,template,default-param,destruct-param #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js --out-file #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 && mv -f #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js.es6 #{SCROLEX_ROOT}/fixture/tmp/hack-sitemap.js

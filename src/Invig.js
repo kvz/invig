@@ -102,7 +102,7 @@ class Invig {
   }
 
   toJs (srcPath, cb) {
-    const cmd = `${this.opts.npmBinDir}/decaffeinate --loose-includes --loose-for-of --allow-invalid-constructors --keep-commonjs --prefer-const --loose-default-params ${srcPath} && rm -f ${srcPath}`
+    const cmd = `${this.opts.npmBinDir}/decaffeinate --no-array-includes --loose-includes --loose-for-of --allow-invalid-constructors --loose-default-params ${srcPath} && rm -f ${srcPath}`
     scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
   }
 
