@@ -110,7 +110,7 @@
     "eslint-plugin-standard": "3.0.1",
     "fakefile": "0.0.9",
     "jest": "19.3.0-alpha.85402254",
-    "lanyon": "0.0.86",
+    "lanyon": "0.0.92",
     "npm-check-updates": "2.11.1",
     "npm-run-all": "4.0.2"
   },
