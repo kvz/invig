@@ -8,7 +8,7 @@
   "jest": {
     "verbose": true,
     "roots": [
-      "src/"
+      "lib/"
     ]
   },
   "lanyon": {
@@ -98,6 +98,7 @@
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-es6-promise": "1.1.1",
     "babel-plugin-syntax-async-functions": "6.13.0",
@@ -116,7 +117,8 @@
     "fakefile": "0.0.9",
     "jest": "20.0.4",
     "lanyon": "0.0.93",
-    "npm-run-all": "4.0.2"
+    "npm-run-all": "4.0.2",
+    "regenerator-runtime": "^0.10.5"
   },
   "homepage": "https://github.com/kvz/invig#readme"
 }

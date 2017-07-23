@@ -9,6 +9,7 @@ node_js:
 - 7
 script:
 - npm run lint
+- npm build
 - npm test
 before_cache:
 - rm -f ./node_modules/.bin/which
