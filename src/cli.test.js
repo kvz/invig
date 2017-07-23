@@ -3,9 +3,10 @@ import fs from 'fs'
 import path from 'path'
 import childProcess from 'child_process'
 import globby from 'globby'
+import removeVariance from './removeVariance'
+
 const fixDir = `${__dirname}/../fixture`
 const tmpDir = `${__dirname}/../fixture/tmp`
-import removeVariance from './removeVariance'
 
 shelljs.rm('-fR', tmpDir)
 shelljs.mkdir('-p', tmpDir)

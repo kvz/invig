@@ -47,30 +47,36 @@ if (program.quiet === true) {
 }
 
 const invig = new Invig({
-  src        : program.src,
-  check      : program.check,
-  dryrun     : program.dryrun,
-  bail       : program.bail,
-  init       : program.init,
-  quiet      : program.quiet,
+  src   : program.src,
+  check : program.check,
+  dryrun: program.dryrun,
+  bail  : program.bail,
+  init  : program.init,
+  quiet : program.quiet,
   npmBinDir,
-  es7        : program.es7,
+  es7   : program.es7,
 })
 
 if (program.src === '-') {
   getStdin().then(stdin => {
-    invig.runOnStdIn(stdin).catch(err => {
-      scrolex.failure(`${err}`)
-      process.exit(1)
-    }).then(() => {
-      scrolex.success(`Done`)
-    })
+    invig
+      .runOnStdIn(stdin)
+      .catch(err => {
+        scrolex.failure(`${err}`)
+        process.exit(1)
+      })
+      .then(() => {
+        scrolex.success(`Done`)
+      })
   })
 } else {
-  invig.runOnPattern().catch(err => {
-    scrolex.failure(`${err}`)
-    process.exit(1)
-  }).then(() => {
-    scrolex.success(`Done`)
-  })
+  invig
+    .runOnPattern()
+    .catch(err => {
+      scrolex.failure(`${err}`)
+      process.exit(1)
+    })
+    .then(() => {
+      scrolex.success(`Done`)
+    })
 }

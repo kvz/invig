@@ -7,7 +7,7 @@ import fs from 'fs-extra'
 import format from 'prettier-eslint'
 import eslintConfig from '../.eslintrc'
 import depurar from 'depurar'
-import npmCheck from 'npm-check'
+import ncu from 'npm-check-updates'
 
 const debug = depurar('invig')
 
@@ -18,7 +18,9 @@ class Invig {
 
   initProject () {
     return new Promise(async (resolve, reject) => {
-      const projectPackage = await fs.readJson(this._projectPackagePath, { throws: false })
+      const projectPackage = await fs.readJson(this._projectPackagePath, {
+        throws: false,
+      })
       const projectRoot = path.dirname(this._projectPackagePath)
       const projectRootRel = path.relative(process.cwd(), projectRoot) || '.'
       const invigRoot = `${__dirname}/..`
@@ -26,7 +28,9 @@ class Invig {
       const invigPackage = await fs.readJson('package.json', { throws: false })
       let npmInstallNeeded = []
 
-      scrolex.stick('Adding npm task project config', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Adding npm task project config', {
+        components: `invig>${projectRootRel}`,
+      })
       if (this.opts.dryrun === false) {
         if (!projectPackage.scripts) {
           projectPackage.scripts = {}
@@ -45,7 +49,9 @@ class Invig {
         }
       }
 
-      scrolex.stick('Adding dependencies task project config', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Adding dependencies task project config', {
+        components: `invig>${projectRootRel}`,
+      })
       if (this.opts.dryrun === false) {
         if (!projectPackage.dependencies) {
           projectPackage.dependencies = {}
@@ -76,26 +82,36 @@ class Invig {
         })
       }
 
-      scrolex.stick('Writing eslint project config', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Writing eslint project config', {
+        components: `invig>${projectRootRel}`,
+      })
       if (this.opts.dryrun === false) {
         this.copySyncNoOverwrite(`${invigRoot}/.eslintrc.js`, `${projectRoot}/.eslintrc.js`)
       }
 
-      scrolex.stick('Writing babel project config', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Writing babel project config', {
+        components: `invig>${projectRootRel}`,
+      })
       if (this.opts.dryrun === false) {
         this.copySyncNoOverwrite(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
       }
 
-      scrolex.stick('Writing eslint ignores', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Writing eslint ignores', {
+        components: `invig>${projectRootRel}`,
+      })
       if (this.opts.dryrun === false) {
         this.copySyncNoOverwrite(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
       }
 
-      scrolex.stick('Writing back project config ', { components: `invig>${projectRootRel}` })
+      scrolex.stick('Writing back project config ', {
+        components: `invig>${projectRootRel}`,
+      })
       fs.writeFileSync(this._projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
 
       if (npmInstallNeeded.length > 0) {
-        scrolex.stick(`Running npm install to accomodate these changes: ${npmInstallNeeded.join('. ')}`, { components: `invig>${projectRootRel}` })
+        scrolex.stick(`Running npm install to accomodate these changes: ${npmInstallNeeded.join('. ')}`, {
+          components: `invig>${projectRootRel}`,
+        })
         const cmd = `yarn || npm install`
         scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${projectRootRel}` }, err => {
           if (err) reject(err)
@@ -109,7 +125,9 @@ class Invig {
 
   toJs (srcPath) {
     return new Promise((resolve, reject) => {
-      scrolex.stick('Converting from coffee to js', { components: `invig>${srcPath}` })
+      scrolex.stick('Converting from coffee to js', {
+        components: `invig>${srcPath}`,
+      })
       const cmd = `${this.opts
         .npmBinDir}/decaffeinate --no-array-includes --loose-includes --loose-for-of --allow-invalid-constructors --loose-default-params ${srcPath} && rm -f ${srcPath}`
       scrolex.exe(
@@ -140,7 +158,17 @@ class Invig {
   toEs6 (srcPath) {
     return new Promise(async (resolve, reject) => {
       scrolex.stick('Upgrading to Es6', { components: `invig>${srcPath}` })
-      const safe = ['arrow', 'for-of', 'for-each', 'arg-rest', 'arg-spread', 'obj-method', 'obj-shorthand', 'no-strict', 'multi-var']
+      const safe = [
+        'arrow',
+        'for-of',
+        'for-each',
+        'arg-rest',
+        'arg-spread',
+        'obj-method',
+        'obj-shorthand',
+        'no-strict',
+        'multi-var',
+      ]
       const unsafe = ['let', 'class', 'template', 'default-param', 'destruct-param']
       const list = [].concat(safe, unsafe)
       this.transform(srcPath, list).then(resolve).catch(reject)
@@ -150,7 +178,18 @@ class Invig {
   toEs7 (srcPath) {
     return new Promise(async (resolve, reject) => {
       scrolex.stick('Upgrading to Es7', { components: `invig>${srcPath}` })
-      const safe = ['arrow', 'for-of', 'for-each', 'arg-rest', 'arg-spread', 'obj-method', 'obj-shorthand', 'no-strict', 'exponent', 'multi-var']
+      const safe = [
+        'arrow',
+        'for-of',
+        'for-each',
+        'arg-rest',
+        'arg-spread',
+        'obj-method',
+        'obj-shorthand',
+        'no-strict',
+        'exponent',
+        'multi-var',
+      ]
       const unsafe = ['let', 'class', 'commonjs', 'template', 'default-param', 'destruct-param', 'includes']
       const list = [].concat(safe, unsafe)
       this.transform(srcPath, list).then(resolve).catch(reject)
@@ -170,14 +209,12 @@ class Invig {
         },
         fallbackPrettierOptions: {
           singleQuote: true,
-          printWidth : 180,
+          printWidth : 120,
         },
       }
       const code = format(options)
       if (this.opts.dryrun) resolve()
-      fs.outputFile(srcPath, code)
-        .then(resolve)
-        .catch(reject)
+      fs.outputFile(srcPath, code).then(resolve).catch(reject)
     })
   }
 
@@ -249,9 +286,7 @@ class Invig {
 
   processFiles (files) {
     return new Promise((resolve, reject) => {
-      Promise.all(files.map(this.convertFile.bind(this)))
-        .then(resolve)
-        .catch(reject)
+      Promise.all(files.map(this.convertFile.bind(this))).then(resolve).catch(reject)
     })
   }
 
@@ -259,9 +294,22 @@ class Invig {
     return new Promise((resolve, reject) => {
       if (this.opts.check) {
         scrolex.stick('Checking installed packages', { components: `invig>package.json` })
-        npmCheck()
-          .then(currentState => console.log(currentState.get('packages')))
-          .then(resolve)
+        ncu
+          .run({
+            packageFile: 'package.json',
+            upgradeAll : true,
+          })
+          .then(upgraded => {
+            let upgrades = ''
+            Object.entries(upgraded).forEach(([key, val]) => {
+              upgrades += ` ${key}@${val}`
+            })
+            const cmd = `yarn upgrade ${upgrades} || npm upgrade ${upgrades}`
+            scrolex.exe(cmd, { cwd: this._projectDir, components: 'invig>package.json' }, err => {
+              if (err) reject(err)
+              resolve()
+            })
+          })
           .catch(reject)
       } else {
         resolve()
