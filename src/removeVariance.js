@@ -1,8 +1,8 @@
-const stripAnsi = require('strip-ansi')
-const path      = require('path')
-const cliSpinner = require('cli-spinners').dots10
+import stripAnsi from 'strip-ansi'
+import path from 'path'
+import { dots10 as cliSpinner } from 'cli-spinners'
 
-const removeVariance = (input) => {
+const removeVariance = input => {
   if (input && input.message) {
     input.message = removeVariance(input.message)
   }
@@ -22,7 +22,7 @@ const removeVariance = (input) => {
 
   for (let key in map) {
     let val = map[key]
-    while (input.indexOf(val) !== -1) {
+    while (input.includes(val)) {
       input = input.replace(val, `#{${key}}`)
     }
   }
@@ -44,8 +44,8 @@ const removeVariance = (input) => {
   input = input.replace(/yarn install v\d+\.\d+\.\d+/g, 'yarn install vX.X.X')
 
   // @todo: Remove this hack when scrolex no longer adds trailing spinner frames:
-  cliSpinner.frames.forEach((frame) => {
-    while (input.indexOf(frame) !== -1) {
+  cliSpinner.frames.forEach(frame => {
+    while (input.includes(frame)) {
       // console.log({input, frame})
       input = input.replace(frame, '---spinnerframe---')
     }
@@ -54,4 +54,4 @@ const removeVariance = (input) => {
   return input
 }
 
-module.exports = removeVariance
+export default removeVariance

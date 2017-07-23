@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-const program         = require('commander')
-const getStdin        = require('get-stdin')
-const path            = require('path')
-const Invig           = require('./Invig')
-const pkgUp           = require('pkg-up')
-const scrolex         = require('scrolex')
+import program from 'commander'
+import getStdin from 'get-stdin'
+import path from 'path'
+import Invig from './Invig'
+import pkgUp from 'pkg-up'
+import scrolex from 'scrolex'
+import untildify from 'untildify'
 
-const rootDir   = path.dirname(pkgUp.sync(__filename))
-const npmDir    = `${rootDir}/node_modules`
+const rootDir = path.dirname(pkgUp.sync(__filename))
+const npmDir = `${rootDir}/node_modules`
 const npmBinDir = `${npmDir}/.bin`
-const untildify = require('untildify')
 
 program
   .version(require('../package.json').version)
@@ -18,22 +18,24 @@ program
   .option('-c, --check', 'When done, run dependency check to see if there are unused or unupdated ones')
   .option('-d, --dryrun', 'Wether to execute commands or just output them')
   .option('-q, --quiet', 'Hide any output')
+  .option('-7, --es7', 'generate es7')
   .parse(process.argv)
 
-if (!('concurrency' in program)) {
-  program.concurrency = 1
+if (!('src' in program)) {
+  scrolex.failure('You should provide at least a --src <dir> argument')
+  process.exit(1)
 }
 
-program.src    = untildify(program.src)
-program.init   = !!program.init
+program.src = untildify(program.src)
+program.init = !!program.init
 program.dryrun = !!program.dryrun
-program.bail   = !!program.bail
-program.quiet  = !!program.quiet
+program.bail = !!program.bail
+program.quiet = !!program.quiet
 
 scrolex.persistOpts({
   announce             : true,
   addCommandAsComponent: true,
-  components           : `invig`,
+  components           : 'invig',
   shell                : true,
   fatal                : program.bail,
   dryrun               : program.dryrun,
@@ -44,39 +46,37 @@ if (program.quiet === true) {
   })
 }
 
-if (!('src' in program)) {
-  scrolex.failure('You should provide at least a --src <dir> argument')
-  process.exit(1)
-}
-
 const invig = new Invig({
-  src        : program.src,
-  dryrun     : program.dryrun,
-  bail       : program.bail,
-  init       : program.init,
-  quiet      : program.quiet,
-  concurrency: program.concurrency,
-  npmBinDir  : npmBinDir,
+  src   : program.src,
+  check : program.check,
+  dryrun: program.dryrun,
+  bail  : program.bail,
+  init  : program.init,
+  quiet : program.quiet,
+  npmBinDir,
+  es7   : program.es7,
 })
 
 if (program.src === '-') {
   getStdin().then(stdin => {
-    invig.runOnStdIn(stdin, (err) => {
-      if (err) {
+    invig
+      .runOnStdIn(stdin)
+      .catch(err => {
         scrolex.failure(`${err}`)
         process.exit(1)
-      } else {
+      })
+      .then(() => {
         scrolex.success(`Done`)
-      }
-    })
+      })
   })
 } else {
-  invig.runOnPattern((err) => {
-    if (err) {
+  invig
+    .runOnPattern()
+    .catch(err => {
       scrolex.failure(`${err}`)
       process.exit(1)
-    } else {
+    })
+    .then(() => {
       scrolex.success(`Done`)
-    }
-  })
+    })
 }

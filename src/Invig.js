@@ -1,209 +1,275 @@
-const scrolex         = require('scrolex')
-const globby          = require('globby')
-const debug           = require('depurar')('invig')
-const applyEachSeries = require('async/applyEachSeries')
-const queue           = require('async/queue')
-const waterfall       = require('async/waterfall')
-const path            = require('path')
-const fs              = require('fs')
-const pkgUp           = require('pkg-up')
+import scrolex from 'scrolex'
+import globby from 'globby'
+import path from 'path'
+import pkgUp from 'pkg-up'
+import lebab from 'lebab'
+import fs from 'fs-extra'
+import format from 'prettier-eslint'
+import eslintConfig from '../.eslintrc'
+import depurar from 'depurar'
+import ncu from 'npm-check-updates'
+
+const debug = depurar('invig')
 
 class Invig {
   constructor (opts = {}) {
     this.opts = opts
   }
 
-  initProject (files, cb) {
-    const projectPackage  = require(this._projectPackagePath)
-    const projectRoot     = path.dirname(this._projectPackagePath)
-    const projectRootRel  = path.relative(process.cwd(), projectRoot) || '.'
-    const invigRoot       = `${__dirname}/..`
-    // const invigRootRel = path.relative(process.cwd(), invigRoot)
-    const invigPackage    = require(`${invigRoot}/package.json`)
-    let npmInstallNeeded  = []
+  initProject () {
+    return new Promise(async (resolve, reject) => {
+      const projectPackage = await fs.readJson(this._projectPackagePath, {
+        throws: false,
+      })
+      const projectRoot = path.dirname(this._projectPackagePath)
+      const projectRootRel = path.relative(process.cwd(), projectRoot) || '.'
+      const invigRoot = `${__dirname}/..`
+      // const invigRootRel = path.relative(process.cwd(), invigRoot)
+      const invigPackage = await fs.readJson('package.json', { throws: false })
+      let npmInstallNeeded = []
 
-    scrolex.stick('Adding npm task project config', { components: `invig>${projectRootRel}` })
-    if (this.opts.dryrun === false) {
-      if (!projectPackage.scripts) {
-        projectPackage.scripts = {}
-      }
-      if (!projectPackage.scripts.lint) {
-        projectPackage.scripts.lint = 'eslint .'
-      }
-      if (!projectPackage.scripts.fix) {
-        projectPackage.scripts.fix = 'eslint . --fix'
-      }
-      if (!projectPackage.scripts.build) {
-        projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
-        if (!projectPackage.scripts['build:watch']) {
-          projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
+      scrolex.stick('Adding npm task project config', {
+        components: `invig>${projectRootRel}`,
+      })
+      if (this.opts.dryrun === false) {
+        if (!projectPackage.scripts) {
+          projectPackage.scripts = {}
         }
-      }
-    }
-
-    scrolex.stick('Adding dependencies task project config', { components: `invig>${projectRootRel}` })
-    if (this.opts.dryrun === false) {
-      if (!projectPackage.dependencies) {
-        projectPackage.dependencies = {}
-      }
-      if (!projectPackage.devDependencies) {
-        projectPackage.devDependencies = {}
-      }
-
-      for (let name in invigPackage.dependencies) {
-        if (name.match(/^(babel|eslint|es6-promise)/)) {
-          if (projectPackage.devDependencies[name] !== invigPackage.dependencies[name]) {
-            projectPackage.devDependencies[name] = invigPackage.dependencies[name]
-            npmInstallNeeded.push(`Add ${name} to devDependencies`)
+        if (!projectPackage.scripts.lint) {
+          projectPackage.scripts.lint = 'eslint .'
+        }
+        if (!projectPackage.scripts.fix) {
+          projectPackage.scripts.fix = 'eslint . --fix'
+        }
+        if (!projectPackage.scripts.build) {
+          projectPackage.scripts.build = 'babel src --source-maps --out-dir lib'
+          if (!projectPackage.scripts['build:watch']) {
+            projectPackage.scripts['build:watch'] = 'babel src --watch --source-maps --out-dir lib'
           }
         }
       }
 
-      const removeDeps = ['coffee-script', 'coffeelint']
-      removeDeps.forEach((name) => {
-        if (projectPackage.dependencies[name]) {
-          delete projectPackage.dependencies[name]
-          npmInstallNeeded.push(`Remove ${name} from dependencies`)
-        }
-        if (projectPackage.devDependencies[name]) {
-          delete projectPackage.devDependencies[name]
-          npmInstallNeeded.push(`Remove ${name} from devDependencies`)
-        }
+      scrolex.stick('Adding dependencies task project config', {
+        components: `invig>${projectRootRel}`,
       })
-    }
+      if (this.opts.dryrun === false) {
+        if (!projectPackage.dependencies) {
+          projectPackage.dependencies = {}
+        }
+        if (!projectPackage.devDependencies) {
+          projectPackage.devDependencies = {}
+        }
 
-    scrolex.stick('Writing eslint project config', { components: `invig>${projectRootRel}` })
-    if (this.opts.dryrun === false) {
-      this.copySyncNoOverwrite(`${invigRoot}/.eslintrc`, `${projectRoot}/.eslintrc`)
-    }
+        Object.keys(invigPackage.dependencies).forEach(name => {
+          if (name.match(/^(babel|eslint|es6-promise)/)) {
+            if (projectPackage.devDependencies[name] !== invigPackage.dependencies[name]) {
+              projectPackage.devDependencies[name] = invigPackage.dependencies[name]
+              npmInstallNeeded.push(`Add ${name} to devDependencies`)
+            }
+          }
+        })
 
-    scrolex.stick('Writing babel project config', { components: `invig>${projectRootRel}` })
-    if (this.opts.dryrun === false) {
-      this.copySyncNoOverwrite(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
-    }
+        const removeDeps = ['coffee-script', 'coffeelint']
+        removeDeps.forEach(name => {
+          if (projectPackage.dependencies[name]) {
+            delete projectPackage.dependencies[name]
+            npmInstallNeeded.push(`Remove ${name} from dependencies`)
+          }
+          if (projectPackage.devDependencies[name]) {
+            delete projectPackage.devDependencies[name]
+            npmInstallNeeded.push(`Remove ${name} from devDependencies`)
+          }
+        })
+      }
 
-    scrolex.stick('Writing eslint ignores', { components: `invig>${projectRootRel}` })
-    if (this.opts.dryrun === false) {
-      this.copySyncNoOverwrite(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
-    }
-
-    scrolex.stick('Writing back project config ', { components: `invig>${projectRootRel}` })
-    fs.writeFileSync(this._projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
-
-    if (npmInstallNeeded.length > 0) {
-      scrolex.stick('Running npm install to accomodate these changes: ' + npmInstallNeeded.join('. '), { components: `invig>${projectRootRel}` })
-      const cmd = `yarn || npm install`
-      scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${projectRootRel}` }, (err) => {
-        return cb(err, files)
+      scrolex.stick('Writing eslint project config', {
+        components: `invig>${projectRootRel}`,
       })
-    } else {
-      return cb(null, files)
-    }
+      if (this.opts.dryrun === false) {
+        this.copySyncNoOverwrite(`${invigRoot}/.eslintrc.js`, `${projectRoot}/.eslintrc.js`)
+      }
+
+      scrolex.stick('Writing babel project config', {
+        components: `invig>${projectRootRel}`,
+      })
+      if (this.opts.dryrun === false) {
+        this.copySyncNoOverwrite(`${invigRoot}/.babelrc`, `${projectRoot}/.babelrc`)
+      }
+
+      scrolex.stick('Writing eslint ignores', {
+        components: `invig>${projectRootRel}`,
+      })
+      if (this.opts.dryrun === false) {
+        this.copySyncNoOverwrite(`${invigRoot}/.eslintignore`, `${projectRoot}/.eslintignore`)
+      }
+
+      scrolex.stick('Writing back project config ', {
+        components: `invig>${projectRootRel}`,
+      })
+      fs.writeFileSync(this._projectPackagePath, JSON.stringify(projectPackage, null, 2), 'utf-8')
+
+      if (npmInstallNeeded.length > 0) {
+        scrolex.stick(`Running npm install to accomodate these changes: ${npmInstallNeeded.join('. ')}`, {
+          components: `invig>${projectRootRel}`,
+        })
+        const cmd = `yarn || npm install`
+        scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${projectRootRel}` }, err => {
+          if (err) reject(err)
+          resolve()
+        })
+      } else {
+        resolve()
+      }
+    })
   }
 
-  toJs (srcPath, cb) {
-    const cmd = `${this.opts.npmBinDir}/decaffeinate --no-array-includes --loose-includes --loose-for-of --allow-invalid-constructors --loose-default-params ${srcPath} && rm -f ${srcPath}`
-    scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
+  toJs (srcPath) {
+    return new Promise((resolve, reject) => {
+      scrolex.stick('Converting from coffee to js', {
+        components: `invig>${srcPath}`,
+      })
+      const cmd = `${this.opts.npmBinDir}/decaffeinate \
+      --no-array-includes \
+      --loose-includes \
+      --loose-for-of \
+      --allow-invalid-constructors \
+      --loose-default-params ${srcPath} && \
+      rm -f ${srcPath}`
+      scrolex.exe(
+        cmd,
+        {
+          cwd       : this._projectDir,
+          components: `invig>${path.relative(process.cwd(), srcPath)}`,
+        },
+        (err, result) => {
+          if (err) reject(err)
+          resolve(result)
+        }
+      )
+    })
   }
 
-  toEs6 (srcPath, cb) {
-    srcPath = srcPath.replace(/\.coffee$/, '.js')
-    const safe = [
-      'arrow',
-      'for-of',
-      'for-each',
-      'arg-rest',
-      'arg-spread',
-      'obj-method',
-      'obj-shorthand',
-      'no-strict',
-      // 'commonjs',
-      // 'exponent',
-      'multi-var',
-    ]
-    const unsafe = [
-      'let',
-      'class',
-      'template',
-      'default-param',
-      // 'includes'
-      'destruct-param',
-    ]
-
-    const list = [].concat(safe, unsafe).join(',')
-
-    const moveCommandWin =  `move /y ${srcPath.replace(/\//g, '\\')}.es6 ${srcPath.replace(/\//g, '\\')}`
-    const moveCommandOthers = `mv -f ${srcPath}.es6 ${srcPath}`
-    const moveCommand = /^win/.test(process.platform) ? moveCommandWin : moveCommandOthers
-
-    const cmd = `${this.opts.npmBinDir}/lebab --transform=${list} ${srcPath} --out-file ${srcPath}.es6 && ${moveCommand}`
-
-    scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
+  transform (srcPath, args) {
+    return new Promise(async (resolve, reject) => {
+      srcPath = srcPath.replace(/\.coffee$/, '.js')
+      const sourceCode = await fs.readFile(srcPath, 'utf8')
+      const { code } = lebab.transform(sourceCode, args)
+      if (this.opts.dryrun) resolve()
+      await fs.outputFile(srcPath, code)
+      resolve()
+    })
   }
 
-  toPrettier (srcPath, cb) {
-    srcPath = srcPath.replace(/\.coffee$/, '.js')
-    const cmd = `${this.opts.npmBinDir}/prettier --single-quote --print-width 180 --write ${srcPath}`
-    scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` }, cb)
+  toEs6 (srcPath) {
+    return new Promise(async (resolve, reject) => {
+      scrolex.stick('Upgrading to Es6', { components: `invig>${srcPath}` })
+      const safe = [
+        'arrow',
+        'for-of',
+        'for-each',
+        'arg-rest',
+        'arg-spread',
+        'obj-method',
+        'obj-shorthand',
+        'no-strict',
+        'multi-var',
+      ]
+      const unsafe = ['let', 'class', 'template', 'default-param', 'destruct-param']
+      const list = [].concat(safe, unsafe)
+      this.transform(srcPath, list).then(resolve).catch(reject)
+    })
   }
 
-  toEslintStandard (srcPath, cb) {
-    srcPath = srcPath.replace(/\.coffee$/, '.js')
-    const cmd = `${this.opts.npmBinDir}/eslint --config ${this._projectDir}/.eslintrc --fix ${srcPath}`
-    scrolex.exe(
-      cmd,
-      { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), srcPath)}` },
-      cb
-    )
+  toEs7 (srcPath) {
+    return new Promise(async (resolve, reject) => {
+      scrolex.stick('Upgrading to Es7', { components: `invig>${srcPath}` })
+      const safe = [
+        'arrow',
+        'for-of',
+        'for-each',
+        'arg-rest',
+        'arg-spread',
+        'obj-method',
+        'obj-shorthand',
+        'no-strict',
+        'exponent',
+        'multi-var',
+      ]
+      const unsafe = ['let', 'class', 'commonjs', 'template', 'default-param', 'destruct-param', 'includes']
+      const list = [].concat(safe, unsafe)
+      this.transform(srcPath, list).then(resolve).catch(reject)
+    })
   }
 
-  convertFile (srcPath, cb) {
-    const fns       = []
-    const extension = path.extname(srcPath).toLowerCase()
-
-    if (extension === '.coffee') {
-      fns.push(this.toJs.bind(this))
-    }
-    fns.push(this.toEs6.bind(this))
-    fns.push(this.toPrettier.bind(this))
-    fns.push(this.toEslintStandard.bind(this))
-
-    applyEachSeries(fns, srcPath, cb)
+  toPrettier (srcPath) {
+    return new Promise(async (resolve, reject) => {
+      scrolex.stick('Making Pretty', { components: `invig>${srcPath}` })
+      srcPath = srcPath.replace(/\.coffee$/, '.js')
+      const sourceCode = await fs.readFile(srcPath, 'utf8')
+      const options = {
+        text           : sourceCode,
+        eslintConfig,
+        prettierOptions: {
+          bracketSpacing: true,
+        },
+        fallbackPrettierOptions: {
+          singleQuote: true,
+          printWidth : 120,
+        },
+      }
+      const code = format(options)
+      if (this.opts.dryrun) resolve()
+      fs.outputFile(srcPath, code).then(resolve).catch(reject)
+    })
   }
 
-  findFiles (cb) {
-    let files = []
-    let stat  = {}
-    try {
-      stat = fs.lstatSync(this.opts.src)
-    } catch (e) {
-      stat = false
-    }
+  convertFile (srcPath) {
+    return new Promise(async (resolve, reject) => {
+      const extension = path.extname(srcPath).toLowerCase()
+      try {
+        if (extension === '.coffee') {
+          await this.toJs.bind(this)(srcPath)
+        }
+        if (this.opts.es7) {
+          await this.toEs7.bind(this)(srcPath)
+        } else {
+          await this.toEs6.bind(this)(srcPath)
+        }
+        await this.toPrettier.bind(this)(srcPath)
+        resolve()
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 
-    // let relative
-    if (stat && stat.isFile()) {
-      // File
-      const resolve = path.resolve(this.opts.src)
-      files = [ resolve ]
-    } else if (stat && stat.isDirectory()) {
-      // Directory
-      const resolve = path.resolve(this.opts.src)
-      files = globby.sync([
-        `${resolve}/**/*.coffee`,
-        `${resolve}/**/*.es5`,
-        `${resolve}/**/*.es6`,
-        `${resolve}/**/*.js`,
-        `!${resolve}/node_modules/**`,
-      ])
-    } else {
-      // Pattern
-      files = globby.sync(this.opts.src)
-    }
-    if (!files || files.length === 0) {
-      return cb(new Error(`Source argument: "${this.opts.src}" returned no input files to work on.`))
-    }
-
-    return cb(null, files)
+  findFiles () {
+    return new Promise(async (resolve, reject) => {
+      let files = []
+      let stat = {}
+      try {
+        stat = fs.lstatSync(this.opts.src)
+      } catch (e) {
+        stat = false
+      }
+      // let relative
+      if (stat && stat.isFile()) {
+        // File
+        const resolve = path.resolve(this.opts.src)
+        files = [resolve]
+      } else if (stat && stat.isDirectory()) {
+        // Directory
+        const resolve = path.resolve(this.opts.src)
+        files = globby.sync([`${resolve}/**/*.coffee`, `${resolve}/**/*.js`, `!${resolve}/node_modules/**`])
+      } else {
+        // Pattern
+        files = globby.sync(this.opts.src)
+      }
+      if (!files || files.length === 0) {
+        reject(new Error(`Source argument: "${this.opts.src}" returned no input files to work on.`))
+      }
+      resolve(files)
+    })
   }
 
   copySyncNoOverwrite (src, dst) {
@@ -212,74 +278,88 @@ class Invig {
     }
   }
 
-  findProject (files, cb) {
-    this._projectPackagePath = pkgUp.sync(path.dirname(files[0]))
-
-    if (!this._projectPackagePath) {
-      return cb(new Error(`No package.json found, unable to establish project root. `))
-    }
-
-    this._projectDir = path.dirname(this._projectPackagePath)
-    return cb(null, files)
-  }
-
-  processFiles (files, cb) {
-    const q = queue(this.convertFile.bind(this), this.opts.concurrency)
-    q.push(files)
-    q.drain = () => {
-      return cb(null, files)
-    }
-  }
-
-  upgradeDeps (files, cb) {
-    if (this.opts.check) {
-      scrolex.exe(`${this.opts.npmBinDir}/npm-check ${this._projectDir}`, { cwd: this._projectDir, components: `invig>${path.relative(process.cwd(), this._projectDir)}` }, (err, stdout) => {
-        if (err) {
-          return cb(err)
-        }
-        return cb(null)
-      })
-    } else {
-      return cb(null)
-    }
-  }
-
-  runOnStdIn (stdin, cb) {
-    this._projectDir = `${__dirname}/..`
-    const coffeePath = `${__dirname}/tmpFile.coffee`
-    let jsPath       = `${__dirname}/tmpFile.js`
-
-    fs.writeFileSync(`${coffeePath}`, stdin, 'utf-8')
-    scrolex.persistOpts({ mode: 'silent' })
-
-    this.toJs(coffeePath, (err) => {
-      if (err) {
-        // Assume this was a JS snippet on STDIN already
-        fs.writeFileSync(`${jsPath}`, fs.readFileSync(`${coffeePath}`, 'utf-8'), 'utf-8')
+  findProject (files) {
+    return new Promise((resolve, reject) => {
+      this._projectPackagePath = pkgUp.sync(path.dirname(files[0]))
+      if (!this._projectPackagePath) {
+        reject(new Error(`No package.json found, unable to establish project root. `))
       }
-      this.convertFile(jsPath, (err) => {
-        debug(err)
-        process.stdout.write(fs.readFileSync(`${jsPath}`, 'utf-8'))
-        try {
-          fs.unlinkSync(`${jsPath}`)
-          fs.unlinkSync(`${coffeePath}`)
-        } catch (e) {
-        }
-
-        return cb(null)
-      })
+      this._projectDir = path.dirname(this._projectPackagePath)
+      resolve()
     })
   }
 
-  runOnPattern (cb) {
-    waterfall([
-      this.findFiles.bind(this),
-      this.findProject.bind(this),
-      this.initProject.bind(this),
-      this.processFiles.bind(this),
-      this.upgradeDeps.bind(this),
-    ], cb)
+  processFiles (files) {
+    return new Promise((resolve, reject) => {
+      Promise.all(files.map(this.convertFile.bind(this))).then(resolve).catch(reject)
+    })
+  }
+
+  upgradeDeps () {
+    return new Promise((resolve, reject) => {
+      if (this.opts.check) {
+        scrolex.stick('Checking installed packages', {
+          components: `invig>package.json`,
+        })
+        ncu
+          .run({
+            packageFile: 'package.json',
+            upgradeAll : true,
+          })
+          .then(upgraded => {
+            let upgrades = ''
+            Object.entries(upgraded).forEach(([key, val]) => {
+              upgrades += ` ${key}@${val}`
+            })
+            const cmd = `yarn upgrade ${upgrades} || npm upgrade ${upgrades}`
+            scrolex.exe(cmd, { cwd: this._projectDir, components: 'invig>package.json' }, err => {
+              if (err) reject(err)
+              resolve()
+            })
+          })
+          .catch(reject)
+      } else {
+        resolve()
+      }
+    })
+  }
+
+  runOnStdIn (stdin) {
+    return new Promise(async (resolve, reject) => {
+      this._projectDir = `${__dirname}/..`
+      const coffeePath = `${__dirname}/tmpFile.coffee`
+      let jsPath = `${__dirname}/tmpFile.js`
+
+      try {
+        await fs.outputFile(coffeePath, stdin)
+        scrolex.persistOpts({ mode: 'silent' })
+        this.convertFile(jsPath).then(err => {
+          debug(err)
+          process.stdout.write(fs.readFileSync(jsPath, 'utf-8'))
+          fs.unlinkSync(jsPath)
+          fs.unlinkSync(coffeePath)
+          resolve()
+        })
+      } catch (e) {
+        reject(e)
+      }
+    })
+  }
+
+  runOnPattern () {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const files = await this.findFiles.bind(this)()
+        await this.findProject.bind(this)(files)
+        await this.initProject.bind(this)()
+        await this.processFiles.bind(this)(files)
+        await this.upgradeDeps.bind(this)()
+        resolve()
+      } catch (err) {
+        reject(err)
+      }
+    })
   }
 }
 
-module.exports = Invig
+export default Invig
