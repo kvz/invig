@@ -128,8 +128,13 @@ class Invig {
       scrolex.stick('Converting from coffee to js', {
         components: `invig>${srcPath}`,
       })
-      const cmd = `${this.opts
-        .npmBinDir}/decaffeinate --no-array-includes --loose-includes --loose-for-of --allow-invalid-constructors --loose-default-params ${srcPath} && rm -f ${srcPath}`
+      const cmd = `${this.opts.npmBinDir}/decaffeinate \
+      --no-array-includes \
+      --loose-includes \
+      --loose-for-of \
+      --allow-invalid-constructors \
+      --loose-default-params ${srcPath} && \
+      rm -f ${srcPath}`
       scrolex.exe(
         cmd,
         {
@@ -293,7 +298,9 @@ class Invig {
   upgradeDeps () {
     return new Promise((resolve, reject) => {
       if (this.opts.check) {
-        scrolex.stick('Checking installed packages', { components: `invig>package.json` })
+        scrolex.stick('Checking installed packages', {
+          components: `invig>package.json`,
+        })
         ncu
           .run({
             packageFile: 'package.json',
