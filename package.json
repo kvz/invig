@@ -84,7 +84,7 @@
     "get-stdin": "5.0.1",
     "globby": "6.1.0",
     "lebab": "^2.7.3",
-    "npm-check": "5.4.4",
+    "npm-check-updates": "2.12.1",
     "os-tmpdir": "1.0.2",
     "pkg-up": "1.0.0",
     "prettier": "1.5.2",
@@ -115,7 +115,6 @@
     "fakefile": "0.0.9",
     "jest": "19.3.0-alpha.85402254",
     "lanyon": "0.0.92",
-    "npm-check-updates": "2.12.1",
     "npm-run-all": "4.0.2"
   },
   "homepage": "https://github.com/kvz/invig#readme"
