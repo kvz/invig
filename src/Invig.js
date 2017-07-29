@@ -16,8 +16,8 @@ class Invig {
     this.opts = opts
   }
 
-  initProject () {
-    return new Promise(async (resolve, reject) => {
+  async initProject () {
+    try {
       const projectPackage = await fs.readJson(this._projectPackagePath, {
         throws: false,
       })
@@ -25,7 +25,7 @@ class Invig {
       const projectRootRel = path.relative(process.cwd(), projectRoot) || '.'
       const invigRoot = `${__dirname}/..`
       // const invigRootRel = path.relative(process.cwd(), invigRoot)
-      const invigPackage = await fs.readJson('package.json', { throws: false })
+      const invigPackage = await fs.readJson(`${invigRoot}/package.json`, { throws: false })
       let npmInstallNeeded = []
 
       scrolex.stick('Adding npm task project config', {
@@ -114,13 +114,14 @@ class Invig {
         })
         const cmd = `yarn || npm install`
         scrolex.exe(cmd, { cwd: this._projectDir, components: `invig>${projectRootRel}` }, err => {
-          if (err) reject(err)
-          resolve()
+          if (err) throw err
         })
       } else {
-        resolve()
+        return
       }
-    })
+    } catch (err) {
+      throw err
+    }
   }
 
   toJs (srcPath) {
@@ -149,19 +150,20 @@ class Invig {
     })
   }
 
-  transform (srcPath, args) {
-    return new Promise(async (resolve, reject) => {
+  async transform (srcPath, args) {
+    try {
       srcPath = srcPath.replace(/\.coffee$/, '.js')
       const sourceCode = await fs.readFile(srcPath, 'utf8')
       const { code } = lebab.transform(sourceCode, args)
       if (this.opts.dryrun) resolve()
       await fs.outputFile(srcPath, code)
-      resolve()
-    })
+    } catch (err) {
+      throw err
+    }
   }
 
   toEs6 (srcPath) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       scrolex.stick('Upgrading to Es6', { components: `invig>${srcPath}` })
       const safe = [
         'arrow',
@@ -181,7 +183,7 @@ class Invig {
   }
 
   toEs7 (srcPath) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       scrolex.stick('Upgrading to Es7', { components: `invig>${srcPath}` })
       const safe = [
         'arrow',
@@ -223,28 +225,25 @@ class Invig {
     })
   }
 
-  convertFile (srcPath) {
-    return new Promise(async (resolve, reject) => {
-      const extension = path.extname(srcPath).toLowerCase()
-      try {
-        if (extension === '.coffee') {
-          await this.toJs.bind(this)(srcPath)
-        }
-        if (this.opts.es7) {
-          await this.toEs7.bind(this)(srcPath)
-        } else {
-          await this.toEs6.bind(this)(srcPath)
-        }
-        await this.toPrettier.bind(this)(srcPath)
-        resolve()
-      } catch (err) {
-        reject(err)
+  async convertFile (srcPath) {
+    const extension = path.extname(srcPath).toLowerCase()
+    try {
+      if (extension === '.coffee') {
+        await this.toJs.bind(this)(srcPath)
       }
-    })
+      if (this.opts.es7) {
+        await this.toEs7.bind(this)(srcPath)
+      } else {
+        await this.toEs6.bind(this)(srcPath)
+      }
+      await this.toPrettier.bind(this)(srcPath)
+    } catch (err) {
+      throw err
+    }
   }
 
   findFiles () {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let files = []
       let stat = {}
       try {
@@ -324,41 +323,34 @@ class Invig {
     })
   }
 
-  runOnStdIn (stdin) {
-    return new Promise(async (resolve, reject) => {
-      this._projectDir = `${__dirname}/..`
-      const coffeePath = `${__dirname}/tmpFile.coffee`
-      let jsPath = `${__dirname}/tmpFile.js`
-
-      try {
-        await fs.outputFile(coffeePath, stdin)
-        scrolex.persistOpts({ mode: 'silent' })
-        this.convertFile(jsPath).then(err => {
-          debug(err)
-          process.stdout.write(fs.readFileSync(jsPath, 'utf-8'))
-          fs.unlinkSync(jsPath)
-          fs.unlinkSync(coffeePath)
-          resolve()
-        })
-      } catch (e) {
-        reject(e)
-      }
-    })
+  async runOnStdIn (stdin) {
+    this._projectDir = `${__dirname}/..`
+    const coffeePath = `${__dirname}/tmpFile.coffee`
+    let jsPath = `${__dirname}/tmpFile.js`
+    try {
+      await fs.outputFile(coffeePath, stdin)
+      scrolex.persistOpts({ mode: 'silent' })
+      this.convertFile(jsPath).then(err => {
+        debug(err)
+        process.stdout.write(fs.readFileSync(jsPath, 'utf-8'))
+        fs.unlinkSync(jsPath)
+        fs.unlinkSync(coffeePath)
+      })
+    } catch (err) {
+      throw err
+    }
   }
 
-  runOnPattern () {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const files = await this.findFiles.bind(this)()
-        await this.findProject.bind(this)(files)
-        await this.initProject.bind(this)()
-        await this.processFiles.bind(this)(files)
-        await this.upgradeDeps.bind(this)()
-        resolve()
-      } catch (err) {
-        reject(err)
-      }
-    })
+  async runOnPattern () {
+    try {
+      const files = await this.findFiles.bind(this)()
+      await this.findProject.bind(this)(files)
+      await this.initProject.bind(this)()
+      await this.processFiles.bind(this)(files)
+      await this.upgradeDeps.bind(this)()
+    } catch (err) {
+      throw err
+    }
   }
 }
 
