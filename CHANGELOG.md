@@ -20,6 +20,7 @@ Released: 2017-09-26.
 
 [Diff](https://github.com/kvz/invig/compare/v0.0.22...v0.0.23).
 
+- [x] Add babel-polyfill to avoid: `ReferenceError: regeneratorRuntime is not defined`
 - [x] Upgrade dependencies
 
 ## v0.0.22

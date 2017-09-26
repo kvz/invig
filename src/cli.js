@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import 'babel-core/register'
+import 'babel-polyfill'
 import program from 'commander'
 import getStdin from 'get-stdin'
 import path from 'path'
