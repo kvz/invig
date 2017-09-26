@@ -155,8 +155,9 @@ class Invig {
       srcPath = srcPath.replace(/\.coffee$/, '.js')
       const sourceCode = await fs.readFile(srcPath, 'utf8')
       const { code } = lebab.transform(sourceCode, args)
-      if (this.opts.dryrun) resolve()
-      await fs.outputFile(srcPath, code)
+      if (!this.opts.dryrun) {
+        await fs.outputFile(srcPath, code)
+      }
     } catch (err) {
       throw err
     }
