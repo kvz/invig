@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+      <title>Invig – Breathing new life into old codebases</title>
+    
+
+    <meta name="description" content="Invig">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/build/app.1eaada0becc0394f7566.css"  media="screen" charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <div id="header-overlay"></div>
+      <a href="/">
+        <h1 id="logo">./invig</h1>
+      </a>
+      <div id="menu">
+        <i class="material-icons">menu</i>
+        <ul id="menu-items">
+        </ul>
+      </div>
+      <span id="more">
+        <i class="material-icons">expand_more</i>
+      </span>
+    </header>
+    <section id="content">
+      
+        <div class="Social">
+          <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=invig&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+          <a href="https://travis-ci.org/kvz/invig"><img src="https://travis-ci.org/kvz/invig.svg" alt="Build Status"></a>
+        </div>
+      
+
+      <h1 id="-invig">🌿 Invig</h1>
+
+<p>Breathes new life into legacy code bases by automatically:</p>
+
+<ul>
+  <li>Transpiling CoffeeScript to ES6</li>
+  <li>Transpiling ES5 to ES6 (without the stuff that recent Node hasn’t nailed yet (e.g. we stick to <code class="highlighter-rouge">require</code> vs <code class="highlighter-rouge">import</code> for now))</li>
+  <li>Applying <a href="http://standardjs.com">Standard</a> linting with colon alignment for enhanced readability</li>
+  <li>Adding the necessary linting and building run-script boilerplate that the project can later independently use</li>
+  <li>Optionally checking for outdated or unused dependencies</li>
+</ul>
+
+<p>Invig does this in a highly opinionated, non-configurable, and <strong>destructive</strong> way.</p>
+
+<p>Let’s have some fun breathing new life into your legacy project 😚 💨 🌿</p>
+
+<h2 id="why">Why</h2>
+
+<p>I’m dealing with an ever-growing number of projects that each have a slightly different setup, and I got pretty tired of context switching between ES5, ES6, CoffeeScript, and different code conventions across those projects.</p>
+
+<p>The tools are there now to automate all difference away - it’s just a matter of picking defaults and stringing those tools together. That’s what Invig does. After successfully running Invig on your codebase, you can put your brain at ease thanks to uniformity, focus more on the work at hand, have a better time doing so thanks to syntactical goodness, while producing less bugs thanks to ESlint.</p>
+
+<p><strong>Why ditch ES5?</strong></p>
+
+<p>ES6 let’s you express yourself in more powerful ways, typically meaning less boilerplate and more readable code.</p>
+
+<p><strong>Why ditch CoffeeScript?</strong></p>
+
+<p>While CoffeeScript lovers might agree already that uniform styling is pleasant and that ES6 is an upgrade over ES5, they might feel there are still a number of syntactical advantages CoffeeScript offers, missing from ES6. Our benchmark demo even results in lengthier ES6 code(!). While that may be true:</p>
+
+<ul>
+  <li>The syntactical sugar argument is losing ground with every ECMA iteration (1 a year now)</li>
+  <li>The ES6 ecosystem is vast. This results in more resources online, being able to attract more developers to help with your project, and linters like Flow and ESLint that can prevent more possible bugs and errors than CoffeeLint can.</li>
+  <li>If you can refrain from using <code class="highlighter-rouge">import</code> and <code class="highlighter-rouge">async</code> (Invig won’t leverage these), recent Node.js can run your code without any transpiling. Meaning quicker developer iterations and less headaches.</li>
+</ul>
+
+<h2 id="demo">Demo</h2>
+
+<p>Let’s take a look at installing Invig at converting CoffeeScript to Standard compatible ES6 via STDIN</p>
+
+<p><img src="https://github.com/kvz/invig/raw/b68b038bce4caabc0543bbc09683be33830177d3/scripts/demo2.png" alt="" /></p>
+
+<h2 id="install">Install</h2>
+
+<p>Invig is meant to be run on a code base once (or a few times in one session). That’s why it should not be used as a dependency but be installed globally instead.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install invig --global 
+</code></pre>
+</div>
+
+<h2 id="use">Use</h2>
+
+<p><strong>⚠️ WARNING</strong> Changes are made in-place, make sure your code is protected by version control before using Invig.</p>
+
+<p>Recursively port CoffeeScript/ES5 files to ES6 in-place:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig -s ./src
+</code></pre>
+</div>
+
+<h3 id="command-line-arguments">Command line arguments</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Usage: invig [options]
+
+Options:
+
+  -h, --help       output usage information
+  -V, --version    output the version number
+  -s, --src &lt;dir&gt;  Directory, file or pattern to convert
+  -b, --bail       Abort on the first error instead of continuing to port next file
+  -c, --check      When done, hunt for unused and un-updated dependencies
+  -q, --quiet      Hide any output
+</code></pre>
+</div>
+
+<h3 id="more-examples">More Examples</h3>
+
+<p>Port one <strong>ES5 file</strong> to ES6:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src old-file.js
+</code></pre>
+</div>
+
+<p>Port one <strong>CoffeeScript file</strong> to ES6 (deleting the old <code class="highlighter-rouge">.coffee</code> file.):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src old-file.coffee
+</code></pre>
+</div>
+
+<p>Optionally check for outdated or <strong>unused dependencies</strong> after the conversion completes:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src src/ --check
+</code></pre>
+</div>
+
+<p><strong>Bail out</strong> as soon as Invig hits an error. By default Invig will continue processing the next file</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src src/ --bail
+</code></pre>
+</div>
+
+<p>Do a <strong>dry run</strong> without changing any files (don’t trust me, keep your stuff safe in Git):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src src/ --dryrun
+</code></pre>
+</div>
+
+<p>Apply Invig on a <strong>pattern</strong> (use quotes!)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>invig --src <span class="s1">'src/**.js'</span>
+</code></pre>
+</div>
+
+<p>Transpile from <strong>STDIN</strong></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cat old-file.coffee | invig --src -
+</code></pre>
+</div>
+
+<h2 id="workflow">Workflow</h2>
+
+<p>The recommended way to use Invig is to:</p>
+
+<ol>
+  <li>Be in <code class="highlighter-rouge">master</code> and have a clean Git working tree first</li>
+  <li><code class="highlighter-rouge">git checkout -b es6</code></li>
+  <li>Run Invig on your repo, point it to wherever your legacy sources live</li>
+  <li>Apply manual fixes where the automation falls short (Invig and your build &amp; test suite will tell you)</li>
+  <li>Inspect the Git diff (I recommend the <a href="https://desktop.github.com">GitHub Desktop</a> app for inspecting Invig’s changes, even if you are a cli-god. Can’t stress this enough) and repeat step 3 &amp; 4</li>
+  <li>Commit, push, send a PR for your <code class="highlighter-rouge">es6</code> branch</li>
+  <li>Have someone review the PR and merge it</li>
+  <li>Let’s celebrate that your codebase is now very much <strong>2017</strong> 🍸</li>
+</ol>
+
+<h2 id="state">State</h2>
+
+<p>Invig is young, but as long as your code is in Git, feel free to have some fun with it, Invig has already ported some very <a href="#invig-in-the-wild">large codebases</a>.</p>
+
+<p>Pre-<code class="highlighter-rouge">1.0.0</code>, we’re allowing ourselves to make breaking changes at any release.</p>
+
+<h2 id="gotchas">Gotchas</h2>
+
+<ul>
+  <li>It’s recommended to first make sure all CoffeeLint errors and warnings are fixed before porting your project.</li>
+  <li>Although Invig is destructive in nature, it currently leaves your <code class="highlighter-rouge">build</code> run script alone if you have already defined it. If you currently have CoffeeScript build tasks, remove them first, so that Invig can write the new one. 
+The same goes for the <code class="highlighter-rouge">lint</code>, <code class="highlighter-rouge">fix</code>, and <code class="highlighter-rouge">build:watch</code> scripts, as well as the <code class="highlighter-rouge">.eslintrc</code>, and <code class="highlighter-rouge">.babelrc</code> files. The advantage of this that you can run Invig multiple times even though you have customized these components that are used in the modern setup.</li>
+  <li><strong>⚠️ WARNING</strong> Invig needs a sense of a project so that it can add ESLint config and similar, so from the first file you point it to, it traverses upwards to find a <code class="highlighter-rouge">package.json</code>, and <strong>modifies this in-place</strong> also.</li>
+</ul>
+
+<h2 id="thanks-to">Thanks to</h2>
+
+<p>I deserve no credit, Invig is just a tiny wrapper around these mastodons:</p>
+
+<ul>
+  <li><a href="https://github.com/decaffeinate/decaffeinate">Decaffeinate</a> (CoffeeScript to JavaScript)</li>
+  <li><a href="http://lebab.io">Lebab</a> (ES5 to ES6)</li>
+  <li><a href="https://github.com/jlongster/prettier">Prettier</a> (JavaScript consistent formatter)</li>
+  <li><a href="http://eslint.org">ESLint</a> (JavaScript linter and fixer)</li>
+  <li><a href="http://standardjs.com">JavaScript Standard Style</a> (One JavaScript Style Guide to Rule Them All)</li>
+</ul>
+
+<h2 id="invig-in-the-wild">Invig in the Wild</h2>
+
+<p>Projects where Invig is used to breathe new life into old codebases:</p>
+
+<ul>
+  <li><a href="https://github.com/transloadit/node-sdk/pull/40">Transloadit’s Node.js SDK</a> is Invig’s first PR, changing a CoffeeScript codebase to ES6 💚</li>
+  <li><a href="https://github.com/rethinkdb/rethinkdb/pull/6262">RethinkDB’s WebUI</a> is being ported from CoffeeScript to ES6</li>
+</ul>
+
+<h2 id="todo--changelog">Todo &amp; Changelog</h2>
+
+<p>Please see <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>Please see <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+
+<h2 id="social-media">Social Media</h2>
+
+<p>Welcoming discussion on:</p>
+
+<ul>
+  <li><a href="https://www.reddit.com/r/javascript/comments/5uzed1/invig_an_open_source_cli_tool_to_modernize_code/">Reddit</a> <a href="https://www.reddit.com/r/javascript/comments/5p2swy/invig_automatically_converts_es5_coffeescript/">2</a></li>
+  <li><a href="https://news.ycombinator.com/item?id=13442421">Hacker News</a></li>
+  <li><a href="https://www.producthunt.com/posts/invig">Product Hunt</a></li>
+</ul>
+
+<h2 id="links">Links</h2>
+
+<ul>
+  <li><a href="https://github.com/prettier/prettier/blob/master/CHANGELOG.md">https://github.com/prettier/prettier/blob/master/CHANGELOG.md</a></li>
+  <li><a href="https://github.com/decaffeinate/decaffeinate/releases">https://github.com/decaffeinate/decaffeinate/releases</a></li>
+</ul>
+
+<h2 id="authors--contributors">Authors &amp; Contributors</h2>
+
+<ul>
+  <li><a href="https://transloadit.com/about/#kevin">Kevin van Zonneveld</a></li>
+</ul>
+
+<h2 id="license">License</h2>
+
+<p>Copyright (c) 2017 Kevin van Zonneveld. Licenses under <a href="LICENSE">MIT</a>.</p>
+
+
+
+      
+        <h2 id="activity-feed">On GitHub</h2>
+        <p>
+          We'd love to hear what you think <a href="https://github.com/kvz/invig">on GitHub</a>.
+          Here's what's been going on recently.
+        </p>
+        <div class="on-the-githubs" data-event-source="repos/kvz/invig">Loading...</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+        <script type="text/javascript">
+          $('.on-the-githubs').onthegithubs();
+        </script>
+      
+
+      <div class="Social">
+        <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=invig&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+      </div>
+
+      <p>
+        <small>
+          <hr />
+          Website design based on
+          the wonderful <a href="http://apex.run">apex.run</a>
+          with <a href="https://twitter.com/tjholowaychuk/status/744909762865696769">the author's consent</a>.
+        </small>
+      </p>
+    </section>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/languages/bash.min.js"></script>
+  <script async src="/assets/build/app.1eaada0becc0394f7566.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-63083-15', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>

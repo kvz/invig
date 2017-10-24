@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+      <title>Contributing | Invig – Breathing new life into old codebases | Invig</title>
+    
+
+    <meta name="description" content="Invig">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/build/app.1eaada0becc0394f7566.css"  media="screen" charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <div id="header-overlay"></div>
+      <a href="/">
+        <h1 id="logo">./invig</h1>
+      </a>
+      <div id="menu">
+        <i class="material-icons">menu</i>
+        <ul id="menu-items">
+        </ul>
+      </div>
+      <span id="more">
+        <i class="material-icons">expand_more</i>
+      </span>
+    </header>
+    <section id="content">
+      
+
+      <h1 id="contributing">Contributing</h1>
+
+<p>We’re welcoming contributions of all kinds. For bigger things, please first open an issue so
+we can discuss and not waste anybody’s time.</p>
+
+<h2 id="install">Install</h2>
+
+<p>First, fork and clone the repo. Or if you have contributor access, clone the main repo directly:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ~/code
+git clone git@github.com:kvz/invig.git
+<span class="nb">cd </span>invig
+</code></pre>
+</div>
+
+<p>and be sure to branch out:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git checkout master
+git pull
+git checkout -b &lt;your-feature-or-fix-name&gt;
+</code></pre>
+</div>
+
+<p>Now, feel free to make changes.</p>
+
+<h2 id="test">Test</h2>
+
+<p>Invig tests by converting legacy code and comparing the output of the process, as well as 
+the actual resulting ES6 code to <a href="https://facebook.github.io/jest/blog/2016/07/27/jest-14.html">Jest snapshots</a> bundled
+with this repo.</p>
+
+<p>To test against the snapshots:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm run <span class="nb">test</span>
+</code></pre>
+</div>
+
+<p>To build new snapshots:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm run <span class="nb">test</span>:update
+</code></pre>
+</div>
+
+<p>Be sure to carefully inspect the Git diff before committing new snapshots.</p>
+
+<h2 id="commit">Commit</h2>
+
+<p>If the new snapshots look as intended, commit your work and the snapshots.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git add -p
+git commit
+git push
+</code></pre>
+</div>
+
+<p>Now you can send a PR for your branch or fork against <code class="highlighter-rouge">kvz/master</code>, we’ll review, and hopefully, merge :tada: :smile:</p>
+
+<p><a href="/">« Home</a></p>
+
+
+      
+
+      <div class="Social">
+        <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=invig&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+      </div>
+
+      <p>
+        <small>
+          <hr />
+          Website design based on
+          the wonderful <a href="http://apex.run">apex.run</a>
+          with <a href="https://twitter.com/tjholowaychuk/status/744909762865696769">the author's consent</a>.
+        </small>
+      </p>
+    </section>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/languages/bash.min.js"></script>
+  <script async src="/assets/build/app.1eaada0becc0394f7566.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-63083-15', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>

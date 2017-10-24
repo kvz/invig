@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+      <title>Changelog | Invig – Breathing new life into old codebases | Invig</title>
+    
+
+    <meta name="description" content="Invig">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/build/app.1eaada0becc0394f7566.css"  media="screen" charset="utf-8">
+  </head>
+  <body>
+    <header>
+      <div id="header-overlay"></div>
+      <a href="/">
+        <h1 id="logo">./invig</h1>
+      </a>
+      <div id="menu">
+        <i class="material-icons">menu</i>
+        <ul id="menu-items">
+        </ul>
+      </div>
+      <span id="more">
+        <i class="material-icons">expand_more</i>
+      </span>
+    </header>
+    <section id="content">
+      
+
+      <h1 id="changelog">Changelog</h1>
+
+<p>Here’s is a combined todo/done list. You can see what todos are planned for the upcoming release, as well as ideas that may/may not make into a release in <code class="highlighter-rouge">Ideas</code>. As per SemVer, we’re allowing ourselves breaking changes <code class="highlighter-rouge">&lt; 1</code>.</p>
+
+<h2 id="ideas">Ideas</h2>
+
+<ul>
+  <li>[ ] Add js-codemod https://github.com/cpojer/js-codemod/#underscore-to-lodash-native</li>
+</ul>
+
+<h2 id="master">master</h2>
+
+<p>Released: TBA.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.23...master">Diff</a>.</p>
+
+<ul>
+  <li>[ ] Rewrite CoffeeScript mocha run scripts to <code class="highlighter-rouge">mocha --require babel-polyfill --compilers js:babel-register</code></li>
+</ul>
+
+<h2 id="v0023">v0.0.23</h2>
+
+<p>Released: 2017-09-26.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.22...v0.0.23">Diff</a>.</p>
+
+<ul>
+  <li>[x] Add babel-polyfill to avoid: <code class="highlighter-rouge">ReferenceError: regeneratorRuntime is not defined</code></li>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v0022">v0.0.22</h2>
+
+<p>Released: 2017-07-06.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.21...v0.0.22">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade decaffeinate from 2.58.0 to 3.1.1 (breaking)</li>
+</ul>
+
+<h2 id="v0021">v0.0.21</h2>
+
+<p>Released: 2017-07-06.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.20...v0.0.21">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v0020">v0.0.20</h2>
+
+<p>Released: 2017-05-10.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.19...v0.0.20">Diff</a>.</p>
+
+<ul>
+  <li>[x] Add <code class="highlighter-rouge">decaffeinate --loose-includes --loose-for-of</code></li>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v0019">v0.0.19</h2>
+
+<p>Released: 2017-04-29.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.18...v0.0.19">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v0018">v0.0.18</h2>
+
+<p>Released: 2017-04-03.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.17...v0.0.18">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v0017">v0.0.17</h2>
+
+<p>Released: 2017-03-02.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.16...v0.0.17">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade dependencies</li>
+  <li>[x] Set max line length of prettier to (an extreme) 180, as line-breaks are is still a source of buggy rewriting</li>
+</ul>
+
+<h2 id="v0016">v0.0.16</h2>
+
+<p>Released: 2017-02-19.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.15...v0.0.16">Diff</a>.</p>
+
+<ul>
+  <li>[x] Add support quiet mode via <code class="highlighter-rouge">--quiet</code> or <code class="highlighter-rouge">-q</code></li>
+  <li>[x] Add support for STDIN conversion via <code class="highlighter-rouge">echo 'cubes = (math.cube num for num in list)' | invig -s -</code></li>
+</ul>
+
+<h2 id="v0015">v0.0.15</h2>
+
+<p>Released: 2017-02-19.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.14...v0.0.15">Diff</a>.</p>
+
+<ul>
+  <li>[x] Run Prettier by default now that critical bugs have been fixed</li>
+</ul>
+
+<h2 id="v0014">v0.0.14</h2>
+
+<p>Released: 2017-02-17.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.13...v0.0.14">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade to <code class="highlighter-rouge">scrolex@0.0.26</code> which will default to <code class="highlighter-rouge">passthru</code> <code class="highlighter-rouge">mode</code> on Travis CI and non-TTY environments</li>
+</ul>
+
+<h2 id="v0013">v0.0.13</h2>
+
+<p>Released: 2017-02-15.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.12...v0.0.13">Diff</a>.</p>
+
+<ul>
+  <li>[x] Upgrade to <code class="highlighter-rouge">prettier@0.17.1</code> so we won’t run into <code class="highlighter-rouge">TypeError: process.stdout.clearLine is not a function</code> https://github.com/jlongster/prettier/pull/687</li>
+</ul>
+
+<h2 id="v0012">v0.0.12</h2>
+
+<p>Released: 2017-02-14.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.11...v0.0.12">Diff</a>.</p>
+
+<ul>
+  <li>[x] Fix callback bug</li>
+</ul>
+
+<h2 id="v0011">v0.0.11</h2>
+
+<p>Released: 2017-02-14.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.10...v0.0.11">Diff</a>.</p>
+
+<ul>
+  <li>[x] Only add <code class="highlighter-rouge">build:watch</code> if you could add <code class="highlighter-rouge">build</code></li>
+</ul>
+
+<h2 id="v0010">v0.0.10</h2>
+
+<p>Released: 2017-02-14.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.9...v0.0.10">Diff</a>.</p>
+
+<ul>
+  <li>[x] Turn make no bail the default, you now have to explicitly use <code class="highlighter-rouge">--bail</code> (BREAKING)</li>
+  <li>[x] Upgrade dependencies</li>
+</ul>
+
+<h2 id="v009">v0.0.9</h2>
+
+<p>Released: 2017-01-20.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.8...v0.0.9">Diff</a>.</p>
+
+<ul>
+  <li>[x] Ship babel &amp; eslint as deps, not devDeps</li>
+</ul>
+
+<h2 id="v008">v0.0.8</h2>
+
+<p>Released: 2017-01-20.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/v0.0.7...v0.0.8">Diff</a>.</p>
+
+<ul>
+  <li>[x] Add templates to module (fixing bug: <code class="highlighter-rouge">Error: ENOENT: no such file or directory, open '/usr/local/lib/node_modules/invig/lib/../.eslintrc'</code>)</li>
+</ul>
+
+<h2 id="v007">v0.0.7</h2>
+
+<p>Released: 2017-01-20.</p>
+
+<p><a href="https://github.com/kvz/invig/compare/0b5f2d27e4e5bfd370bf74fb91a46ded296bec40...v0.0.7">Diff</a>.</p>
+
+<ul>
+  <li>[x] Initial release</li>
+</ul>
+
+<p><a href="/">« Home</a></p>
+
+
+      
+
+      <div class="Social">
+        <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=invig&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+      </div>
+
+      <p>
+        <small>
+          <hr />
+          Website design based on
+          the wonderful <a href="http://apex.run">apex.run</a>
+          with <a href="https://twitter.com/tjholowaychuk/status/744909762865696769">the author's consent</a>.
+        </small>
+      </p>
+    </section>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/languages/bash.min.js"></script>
+  <script async src="/assets/build/app.1eaada0becc0394f7566.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-63083-15', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>
