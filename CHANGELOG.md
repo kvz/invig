@@ -4,7 +4,7 @@ Here's is a combined todo/done list. You can see what todos are planned for the 
 
 ## Ideas
 
-- [ ] Re-enable Prettier as a default optimizer once it's a little bit more mature
+- [ ] Add js-codemod https://github.com/cpojer/js-codemod/#underscore-to-lodash-native
 
 ## master
 
